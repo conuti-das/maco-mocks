@@ -1,0 +1,23 @@
+{
+  "stammdaten": {
+    "MARKTLOKATION": [
+      {
+        "boTyp": "MARKTLOKATION",
+        "versionStruktur": "1",
+        "marktlokationsId": "12345678901",
+        "energierichtung": "AUSSP",
+        "lokationsadresse": {
+          "postleitzahl": "76229",
+          "ort": "Karlsruhe",
+          "strasse": "Greschbachstrasse",
+          "hausnummer": "3",
+          "adresszusatz": "",
+          "landescode": "DE"
+        }
+      }
+    ]
+  },
+  "transaktionsdaten": {
+    "ausfuehrungsdatum": "2024-11-07T23:00:00Z"
+  }
+}

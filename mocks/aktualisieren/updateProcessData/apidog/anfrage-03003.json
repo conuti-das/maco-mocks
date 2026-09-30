@@ -1,0 +1,30 @@
+{
+  "transaktionsdaten": {
+    "vorgangsnummer": "f81d4fae-7dec-11d0-a765-00a0c91e6bf6",
+    "nachrichtendatum": "2023-08-01T12:30:00Z",
+    "idempodenzschluessel": "f81d4fae-7dec-11d0-a765-00a0c91e6bf6",
+    "vorgangsreferenznummer": "f81d4fae-7dec-11d0-a765-00a0c91e6bf7",
+    "antwortstatusCodeliste": "E_0594",
+    "antwortstatus": "A10",
+    "freitext": {
+      "freitext1": "Ich bin ein Freitext"
+    },
+    "beteiligterMarktpartner": {
+      "boTyp": "MARKTTEILNEHMER",
+      "versionStruktur": "1",
+      "marktrolle": "NB",
+      "rollencodenummer": "9900987654321"
+    },
+    "absender": {
+      "rollencodenummer": "9900936000002"
+    },
+    "empfaenger": {
+      "rollencodenummer": "9904000000005"
+    },
+    "pruefidentifikator": "03003"
+  },
+  "zusatzdaten": {
+    "referenzProzessId": "00505688-E4A2-1EDF-A0C2-C81842E2515E",
+    "targetBusinessKey": "f81d4fae-7dec-11d0-a765-00a0c91e6bf6"
+  }
+}

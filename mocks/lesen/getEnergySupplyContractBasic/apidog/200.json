@@ -1,0 +1,116 @@
+[
+  {
+    "boTyp": "VERTRAG",
+    "versionStruktur": "1",
+    "gueltigkeitszeitraum": {
+      "zeitraumId": null,
+      "startdatum": null,
+      "enddatum": null
+    },
+    "datenqualitaet": null,
+    "vertragsnummer": "12345",
+    "beschreibung": "XYZ",
+    "vertragsart": "ENERGIELIEFERVERTRAG",
+    "vertragstatus": "GEKUENDIGT",
+    "sparte": "STROM",
+    "vertragsbeginn": "0001-01-01T00:00:00Z",
+    "vertragsende": "9999-12-31T23:59:59Z",
+    "vertragspartner2": [
+      {
+        "boTyp": "GESCHAEFTSPARTNER",
+        "versionStruktur": "1",
+        "gewerbekennzeichnung": false,
+        "anrede": "Herr",
+        "name1": "Haiko",
+        "name2": "Fisch",
+        "name3": null,
+        "geschaeftspartnerrolle": [
+          "KUNDE"
+        ],
+        "partneradresse": {
+          "postleitzahl": "65189",
+          "ort": "Wiesbaden",
+          "strasse": "Korallenweg",
+          "hausnummer": "10",
+          "postfach": null,
+          "adresszusatz": null,
+          "coErgaenzung": null,
+          "landescode": "DE",
+          "ortsteil": "Riff"
+        },
+        "externeReferenzen": [
+          {
+            "exRefName": "Kundennummer beim Altlieferanten",
+            "exRefWert": "NummerLFA123456_Z01"
+          }
+        ]
+      }
+    ],
+    "vertragskonditionen": {
+      "netznutzungszahler": "LIEFERANT",
+      "netznutzungsvertrag": "LIEFERANTEN_NB",
+      "netznutzungsabrechnung": {
+        "dauer": 366,
+        "startdatum": "2027-03-27T23:00:00Z",
+        "enddatum": "2028-03-28T21:59:59Z",
+        "abrechnungsZeitraum": "0328"
+      },
+      "beinhaltetSingulaerGenutzteBetriebsmittel": false,
+      "netznutzungsabrechnungsgrundlage": "LIEFERSCHEIN",
+      "haushaltskunde": true,
+      "abrechnungUeberNna": true,
+      "startAbrechnungsjahr": "20260523",
+      "abrechnungsintervall": 12,
+      "netznutzungsabrechnungIntervall": 12,
+      "kuendigungsfrist": {
+        "startdatum": "2026-05-22T22:00:00Z",
+        "enddatum": "9999-12-31T23:59:59Z",
+        "zeitraumText": "01MT"
+      },
+      "vertragslaufzeit": {
+        "startdatum": "2026-05-22T22:00:00Z",
+        "enddatum": "2027-05-22T22:00:00Z"
+      },
+      "kuendigungstermin": "2027-04-22T22:00:00Z",
+      "abschlagszyklus": {
+        "zeiteinheit": "MONAT",
+        "dauer": 1
+      },
+      "anzahlAbschlaege": 12,
+      "vertragsverlaengerung": {
+        "startdatum": "2026-05-22T22:00:00Z",
+        "enddatum": "9999-12-31T23:59:59Z"
+      }
+    },
+    "korrespondenzpartner": {
+      "boTyp": "GESCHAEFTSPARTNER",
+      "versionStruktur": "1",
+      "anrede": "Herr",
+      "name1": "Hai",
+      "name2": "Fisch",
+      "name3": null,
+      "gewerbekennzeichnung": false,
+      "partneradresse": {
+        "postleitzahl": "65189",
+        "ort": "Wiesbaden",
+        "strasse": "Körallenweg",
+        "hausnummer": "10",
+        "postfach": null,
+        "adresszusatz": null,
+        "coErgaenzung": null,
+        "landescode": "DE",
+        "ortsteil": "Riff"
+      }
+    },
+    "lokationsId": "50754496000",
+    "lokationsTyp": "MALO",
+    "enFG": [
+      {
+        "grundlageVerringerungUmlagen": "KEINE_ANGABE",
+        "grund": [
+          null
+        ]
+      }
+    ]
+  }
+]

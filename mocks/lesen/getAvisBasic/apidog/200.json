@@ -1,0 +1,57 @@
+[
+  {
+    "boTyp": "AVIS",
+    "versionStruktur": "1",
+    "avisNummer": "string",
+    "avisTyp": "ABGELEHNTE_FORDERUNG",
+    "zuZahlen": {
+      "wert": 0,
+      "waehrung": "string"
+    },
+    "positionen": [
+      {
+        "rechnungsNummer": "string",
+        "rechnungsDatum": "2024-06-28T12:18:00Z",
+        "istStorno": true,
+        "istSelbstausgestellt": true,
+        "gesamtBrutto": {
+          "wert": 0,
+          "waehrung": "string"
+        },
+        "zuZahlen": {
+          "wert": 0,
+          "waehrung": "string"
+        },
+        "referenz": "string",
+        "abweichung": [
+          {
+            "abweichungsgrund": null,
+            "abweichungsgrundBemerkung": null,
+            "zugehoerigeRechnung": null,
+            "zugehoerigeBestellung": null,
+            "abweichungsgrundCode": null,
+            "abweichungsgrundCodeliste": null,
+            "fehlendePositionen1": null,
+            "fehlendePositionen2": null,
+            "fehlendePositionen3": null,
+            "fehlendePositionen4": null,
+            "fehlendePositionen5": null,
+            "abweichungsgrundBemerkung1": null,
+            "abweichungsgrundBemerkung2": null,
+            "abweichungsgrundBemerkung3": null,
+            "abweichungsgrundBemerkung4": null,
+            "abweichungsgrundBemerkung5": null,
+            "referenz": null,
+            "abschlagsrechnungen": null
+          }
+        ],
+        "positionen": [
+          {
+            "positionsnummer": null,
+            "abweichung": null
+          }
+        ]
+      }
+    ]
+  }
+]

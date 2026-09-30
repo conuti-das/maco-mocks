@@ -1,0 +1,111 @@
+[
+  {
+    "boTyp": "PREISBLATT",
+    "versionStruktur": "1",
+    "bezeichnung": "<string>",
+    "nichtGenutzt": true,
+    "gueltigkeit": {
+      "einheit": "ENUM_Zeiteinheit",
+      "dauer": 5,
+      "startdatum": "2023-03-10T16:22:38Z",
+      "enddatum": "2023-03-10T16:22:38Z"
+    },
+    "preispositionen": [
+      {
+        "berechnungsmethode": "<Kalkulationsmethode>",
+        "leistungstyp": "SPERRUNG",
+        "leistungsbezeichnung": "<string>",
+        "preiseinheit": "ENUM_Waehrungseinheit",
+        "bezugsgroesse": "ENUM_Mengeneinheit",
+        "zeitbasis": "ENUM_Zeiteinheit",
+        "tarifzeit": "ENUM_Tarifzeit",
+        "bdewArtikelnummer": "9991000000721",
+        "zonungsgroesse": "ENUM_Bemessungsgroesse",
+        "zu_abschlaege": {
+          "bezeichnung": "<string>",
+          "beschreibung": "<string>",
+          "aufAbschlagstyp": "ENUM_AufAbschlagstyp",
+          "aufAbschlagswert": 5.2,
+          "aufAbschlagswaehrung": "ENUM_Waehrungseinheit"
+        },
+        "preisstaffeln": [
+          {
+            "einheitspreis": 5.1,
+            "einheit": "ENUM",
+            "staffelgrenzeVon": 4,
+            "staffelgrenzeBis": 9,
+            "sigmoidparameter": {
+              "A": 1,
+              "B": 5,
+              "C": 2,
+              "D": 8
+            },
+            "zeitbasis": "JAHR"
+          }
+        ],
+        "preisschluesselstamm": "<string>",
+        "positionsnummer": 1,
+        "messebene": "ENUM_Netzebene",
+        "beschreibung": "<string>",
+        "verarbeitungszeitraum": {
+          "einheit": "ENUM_Zeiteinheit",
+          "dauer": 5,
+          "startdatum": "2023-03-10T16:22:38Z",
+          "enddatum": "2023-03-10T16:22:38Z",
+          "wert": 25.3
+        },
+        "artikelId": "<string>"
+      },
+      {
+        "berechnungsmethode": "<Kalkulationsmethode>",
+        "leistungstyp": "SPERRUNG",
+        "leistungsbezeichnung": "<string>",
+        "preiseinheit": "ENUM_Waehrungseinheit",
+        "bezugsgroesse": "ENUM_Mengeneinheit",
+        "zeitbasis": "ENUM_Zeiteinheit",
+        "tarifzeit": "ENUM_Tarifzeit",
+        "bdewArtikelnummer": "9991000000722",
+        "zonungsgroesse": "ENUM_Bemessungsgroesse",
+        "zu_abschlaege": {
+          "bezeichnung": "<string>",
+          "beschreibung": "<string>",
+          "aufAbschlagstyp": "ENUM_AufAbschlagstyp",
+          "aufAbschlagswert": 5.2,
+          "aufAbschlagswaehrung": "ENUM_Waehrungseinheit"
+        },
+        "preisstaffeln": [
+          {
+            "einheitspreis": 5.1,
+            "einheit": "ENUM",
+            "staffelgrenzeVon": 4,
+            "staffelgrenzeBis": 9,
+            "sigmoidparameter": {
+              "A": 1,
+              "B": 5,
+              "C": 2,
+              "D": 8
+            },
+            "zeitbasis": "JAHR"
+          }
+        ],
+        "preisschluesselstamm": "<string>",
+        "positionsnummer": 1,
+        "messebene": "ENUM_Netzebene",
+        "beschreibung": "<string>",
+        "verarbeitungszeitraum": {
+          "einheit": "ENUM_Zeiteinheit",
+          "dauer": 5,
+          "startdatum": "2023-03-10T16:22:38Z",
+          "enddatum": "2023-03-10T16:22:38Z",
+          "wert": 25.3
+        },
+        "artikelId": "<string>"
+      }
+    ],
+    "preisstatus": "ENUM_Preisstatus",
+    "sparte": "ENUM_Sparte",
+    "bilanzierungsdatum": "2023-03-01T00:00:00Z",
+    "regelzone": "<string>",
+    "preisNetzbetreiberCodenummer": "<string>"
+  }
+]

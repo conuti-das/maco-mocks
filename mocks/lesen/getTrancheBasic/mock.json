@@ -1,0 +1,55 @@
+{
+  "summary": "Tranche lesen",
+  "method": "GET",
+  "path": "/getTrancheBasic",
+  "command": "LESEN_TRANCHE_BASIS",
+  "rules": [],
+  "parameters": [
+    {
+      "in": "query",
+      "name": "parameter1",
+      "required": true,
+      "description": "LokationsId | Location ID",
+      "type": "string",
+      "example": "74018657187"
+    },
+    {
+      "in": "query",
+      "name": "parameter2",
+      "required": true,
+      "description": "LokationsTyp | Location type",
+      "type": "string",
+      "enum": [
+        "MALO",
+        "MELO",
+        "NELO",
+        "TECHNISCHE_RESSOURCE",
+        "STEUERBARE_RESOURCE",
+        "TRANCHE"
+      ],
+      "example": "MALO"
+    },
+    {
+      "in": "query",
+      "name": "parameter3",
+      "required": true,
+      "description": "Datum (Gültig ab) | Date (Valid from)",
+      "type": "string",
+      "format": "date-time",
+      "example": "2024-06-28T12:18:00Z"
+    },
+    {
+      "in": "query",
+      "name": "parameter4",
+      "required": true,
+      "description": "Datum (Gültig bis) | Date (Valid until)",
+      "type": "string",
+      "format": "date-time",
+      "example": "2024-06-28T12:18:00Z"
+    }
+  ],
+  "apidog": {
+    "operationId": "LESEN_TRANCHE_BASIS",
+    "stand": "093451c"
+  }
+}

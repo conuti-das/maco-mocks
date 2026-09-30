@@ -1,0 +1,19 @@
+{
+  "description": "Gilt für alle Endpunkte, nach deren eigenen Regeln und nur, wenn der Endpunkt die Antwortdatei hat.",
+  "rules": [
+    {
+      "name": "Testdaten parameter1=FEHLER400 -> 400",
+      "when": {
+        "query.parameter1": "FEHLER400"
+      },
+      "then": "400.json"
+    },
+    {
+      "name": "Testdaten parameter1=FEHLER422 -> 422",
+      "when": {
+        "query.parameter1": "FEHLER422"
+      },
+      "then": "422.json"
+    }
+  ]
+}

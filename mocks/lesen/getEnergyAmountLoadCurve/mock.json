@@ -1,0 +1,94 @@
+{
+  "summary": "Lastgangs einer Lokation lesen",
+  "method": "GET",
+  "path": "/getEnergyAmountLoadCurve",
+  "command": "LESEN_ENERGIEMENGE_LASTGANG",
+  "rules": [],
+  "parameters": [
+    {
+      "in": "query",
+      "name": "parameter1",
+      "required": true,
+      "description": "LokationsId",
+      "type": "string",
+      "example": "74018657187"
+    },
+    {
+      "in": "query",
+      "name": "parameter2",
+      "required": true,
+      "description": "LokationsTyp",
+      "type": "string",
+      "enum": [
+        "MALO",
+        "MELO",
+        "NELO",
+        "TECHNISCHE_RESSOURCE",
+        "STEUERBARE_RESOURCE",
+        "TRANCHE"
+      ],
+      "example": "MALO"
+    },
+    {
+      "in": "query",
+      "name": "parameter3",
+      "required": true,
+      "description": "Datum (Gültig ab) oder Stichtag, wenn parameter4 nicht gesetzt",
+      "type": "string",
+      "format": "date-time",
+      "example": "2024-06-28T12:18:00Z"
+    },
+    {
+      "in": "query",
+      "name": "parameter4",
+      "required": true,
+      "description": "Datum (Gültig bis)",
+      "type": "string",
+      "format": "date-time",
+      "example": "2024-06-28T12:18:00Z"
+    },
+    {
+      "in": "query",
+      "name": "parameter5",
+      "required": false,
+      "description": "OBIS Kennzahl",
+      "type": "string",
+      "example": "123456789"
+    },
+    {
+      "in": "query",
+      "name": "parameter6",
+      "required": true,
+      "description": "abrechnungsrevant? [true/false = default null) Wenn Parameter null ist, soll dieser in der Abfage ignoriert werden, wenn true soll explizit geprüft werden ob Lastgang abrechnungsrelevant ist, wenn fal",
+      "type": "boolean"
+    },
+    {
+      "in": "query",
+      "name": "parameter7",
+      "required": true,
+      "description": "bilanzierungsrelevant) [true/false = default null) WennParameter null ist, soll dieser in der Abfage ignoriert werden, wenn true soll explizit geprüft werden ob Lastgang bilanzierungsrelevant ist, wen",
+      "type": "boolean"
+    },
+    {
+      "in": "query",
+      "name": "command",
+      "required": false,
+      "description": "Entspricht der operationId dieser Schnittstelle. Diese Operation Id entspricht dem Command im Camunda Konnektor Prozess. Wenn das Backend einen generischen Endpunkt bereitstellt, kann dieses Command g",
+      "type": "string",
+      "example": "SAP_LESEN_ENERGIEMENGE_LASTGANG"
+    },
+    {
+      "in": "header",
+      "name": "Authorization",
+      "required": false,
+      "type": "string"
+    }
+  ],
+  "apidog": {
+    "operationId": "LESEN_ENERGIEMENGE_LASTGANG",
+    "stand": "093451c",
+    "ausSchema": [
+      "200.json"
+    ]
+  }
+}

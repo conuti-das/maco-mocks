@@ -1,0 +1,32 @@
+{
+  "summary": "Avis lesen",
+  "method": "GET",
+  "path": "/getAvisBasic",
+  "command": "LESEN_AVIS_BASIS",
+  "rules": [],
+  "parameters": [
+    {
+      "in": "query",
+      "name": "parameter1",
+      "required": true,
+      "description": "avisNummer | avis Number",
+      "type": "string",
+      "example": "123456"
+    },
+    {
+      "in": "query",
+      "name": "command",
+      "required": false,
+      "description": "Entspricht der operationId dieser Schnittstelle. Diese Operation Id entspricht dem Command im Camunda Konnektor Prozess. Wenn das Backend einen generischen Endpunkt bereitstellt, kann dieses Command g",
+      "type": "string",
+      "example": "SAP_LESEN_AVIS_BASIS"
+    }
+  ],
+  "apidog": {
+    "operationId": "LESEN_AVIS_BASIS",
+    "stand": "093451c",
+    "ausSchema": [
+      "200.json"
+    ]
+  }
+}

@@ -1,0 +1,212 @@
+{
+  "data": {
+    "stammdaten": {
+      "MARKTLOKATION": [
+        {
+          "boTyp": "MARKTLOKATION",
+          "versionStruktur": "1",
+          "marktlokationsId": "57685676748",
+          "energierichtung": "EINSP",
+          "messtechnischeEinordnung": "IMS",
+          "marktlokationsTyp": [
+            {
+              "typ": "STANDARD_MARKTLOKATION",
+              "gueltigAb": "2023-08-01T22:00:00Z",
+              "gueltigBis": "2023-09-01T22:00:00Z"
+            },
+            {
+              "typ": "RUHENDE_MARKTLOKATION",
+              "gueltigAb": "2023-09-01T22:00:00Z",
+              "gueltigBis": "2023-10-01T22:00:00Z"
+            },
+            {
+              "typ": "KUNDENANLAGE",
+              "gueltigAb": "2023-10-01T22:00:00Z",
+              "gueltigBis": "2023-11-01T22:00:00Z"
+            }
+          ],
+          "marktrollen": [
+            {
+              "boTyp": "MARKTTEILNEHMER",
+              "versionStruktur": "1",
+              "rollencodenummer": "9800172600001",
+              "marktrolle": "NB",
+              "zuordnungVon": "2023-09-01T22:00:00Z",
+              "zuordnungBis": "2023-10-01T22:00:00Z"
+            },
+            {
+              "boTyp": "MARKTTEILNEHMER",
+              "versionStruktur": "1",
+              "rollencodenummer": "9800172600002",
+              "marktrolle": "MSB",
+              "zuordnungVon": "2023-09-01T22:00:00Z",
+              "zuordnungBis": "2023-10-01T22:00:00Z"
+            },
+            {
+              "boTyp": "MARKTTEILNEHMER",
+              "versionStruktur": "1",
+              "rollencodenummer": "9800172600003",
+              "marktrolle": "UENB",
+              "zuordnungVon": "2023-09-01T22:00:00Z",
+              "zuordnungBis": "2023-10-01T22:00:00Z"
+            },
+            {
+              "boTyp": "MARKTTEILNEHMER",
+              "versionStruktur": "1",
+              "rollencodenummer": "9800172600004",
+              "marktrolle": "LF",
+              "zuordnungVon": "2023-09-01T22:00:00Z",
+              "zuordnungBis": "2023-10-01T22:00:00Z"
+            }
+          ],
+          "lokationsadresse": {
+            "postleitzahl": "12117",
+            "ort": "Berlin",
+            "strasse": "Reinhardtstraße",
+            "hausnummer": "32",
+            "adresszusatz": "F",
+            "landescode": "DE"
+          },
+          "katasterinformation": {
+            "gemarkung_flur": "Eine Gemarkung",
+            "flurstueck": "Ein Stueck",
+            "flurstueckNummer": "123"
+          },
+          "geokoordinaten": {
+            "breitengrad": "48.1351",
+            "laengengrad": "11.5820",
+            "ostwert": "692200",
+            "nordwert": "5334180",
+            "zone": "UTMZone31",
+            "hochwert": "5334010",
+            "rechtswert": "4481220"
+          }
+        }
+      ],
+      "BILANZIERUNG": [
+        {
+          "boTyp": "BILANZIERUNG",
+          "versionStruktur": "1",
+          "wahlrechtPrognosegrundlage": "DURCH_LF"
+        }
+      ],
+      "TRANCHE": [
+        {
+          "boTyp": "TRANCHE",
+          "versionStruktur": "1",
+          "tranchenId": "57685676742",
+          "bildungTranchengroesse": "PROZENTUAL",
+          "aufteilungsmenge": {
+            "wert": 12.5,
+            "einheit": "PROZENT"
+          },
+          "marktrollen": [
+            {
+              "boTyp": "MARKTTEILNEHMER",
+              "versionStruktur": "1",
+              "rollencodenummer": "9800172600005",
+              "marktrolle": "LF",
+              "zuordnungVon": "2023-09-01T22:00:00Z",
+              "zuordnungBis": "2023-10-01T22:00:00Z"
+            }
+          ]
+        }
+      ],
+      "MESSLOKATION": [
+        {
+          "boTyp": "MESSLOKATION",
+          "versionStruktur": "1",
+          "messlokationsId": "DE00014545768S0000000000000003054",
+          "marktrollen": [
+            {
+              "boTyp": "MARKTTEILNEHMER",
+              "versionStruktur": "1",
+              "rollencodenummer": "9800172600005",
+              "marktrolle": "MSB",
+              "zuordnungVon": "2023-09-01T22:00:00Z",
+              "zuordnungBis": "2023-10-01T22:00:00Z"
+            }
+          ]
+        }
+      ],
+      "ENERGIELIEFERVERTRAG": [
+        {
+          "boTyp": "VERTRAG",
+          "versionStruktur": "1",
+          "vertragsart": "ENERGIELIEFERVERTRAG",
+          "vertragspartner2": [
+            {
+              "boTyp": "GESCHAEFTSPARTNER",
+              "versionStruktur": "1",
+              "anrede": "Prof.Dr.",
+              "name1": "Becker",
+              "name2": "Michael",
+              "gewerbekennzeichnung": false,
+              "geschaeftspartnerrolle": [
+                "KUNDE"
+              ]
+            }
+          ]
+        }
+      ],
+      "TECHNISCHE_RESSOURCE": [
+        {
+          "boTyp": "TECHNISCHE_RESSOURCE",
+          "versionStruktur": "1",
+          "ressourcenId": "D417MLM8164"
+        }
+      ],
+      "STEUERBARE_RESSOURCE": [
+        {
+          "boTyp": "STEUERBARE_RESSOURCE",
+          "versionStruktur": "1",
+          "ressourcenId": "C81641SBT77",
+          "marktrollen": [
+            {
+              "boTyp": "MARKTTEILNEHMER",
+              "versionStruktur": "1",
+              "marktrolle": "MSB",
+              "rollencodenummer": "9980000000026",
+              "zuordnungVon": "2023-09-01T22:00:00Z",
+              "zuordnungBis": "2023-10-01T22:00:00Z"
+            }
+          ]
+        }
+      ],
+      "NETZLOKATION": [
+        {
+          "boTyp": "NETZLOKATION",
+          "versionStruktur": "1",
+          "netzlokationsId": "E1688117482",
+          "marktrollen": [
+            {
+              "boTyp": "MARKTTEILNEHMER",
+              "versionStruktur": "1",
+              "marktrolle": "MSB",
+              "rollencodenummer": "9980000000029",
+              "zuordnungVon": "2023-09-01T22:00:00Z",
+              "zuordnungBis": "2023-10-01T22:00:00Z"
+            }
+          ]
+        }
+      ]
+    },
+    "transaktionsdaten": {
+      "vorgangsnummer": "f81d4fae-7dec-11d0-a765-00a0c91e6bf6",
+      "nachrichtendatum": "2023-08-01T12:30:00Z",
+      "idempodenzschluessel": "f81d4fae-7dec-11d0-a765-00a0c91e6bf6",
+      "vorgangsreferenznummer": "f81d4fae-7dec-11d0-a765-00a0c91e6bf7",
+      "absender": {
+        "rollencodenummer": "9900936000002"
+      },
+      "empfaenger": {
+        "rollencodenummer": "9904000000005"
+      },
+      "pruefidentifikator": "03002"
+    },
+    "zusatzdaten": {
+      "referenzProzessId": "00505688-E4A2-1EDF-A0C2-C81842E2515E",
+      "targetBusinessKey": "f81d4fae-7dec-11d0-a765-00a0c91e6bf6"
+    }
+  }
+}

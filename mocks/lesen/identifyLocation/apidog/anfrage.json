@@ -1,0 +1,87 @@
+{
+  "stammdaten": {
+    "MARKTLOKATION": [
+      {
+        "boTyp": "MARKTLOKATION",
+        "versionStruktur": "1",
+        "marktlokationsId": "90131677420",
+        "energierichtung": "EINSP",
+        "lokationsadresse": {
+          "postleitzahl": "aliquip tempor amet",
+          "ort": "commodo in Excepteur eu dolor",
+          "strasse": "laborum minim proident",
+          "hausnummer": "50",
+          "postfach": "quis aliqua",
+          "adresszusatz": "veniam in ea",
+          "coErgaenzung": "id est adipisicing tempor",
+          "landescode": "UK",
+          "ortsteil": "dolore ad esse",
+          "zusatzInformation": {
+            "zusatz1": "Lorem id Duis anim",
+            "zusatz2": "aliqua laborum minim cillum deserunt",
+            "zusatz3": "proident",
+            "zusatz4": "consectetur sit",
+            "zusatz5": "consequat reprehenderit qui pariatur nulla"
+          }
+        }
+      },
+      {
+        "boTyp": "MARKTLOKATION",
+        "versionStruktur": "1",
+        "marktlokationsId": "03308573585",
+        "energierichtung": "AUSSP",
+        "lokationsadresse": {
+          "postleitzahl": "Ut ex enim cupidatat aliquip",
+          "ort": "Duis ea ex sed",
+          "strasse": "elit consequat aliquip",
+          "hausnummer": "96",
+          "postfach": "minim Duis fugiat ut",
+          "adresszusatz": "consectetur pariatur officia",
+          "coErgaenzung": "reprehenderit mollit irure",
+          "landescode": "GL",
+          "ortsteil": "eu id",
+          "zusatzInformation": {
+            "zusatz1": "exercitation",
+            "zusatz2": "elit ad dolor veniam",
+            "zusatz3": "Ut ullamco Duis laboris",
+            "zusatz4": "Ut est non ex",
+            "zusatz5": "irure in deserunt culpa"
+          }
+        }
+      }
+    ],
+    "TRANCHE": [
+      {
+        "boTyp": "TRANCHE",
+        "versionStruktur": "1",
+        "tranchenId": "25753438709"
+      }
+    ],
+    "MESSLOKATION": [
+      {
+        "boTyp": "MESSLOKATION",
+        "versionStruktur": "1",
+        "messlokationsId": "DE89771071027XDWTLEH0Q9J3J02PYZXW",
+        "messadresse": {
+          "postleitzahl": "<string>",
+          "ort": "<string>",
+          "strasse": "<string>",
+          "hausnummer": "<string>",
+          "postfach": "<string>",
+          "adresszusatz": "<string>",
+          "coErgaenzung": "<string>",
+          "gewerbekennzeichnung": true,
+          "landescode": "DE",
+          "ortsteil": "<string>",
+          "zusatzInformation": {
+            "zusatz1": "<string>",
+            "zusatz2": "<string>",
+            "zusatz3": "<string>",
+            "zusatz4": "<string>",
+            "zusatz5": "<string>"
+          }
+        }
+      }
+    ]
+  }
+}

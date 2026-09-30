@@ -1,0 +1,66 @@
+{
+  "summary": "Messstellenbetriebsvertrag lesen",
+  "method": "GET",
+  "path": "/getMeasuringPointOperationContractBasic",
+  "command": "LESEN_MESSSTELLENBETRIEBSVERTRAG_BASIS",
+  "rules": [],
+  "parameters": [
+    {
+      "in": "query",
+      "name": "parameter1",
+      "required": true,
+      "description": "LokationsId",
+      "type": "string",
+      "example": "74018657187"
+    },
+    {
+      "in": "query",
+      "name": "parameter2",
+      "required": true,
+      "description": "LokationsTyp",
+      "type": "string",
+      "enum": [
+        "MALO",
+        "MELO",
+        "NELO",
+        "TECHNISCHE_RESSOURCE",
+        "STEUERBARE_RESOURCE",
+        "TRANCHE"
+      ],
+      "example": "MALO"
+    },
+    {
+      "in": "query",
+      "name": "parameter3",
+      "required": true,
+      "description": "Datum (Gültig ab) oder Stichtag, wenn parameter4 nicht gesetzt",
+      "type": "string",
+      "format": "date-time",
+      "example": "2024-06-28T12:18:00Z"
+    },
+    {
+      "in": "query",
+      "name": "parameter4",
+      "required": true,
+      "description": "Datum (Gültig bis)",
+      "type": "string",
+      "format": "date-time",
+      "example": "2024-06-28T12:18:00Z"
+    },
+    {
+      "in": "query",
+      "name": "command",
+      "required": false,
+      "description": "Entspricht der operationId dieser Schnittstelle. Diese Operation Id entspricht dem Command im Camunda Konnektor Prozess. Wenn das Backend einen generischen Endpunkt bereitstellt, kann dieses Command g",
+      "type": "string",
+      "example": "SAP_LESEN_MESSSTELLENBETRIEBSVERTRAG_BASIS"
+    }
+  ],
+  "apidog": {
+    "operationId": "LESEN_MESSSTELLENBETRIEBSVERTRAG_BASIS",
+    "stand": "093451c",
+    "ausSchema": [
+      "200.json"
+    ]
+  }
+}

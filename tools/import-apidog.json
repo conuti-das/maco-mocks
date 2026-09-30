@@ -1,0 +1,14 @@
+{
+  "select": {
+    "tags": ["LESEN | READ"],
+    "operationIdPrefixes": ["LESEN_", "AKTUALISIEREN_"],
+    "operationIds": [],
+    "excludeTagsContaining": ["Obsolet"],
+    "excludeOperationIds": [],
+    "excludePathPattern": "Oracle$"
+  },
+  "groups": [
+    { "name": "aktualisieren", "operationIdPrefixes": ["AKTUALISIEREN_"] },
+    { "name": "lesen", "default": true }
+  ]
+}

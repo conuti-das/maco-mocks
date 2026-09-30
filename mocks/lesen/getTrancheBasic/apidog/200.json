@@ -1,0 +1,253 @@
+{
+  "boTyp": "TRANCHE",
+  "versionStruktur": "1",
+  "tranchenId": "<string>",
+  "zukuenftigerMeldepunkt": true,
+  "sparte": "ENUM_Sparte",
+  "gueltigkeitszeitraum": {
+    "zeitraumId": 1,
+    "startdatum": "2024-12-31T23:00:00Z",
+    "enddatum": "2025-12-31T23:00:00Z"
+  },
+  "datenqualitaet": "ENUM_qualitaet",
+  "energierichtung": "ENUM_Energierichtung",
+  "bilanzierungsmethode": "ENUM_Bilanzierungsmethode",
+  "verbrauchsart": [
+    "ENUM_Verbrauchsart"
+  ],
+  "unterbrechbar": true,
+  "netzebene": "ENUM_Netzebene",
+  "netzbetreiberCodeNr": "<string>",
+  "gebietTyp": "ENUM_Gebiettyp",
+  "netzgebietNr": "<string>",
+  "bilanzierungsgebiet": "<string>",
+  "grundversorgerCodeNr": "<string>",
+  "gasqualitaet": "ENUM_Gasqualitaet",
+  "endkunde": {
+    "boTyp": "GESCHAEFTSPARTNER",
+    "versionStruktur": "1",
+    "anrede": "<string>",
+    "name1": "<string>",
+    "name2": "<string>",
+    "name3": "<string>",
+    "gewerbekennzeichnung": true,
+    "hrnummer": "<string>",
+    "amtsgericht": "<string>",
+    "kontaktweg": [
+      "Kontaktart1",
+      "Kontaktart2"
+    ],
+    "umsatzsteuerId": "<string>",
+    "glaeubigerId": "<string>",
+    "eMailAdresse": "<string>",
+    "website": "<string>",
+    "partneradresse": {
+      "postleitzahl": "<string>",
+      "ort": "<string>",
+      "strasse": "<string>",
+      "hausnummer": "<string>",
+      "postfach": "<string>",
+      "adresszusatz": "<string>",
+      "coErgaenzung": "<string>",
+      "landescode": "ENUM_Landescode",
+      "ortsteil": "<string>"
+    }
+  },
+  "lokationsadresse": {
+    "postleitzahl": "<string>",
+    "ort": "<string>",
+    "strasse": "<string>",
+    "hausnummer": "<string>",
+    "postfach": "<string>",
+    "adresszusatz": "<string>",
+    "coErgaenzung": "<string>",
+    "landescode": "ENUM_Landescode",
+    "ortsteil": "<string>",
+    "zusatzInformation": {
+      "zusatz1": "<string>",
+      "zusatz2": "<string>",
+      "zusatz3": "<string>",
+      "zusatz4": "<string>",
+      "zusatz5": "<string>"
+    }
+  },
+  "katasterinformation": {
+    "gemarkung_flur": "<string>",
+    "flurstueck": "<string>"
+  },
+  "marktrollen": [
+    {
+      "boTyp": "MARKTTEILNEHMER",
+      "versionStruktur": "1",
+      "zuordnungVon": "2024-12-31T23:00:00Z",
+      "zuordnungBis": "2025-12-31T23:00:00Z",
+      "marktrolle": "ENUM_Marktrolle",
+      "gewerbekennzeichnung": true,
+      "rollencodenummer": "<string>",
+      "rollencodetyp": "<string>",
+      "weiterverpflichtet": false
+    },
+    {
+      "boTyp": "MARKTTEILNEHMER",
+      "versionStruktur": "1",
+      "zuordnungVon": "2024-12-31T23:00:00Z",
+      "zuordnungBis": "2025-12-31T23:00:00Z",
+      "marktrolle": "ENUM_Marktrolle",
+      "gewerbekennzeichnung": true,
+      "rollencodenummer": "<string>",
+      "rollencodetyp": "<string>",
+      "weiterverpflichtet": false
+    }
+  ],
+  "regelzone": "<string>",
+  "marktgebiet": "<string>",
+  "zeitreihentyp": "ENUM_Zeitreihentyp",
+  "zaehlwerke": [
+    {
+      "zaehlwerkId": "<string>",
+      "bezeichnung": "<string>",
+      "richtung": "ENUM_Energierichtung",
+      "obisKennzahl": "<string>",
+      "wandlerfaktor": 5,
+      "einheit": "ENUM_Mengeneinheit",
+      "schwachlastfaehig": "ENUM_Schwachlastfaehig",
+      "verwendungszwecke": [
+        {
+          "marktrolle": "ENUM_Marktrolle",
+          "zweck": [
+            "zweck1",
+            "zweck2",
+            "..."
+          ]
+        }
+      ],
+      "verbrauchsart": "ENUM_Verbrauchsart",
+      "unterbrechbarkeit": "ENUM_Unterbrechbarkeit",
+      "waermenutzung": "ENUM_Waermenutzung",
+      "konzessionsabgabe": {
+        "satz": "ENUM_AbgabeArt",
+        "kosten": 45.73,
+        "kategorie": "<string>"
+      },
+      "steuerbefreit": true,
+      "vorkommastelle": "5",
+      "nachkommastelle": "0",
+      "abrechnungsrelevant": true,
+      "anzahlAblesungen": "12",
+      "zaehlzeiten": {
+        "zaehlzeitDefinition": "<string>",
+        "register": "<string>",
+        "schwachlastfaehig": "ENUM_Schwachlastfaehig"
+      },
+      "konfiguration": "<string>",
+      "messprodukt": "<string>",
+      "wertegranularitaet": "ENUM_siehe.Liste.Kommentar",
+      "notwendigkeitZweiteMessung": "ENUM_siehe.Liste",
+      "werteuebermittlungVerwendungszweck": "ENUM",
+      "artEMobilitaet": "ENUM_siehe.Liste.Kommentar"
+    }
+  ],
+  "zaehlwerkeBeteiligteMarktrolle": [
+    "rolle1",
+    "rolle2"
+  ],
+  "verbrauchsmenge": [
+    {
+      "startdatum": "2022-10-14T07:52:00Z",
+      "enddatum": "2022-10-14T07:52:00Z",
+      "wertermittlungsverfahren": "ENUM_Wertermittlungsverfahren",
+      "messwertstatus": "ENUM_Messwertstatus",
+      "statuszusatzinformationen": [
+        {
+          "art": "ENUM_StatusArt",
+          "status": "ENUM_Status"
+        }
+      ],
+      "obiskennzahl": "<string>",
+      "wert": "<string>",
+      "einheit": "ENUM_Mengeneinheit"
+    }
+  ],
+  "zugehoerigeMesslokationen": [
+    {
+      "messlokationsId": "<string>",
+      "arithmetik": "<string>",
+      "gueltigSeit": "2022-10-14T07:52:00Z",
+      "gueltigBis": "2022-10-14T07:52:00Z"
+    }
+  ],
+  "messtechnischeEinordnung": "ENUM_MesstechnischeEinordnung",
+  "netznutzungsabrechnungsdaten": [
+    {
+      "artikelId": "<string>",
+      "artikelIdTyp": "ENUM_ArtikelIdTyp",
+      "anzahl": 5,
+      "gemeinderabatt": 5.45,
+      "zuschlag": 5.78,
+      "abschlag": 5.87,
+      "singulaereBetriebsmittel": {
+        "wert": 5,
+        "einheit": "ENUM_Mengeneinheit"
+      },
+      "preisSingulaereBetriebsmittel": {
+        "wert": 5.7,
+        "einheit": "ENUM_Waehrungseinheit",
+        "bezugswert": "ENUM_Mengeneinheit",
+        "status": "ENUM_Preisstatus"
+      },
+      "abrechnungBlindarbeit": true,
+      "zahlerBlindarbeit": "ENUM_siehe.Liste.Kommentar",
+      "zahlerBlindarbeitLf": true
+    }
+  ],
+  "sperrstatus": "ENUM_Sperrstatus",
+  "referenzMarktlokationsId": "<string>",
+  "energieherkunft": [
+    {
+      "erzeugungsart": "ENUM_Erzeugungsart",
+      "anteilProzent": 5.2
+    }
+  ],
+  "versorgungsart": "ENUM_siehe.Liste.Kommentar",
+  "fernsteuerbarkeit": "ENUM.siehe.Liste.Kommentar",
+  "verguetungEmpfaenger": "ENUM.siehe.Liste.Kommentar",
+  "foerderungsLand": "<string>",
+  "statusErzeugendeMalo": "ENUM.siehe.Liste.Kommentar",
+  "referenzTranche": "<string>",
+  "aufteilungsmenge": {
+    "wert": 5.3,
+    "einheit": "ENUM_Mengeneinheit"
+  },
+  "bilanzkreis": "<string>",
+  "bildungTranchengroesse": "ENUM",
+  "lokationszuordnung": "<ENUM>",
+  "beteiligterMarktpartner": {
+    "boTyp": "MARKTTEILNEHMER",
+    "versionStruktur": "1",
+    "marktrolle": "NB",
+    "gewerbekennzeichnung": true,
+    "rollencodenummer": "9900259000002",
+    "rollencodetyp": "BDEW"
+  },
+  "datenDerBeteiligtenMarktrolle": [
+    {
+      "bilanzkreis": "11Y0-0000-0076-N",
+      "zaehlwerke": [
+        {
+          "obisKennzahl": "1-1:2.29.0",
+          "verwendungszwecke": [
+            {
+              "marktrolle": "ENUM_Marktrolle",
+              "zweck": [
+                "zweck1",
+                "zweck2",
+                "..."
+              ]
+            }
+          ]
+        }
+      ],
+      "betriebsstatus": "REGELBETRIEB"
+    }
+  ]
+}

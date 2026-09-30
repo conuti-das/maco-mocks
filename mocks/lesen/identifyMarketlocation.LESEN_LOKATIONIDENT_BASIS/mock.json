@@ -1,0 +1,15 @@
+{
+  "summary": "Identifizierung der Lokation",
+  "method": "POST",
+  "path": "/identifyMarketlocation",
+  "command": "LESEN_LOKATIONIDENT_BASIS",
+  "rules": [],
+  "parameters": [],
+  "apidog": {
+    "operationId": "LESEN_LOKATIONIDENT_BASIS",
+    "stand": "093451c",
+    "ausSchema": [
+      "200.json"
+    ]
+  }
+}

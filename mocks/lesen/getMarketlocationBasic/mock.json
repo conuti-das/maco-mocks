@@ -1,0 +1,66 @@
+{
+  "summary": "Marktlokation lesen",
+  "method": "GET",
+  "path": "/getMarketlocationBasic",
+  "command": "LESEN_MARKTLOKATION_BASIS",
+  "rules": [
+    {
+      "name": "Unbekannte Marktlokation: parameter1 = 00000000000",
+      "when": {
+        "query.parameter1": "00000000000"
+      },
+      "then": "200-leer.json"
+    }
+  ],
+  "set": {
+    "stammdaten.MARKTLOKATION[0].marktlokationsId": "{{query.parameter1}}"
+  },
+  "parameters": [
+    {
+      "in": "query",
+      "name": "parameter1",
+      "required": true,
+      "description": "LokationsId der Marklokation",
+      "type": "string",
+      "example": "50000083283"
+    },
+    {
+      "in": "query",
+      "name": "parameter2",
+      "required": false,
+      "description": "LokationsTyp, wenn nicht gesetzt, immer MALO",
+      "type": "string",
+      "enum": [
+        "MALO",
+        "MELO",
+        "NELO",
+        "TECHNISCHE_RESSOURCE",
+        "STEUERBARE_RESOURCE",
+        "TRANCHE"
+      ],
+      "example": "MALO"
+    },
+    {
+      "in": "query",
+      "name": "parameter3",
+      "required": true,
+      "description": "Datum (Gültig ab) oder Stichtag, wenn parameter4 nicht gesetzt",
+      "type": "string",
+      "format": "date-time",
+      "example": "2024-06-28T12:18:00Z"
+    },
+    {
+      "in": "query",
+      "name": "parameter4",
+      "required": false,
+      "description": "Datum (Gültig bis)",
+      "type": "string",
+      "format": "date-time",
+      "example": "2024-06-28T12:18:00Z"
+    }
+  ],
+  "apidog": {
+    "operationId": "LESEN_MARKTLOKATION_BASIS",
+    "stand": "093451c"
+  }
+}

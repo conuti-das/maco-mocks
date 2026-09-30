@@ -1,0 +1,28 @@
+{
+  "summary": "Prozessdaten aktualisieren",
+  "method": "POST",
+  "path": "/updateProcessData",
+  "command": "AKTUALISIEREN_PROZESSDATEN",
+  "rules": [
+    {
+      "name": "Body ohne transaktionsdaten -> 400",
+      "when": {
+        "body.transaktionsdaten": {
+          "exists": false
+        },
+        "body.data.transaktionsdaten": {
+          "exists": false
+        }
+      },
+      "then": "400.json"
+    }
+  ],
+  "parameters": [],
+  "apidog": {
+    "operationId": "AKTUALISIEREN_PROZESSDATEN",
+    "stand": "093451c",
+    "ausSchema": [
+      "201.json"
+    ]
+  }
+}

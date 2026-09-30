@@ -1,0 +1,10 @@
+# Alle Anfragen an index.php, interne Dateien nie ausliefern.
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^(data|src|bin)(/|$) - [F,L]
+    RewriteRule ^config(\.local)?\.php$ - [F,L]
+    RewriteRule ^\. - [F,L]
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+    RewriteRule ^ index.php [QSA,END]
+</IfModule>

@@ -1,0 +1,44 @@
+[
+  {
+    "boTyp": "BERECHNUNGSFORMEL",
+    "versionStruktur": "1",
+    "gueltigkeitszeitraum": {
+      "zeitraumId": 1,
+      "startdatum": "2025-02-28T23:00:00Z"
+    },
+    "notwendigkeit": "BERECHNUNGSFORMEL_NOTWENDIG",
+    "rechenschrittId": 1,
+    "rechenschritte": [
+      {
+        "rechenschrittBestandteilId": 1,
+        "operation": "ADDITION",
+        "messlokationsId": "DE0009697056900614312080040415222",
+        "energieflussrichtung": "AUSSP",
+        "marktlokationsId": "51238696781",
+        "bezeichnungOperanden": "MeLo1"
+      },
+      {
+        "rechenschrittBestandteilId": 1,
+        "operation": "ADDITION",
+        "messlokationsId": "DE0009697056900614312080040415333",
+        "energieflussrichtung": "AUSSP",
+        "marktlokationsId": "51238696781",
+        "bezeichnungOperanden": "MeLo2"
+      }
+    ],
+    "lokationsId": "51238696781",
+    "lokationsTyp": "MALO",
+    "berechnungsformel": "MaLo1 = MeLo1 + MeLo2",
+    "datenqualitaet": "GUELTIGE_DATEN",
+    "parameterIDs": [
+      "P1",
+      "P2"
+    ],
+    "aufteilungsfaktoren": [
+      {
+        "bezeichnungAufteilungsfaktor": "Aufteilung Erzeugung",
+        "faktor": 0.75
+      }
+    ]
+  }
+]

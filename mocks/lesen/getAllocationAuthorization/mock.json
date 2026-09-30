@@ -1,0 +1,56 @@
+{
+  "summary": "Get Allocation Authorization",
+  "method": "GET",
+  "path": "/getAllocationAuthorization",
+  "command": "LESEN_PROZESSDATEN_ZUORDNUNGERMAECHTIGUNG",
+  "rules": [],
+  "parameters": [
+    {
+      "in": "query",
+      "name": "parameter1",
+      "required": true,
+      "description": "Marketlocation Id",
+      "type": "string",
+      "example": "50858721423"
+    },
+    {
+      "in": "query",
+      "name": "parameter2",
+      "required": true,
+      "description": "Role code number (ILN) of the supplier",
+      "type": "string",
+      "example": "9979052000006"
+    },
+    {
+      "in": "query",
+      "name": "parameter3",
+      "required": true,
+      "description": "Move-in date",
+      "type": "string",
+      "format": "date-time",
+      "example": "2024-06-28T12:18:00Z"
+    },
+    {
+      "in": "query",
+      "name": "parameter4",
+      "required": true,
+      "description": "Balancing group from the registration",
+      "type": "string"
+    },
+    {
+      "in": "query",
+      "name": "command",
+      "required": true,
+      "description": "Corresponds to the operationId of this interface. This operationId corresponds to the command in the Camunda connector process. If the backend provides a generic endpoint, this command can be used to ",
+      "type": "string",
+      "example": "LESEN_PROZESSDATEN_ZUORDNUNGSERMAECHTIGUNG"
+    }
+  ],
+  "apidog": {
+    "operationId": "LESEN_PROZESSDATEN_ZUORDNUNGERMAECHTIGUNG",
+    "stand": "093451c",
+    "ausSchema": [
+      "200.json"
+    ]
+  }
+}

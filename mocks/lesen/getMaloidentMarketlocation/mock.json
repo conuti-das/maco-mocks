@@ -1,0 +1,33 @@
+{
+  "summary": "Stammdaten der identifiz. MaLo",
+  "method": "GET",
+  "path": "/getMaloidentMarketlocation",
+  "command": "LESEN_MALOIDENT_MARKTLOKATION",
+  "rules": [],
+  "set": {
+    "stammdaten.MARKTLOKATION[0].marktlokationsId": "{{query.parameter1}}"
+  },
+  "parameters": [
+    {
+      "in": "query",
+      "name": "parameter1",
+      "required": true,
+      "description": "LokationsId der Marktlokation",
+      "type": "string",
+      "example": "74018657187"
+    },
+    {
+      "in": "query",
+      "name": "parameter3",
+      "required": true,
+      "description": "Datum (Stichtag)",
+      "type": "string",
+      "format": "date-time",
+      "example": "2024-06-28T12:18:00Z"
+    }
+  ],
+  "apidog": {
+    "operationId": "LESEN_MALOIDENT_MARKTLOKATION",
+    "stand": "093451c"
+  }
+}

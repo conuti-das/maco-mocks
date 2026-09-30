@@ -1,0 +1,55 @@
+{
+  "summary": "Leistungskurvendefinition lesen",
+  "method": "GET",
+  "path": "/getDefinitionPerformance",
+  "command": "LESEN_DEFINITION_LEISTUNGSKURVE",
+  "rules": [],
+  "parameters": [
+    {
+      "in": "query",
+      "name": "parameter1",
+      "required": true,
+      "description": "Leistungskurvendefinition",
+      "type": "string",
+      "example": "9991000000721"
+    },
+    {
+      "in": "query",
+      "name": "parameter2",
+      "required": false,
+      "description": "LokationsTyp | Location type",
+      "type": "string",
+      "enum": [
+        "MALO",
+        "MELO",
+        "NELO",
+        "TECHNISCHE_RESSOURCE",
+        "STEUERBARE_RESOURCE",
+        "TRANCHE"
+      ],
+      "example": "MALO"
+    },
+    {
+      "in": "query",
+      "name": "parameter3",
+      "required": true,
+      "description": "Datum (Gültig ab) | Date (Valid from)",
+      "type": "string",
+      "format": "date-time",
+      "example": "2024-06-28T12:18:00Z"
+    },
+    {
+      "in": "query",
+      "name": "parameter4",
+      "required": false,
+      "description": "Datum (Gültig bis) | Date (Valid until)",
+      "type": "string",
+      "format": "date-time",
+      "example": "2024-06-28T12:18:00Z"
+    }
+  ],
+  "apidog": {
+    "operationId": "LESEN_DEFINITION_LEISTUNGSKURVE",
+    "stand": "093451c"
+  }
+}

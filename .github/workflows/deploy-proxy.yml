@@ -1,0 +1,40 @@
+name: Proxy deployen
+
+# Lädt proxy/ per FTPS auf den Webspace von mocks.macoapp.de, wenn sich dort etwas ändert.
+# Läuft nur mit den Secrets FTP_SERVER, FTP_USERNAME, FTP_PASSWORD (optional Variable FTP_SERVER_DIR).
+# Die lokale Repo-Kopie (data/) und config.local.php auf dem Server bleiben unberührt.
+# Die Mocks selbst kommen nicht über FTP, sondern per Webhook (POST /_update).
+
+on:
+  push:
+    branches: [main]
+    paths: ['proxy/**']
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      FTP_SERVER: ${{ secrets.FTP_SERVER }}
+    steps:
+      - name: Secrets prüfen
+        if: env.FTP_SERVER == ''
+        run: echo "::notice::FTP_SERVER ist nicht gesetzt – Deploy übersprungen"
+
+      - uses: actions/checkout@v7
+        if: env.FTP_SERVER != ''
+
+      - uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        if: env.FTP_SERVER != ''
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          local-dir: ./proxy/
+          server-dir: ${{ vars.FTP_SERVER_DIR || './' }}
+          exclude: |
+            **/.git*
+            **/.git*/**
+            data/**
+            config.local.php

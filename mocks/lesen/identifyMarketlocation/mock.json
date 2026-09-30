@@ -1,0 +1,15 @@
+{
+  "summary": "Identifizierung der MaLo",
+  "method": "POST",
+  "path": "/identifyMarketlocation",
+  "command": "LESEN_MALOIDENT_BASIS",
+  "rules": [],
+  "parameters": [],
+  "apidog": {
+    "operationId": "LESEN_MALOIDENT_BASIS",
+    "stand": "093451c",
+    "ausSchema": [
+      "200.json"
+    ]
+  }
+}

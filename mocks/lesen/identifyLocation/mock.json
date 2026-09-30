@@ -1,0 +1,44 @@
+{
+  "summary": "Lokation identifizieren",
+  "method": "POST",
+  "path": "/identifyLocation",
+  "command": "IDENTIFIZIEREN_LOKATION_BASIS",
+  "default": "200-mehrere-marktlokationen.json",
+  "rules": [
+    {
+      "name": "Kein Treffer: Marktlokations-ID 00000000000",
+      "when": {
+        "body.stammdaten.MARKTLOKATION[0].marktlokationsId": "00000000000"
+      },
+      "then": "200-leer.json"
+    },
+    {
+      "name": "Identifikation per Marktlokations-ID -> eine Marktlokation",
+      "when": {
+        "body.stammdaten.MARKTLOKATION[0].marktlokationsId": {
+          "exists": true
+        }
+      },
+      "then": "200-eine-marktlokation.json"
+    }
+  ],
+  "paging": {
+    "limitHeader": "Treffer-Max-Anzahl",
+    "offsetHeader": "Treffer-Offset",
+    "defaultLimit": 20,
+    "maxLimit": 500,
+    "maxOffset": 10000,
+    "invalid": "400.json",
+    "responseHeaders": {
+      "offset": "Treffer-Offset",
+      "count": "Treffer-Anzahl",
+      "total": "Treffer-Gesamtanzahl",
+      "more": "Treffer-Weitere-Vorhanden"
+    }
+  },
+  "parameters": [],
+  "apidog": {
+    "operationId": "IDENTIFIZIEREN_LOKATION_BASIS",
+    "stand": "093451c"
+  }
+}

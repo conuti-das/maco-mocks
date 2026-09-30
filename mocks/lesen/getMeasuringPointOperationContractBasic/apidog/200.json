@@ -1,0 +1,286 @@
+[
+  {
+    "boTyp": "VERTRAG",
+    "versionStruktur": "1",
+    "sparte": "STROM",
+    "vertragsart": "string",
+    "vertragsnummer": "string",
+    "beschreibung": "string",
+    "lokationsId": "string",
+    "lokationsTyp": "MALO",
+    "vertragsstatus": "IN_ARBEIT",
+    "vertragsbeginn": "2024-06-28T12:18:00Z",
+    "vertragsende": "9999-12-31T23:59:59Z",
+    "gemeinderabatt": 0,
+    "vertragskonditionen": {
+      "netznutzungszahler": "KUNDE",
+      "netznutzungsvertrag": "KUNDEN_NB",
+      "netznutzungsabrechnung": {
+        "zeiteinheit": "SEKUNDE",
+        "dauer": 0,
+        "startdatum": "2024-06-28T12:18:00Z",
+        "enddatum": "2024-06-28T12:18:00Z",
+        "einheit": "SEKUNDE",
+        "ableseZeitraum": "string",
+        "abrechnungsZeitraum": "string",
+        "zeitraumText": "string",
+        "zeitraumId": 0
+      },
+      "beinhaltetSingulaerGenutzteBetriebsmittel": true,
+      "netznutzungsabrechnungsgrundlage": "LIEFERSCHEIN",
+      "netznutzungsabrechnungsvariante": "ARBEITSPREIS_GRUNDPREIS",
+      "haushaltskunde": true,
+      "abrechnungUeberNna": true,
+      "gemeinderabatt": {
+        "wert": 0,
+        "einheit": "string",
+        "typ": "string",
+        "bemessungsgrundlage": 0
+      },
+      "startAbrechnungsjahr": "2024-06-28T12:18:00Z",
+      "naechstenetznutzungsabrechnung": "string",
+      "abrechnungsintervall": 0,
+      "netznutzungsabrechnungIntervall": 0,
+      "geplanteTurnusablesung": {
+        "zeiteinheit": "SEKUNDE",
+        "dauer": 0,
+        "startdatum": "2024-06-28T12:18:00Z",
+        "enddatum": "2024-06-28T12:18:00Z",
+        "einheit": "SEKUNDE",
+        "ableseZeitraum": "string",
+        "abrechnungsZeitraum": "string",
+        "zeitraumText": "string",
+        "zeitraumId": 0
+      },
+      "beauftragungMsb": "VERTRAG_AN_MSB",
+      "kuendigungsfrist": {
+        "zeiteinheit": "SEKUNDE",
+        "dauer": 0,
+        "startdatum": "2024-06-28T12:18:00Z",
+        "enddatum": "2024-06-28T12:18:00Z",
+        "einheit": "SEKUNDE",
+        "ableseZeitraum": "string",
+        "abrechnungsZeitraum": "string",
+        "zeitraumText": "string",
+        "zeitraumId": 0
+      },
+      "vertragslaufzeit": {
+        "zeiteinheit": "SEKUNDE",
+        "dauer": 0,
+        "startdatum": "2024-06-28T12:18:00Z",
+        "enddatum": "2024-06-28T12:18:00Z",
+        "einheit": "SEKUNDE",
+        "ableseZeitraum": "string",
+        "abrechnungsZeitraum": "string",
+        "zeitraumText": "string",
+        "zeitraumId": 0
+      },
+      "kuendigungstermin": "string",
+      "abschlagszyklus": {
+        "zeiteinheit": "SEKUNDE",
+        "dauer": 0,
+        "startdatum": "2024-06-28T12:18:00Z",
+        "enddatum": "2024-06-28T12:18:00Z",
+        "einheit": "SEKUNDE",
+        "ableseZeitraum": "string",
+        "abrechnungsZeitraum": "string",
+        "zeitraumText": "string",
+        "zeitraumId": 0
+      },
+      "anzahl_abschlaege": 0,
+      "beschreibung": "string",
+      "vertragsverlaengerung": {
+        "zeiteinheit": "SEKUNDE",
+        "dauer": 0,
+        "startdatum": "2024-06-28T12:18:00Z",
+        "enddatum": "2024-06-28T12:18:00Z",
+        "einheit": "SEKUNDE",
+        "ableseZeitraum": "string",
+        "abrechnungsZeitraum": "string",
+        "zeitraumText": "string",
+        "zeitraumId": 0
+      }
+    },
+    "korrespondenzpartner": {
+      "boTyp": "GESCHAEFTSPARTNER",
+      "versionStruktur": "1",
+      "anrede": "string",
+      "name1": "string",
+      "name2": "string",
+      "name3": "string",
+      "name4": "string",
+      "umsatzsteuerId": "string",
+      "glaeubigerId": "string",
+      "emailAdresse": "string",
+      "website": "string",
+      "gewerbekennzeichnung": true,
+      "hrnummer": "string",
+      "amtsgericht": "string",
+      "partneradresse": {
+        "postleitzahl": "string",
+        "ort": "string",
+        "strasse": "string",
+        "hausnummer": "string",
+        "postfach": "string",
+        "adresszusatz": "string",
+        "coErgaenzung": "string",
+        "landescode": "AC",
+        "ortsteil": "string",
+        "zusatzInformation": {
+          "zusatz1": null,
+          "zusatz2": null,
+          "zusatz3": null,
+          "zusatz4": null,
+          "zusatz5": null
+        }
+      },
+      "externeKundenummerLieferant": "string",
+      "externeReferenzen": [
+        {
+          "exRefName": "Kundennummer beim Lieferanten",
+          "exRefWert": "string"
+        }
+      ],
+      "geschaeftspartnerrolle": [
+        "KUNDE"
+      ],
+      "kontaktweg": [
+        "ANSCHREIBEN"
+      ],
+      "ansprechpartner": {
+        "boTyp": "ANSPRECHPARTNER",
+        "versionStruktur": "1",
+        "nachname": "string",
+        "eMailAdresse": "string",
+        "rufnummern": [
+          null
+        ]
+      }
+    },
+    "abrechnungUeberNna": true,
+    "datenqualitaet": "ERWARTETE_DATEN",
+    "gueltigkeitszeitraum": {
+      "zeiteinheit": "SEKUNDE",
+      "dauer": 0,
+      "startdatum": "2024-06-28T12:18:00Z",
+      "enddatum": "2024-06-28T12:18:00Z",
+      "einheit": "SEKUNDE",
+      "ableseZeitraum": "string",
+      "abrechnungsZeitraum": "string",
+      "zeitraumText": "string",
+      "zeitraumId": 0
+    },
+    "vertragspartner1": [
+      {
+        "boTyp": "GESCHAEFTSPARTNER",
+        "versionStruktur": "1",
+        "anrede": "string",
+        "name1": "string",
+        "name2": "string",
+        "name3": "string",
+        "name4": "string",
+        "umsatzsteuerId": "string",
+        "glaeubigerId": "string",
+        "emailAdresse": "string",
+        "website": "string",
+        "gewerbekennzeichnung": true,
+        "hrnummer": "string",
+        "amtsgericht": "string",
+        "partneradresse": {
+          "postleitzahl": "string",
+          "ort": "string",
+          "strasse": "string",
+          "hausnummer": "string",
+          "postfach": "string",
+          "adresszusatz": "string",
+          "coErgaenzung": "string",
+          "landescode": null,
+          "ortsteil": "string",
+          "zusatzInformation": null
+        },
+        "externeKundenummerLieferant": "string",
+        "externeReferenzen": [
+          {
+            "exRefName": null,
+            "exRefWert": null
+          }
+        ],
+        "geschaeftspartnerrolle": [
+          "KUNDE"
+        ],
+        "kontaktweg": [
+          "ANSCHREIBEN"
+        ],
+        "ansprechpartner": {
+          "boTyp": "ANSPRECHPARTNER",
+          "versionStruktur": "1",
+          "nachname": "string",
+          "eMailAdresse": "string",
+          "rufnummern": [
+            null
+          ]
+        }
+      }
+    ],
+    "vertragspartner2": [
+      {
+        "boTyp": "GESCHAEFTSPARTNER",
+        "versionStruktur": "1",
+        "anrede": "string",
+        "name1": "string",
+        "name2": "string",
+        "name3": "string",
+        "name4": "string",
+        "umsatzsteuerId": "string",
+        "glaeubigerId": "string",
+        "emailAdresse": "string",
+        "website": "string",
+        "gewerbekennzeichnung": true,
+        "hrnummer": "string",
+        "amtsgericht": "string",
+        "partneradresse": {
+          "postleitzahl": "string",
+          "ort": "string",
+          "strasse": "string",
+          "hausnummer": "string",
+          "postfach": "string",
+          "adresszusatz": "string",
+          "coErgaenzung": "string",
+          "landescode": null,
+          "ortsteil": "string",
+          "zusatzInformation": null
+        },
+        "externeKundenummerLieferant": "string",
+        "externeReferenzen": [
+          {
+            "exRefName": null,
+            "exRefWert": null
+          }
+        ],
+        "geschaeftspartnerrolle": [
+          "KUNDE"
+        ],
+        "kontaktweg": [
+          "ANSCHREIBEN"
+        ],
+        "ansprechpartner": {
+          "boTyp": "ANSPRECHPARTNER",
+          "versionStruktur": "1",
+          "nachname": "string",
+          "eMailAdresse": "string",
+          "rufnummern": [
+            null
+          ]
+        }
+      }
+    ],
+    "enFG": [
+      {
+        "grundlageVerringerungUmlagen": "ERFUELLT_VORAUSSETZUNG_NACH_ENFG",
+        "grund": [
+          "ENFG_STROMSPEICHER_UND_VERLUSTENERGIE"
+        ]
+      }
+    ]
+  }
+]
