@@ -1,0 +1,16 @@
+{
+  "hinweis": "Importierte Mock-Erwartungen. Nicht von Hand ändern, eigene Regeln in mock.json haben Vorrang.",
+  "exportiert": "2026-09-30T14:37:16.966Z",
+  "erwartungen": [
+    {
+      "name": "default",
+      "id": 3047806,
+      "when": {
+        "query.parameter1": {
+          "exists": true
+        }
+      },
+      "then": "200-erwartung-default.json"
+    }
+  ]
+}

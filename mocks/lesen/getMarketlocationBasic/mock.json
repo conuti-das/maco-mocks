@@ -56,7 +56,7 @@
       "example": "2024-06-28T12:18:00Z"
     }
   ],
-  "apidog": {
+  "quelle": {
     "operationId": "LESEN_MARKTLOKATION_BASIS",
     "stand": "093451c"
   }

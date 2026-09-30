@@ -48,7 +48,7 @@
       "example": "2024-06-28T12:18:00Z"
     }
   ],
-  "apidog": {
+  "quelle": {
     "operationId": "LESEN_TECHNISCHE_RESSOURCE_BASIS",
     "stand": "093451c"
   }

@@ -64,7 +64,7 @@
       "example": "SAP_LESEN_ENERGIEMENGE_ENERGIEMENGE"
     }
   ],
-  "apidog": {
+  "quelle": {
     "operationId": "LESEN_ENERGIEMENGE_ENERGIEMENGE",
     "stand": "093451c"
   }

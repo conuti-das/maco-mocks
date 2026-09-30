@@ -55,7 +55,7 @@
       "example": "SAP_LESEN_BRECHNUNGSFORMEL_BASIS"
     }
   ],
-  "apidog": {
+  "quelle": {
     "operationId": "LESEN_BRECHNUNGSFORMEL_BASIS",
     "stand": "093451c"
   }

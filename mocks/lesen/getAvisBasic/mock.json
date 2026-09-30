@@ -22,7 +22,7 @@
       "example": "SAP_LESEN_AVIS_BASIS"
     }
   ],
-  "apidog": {
+  "quelle": {
     "operationId": "LESEN_AVIS_BASIS",
     "stand": "093451c",
     "ausSchema": [

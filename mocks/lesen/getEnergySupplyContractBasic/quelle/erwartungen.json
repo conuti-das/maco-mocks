@@ -1,0 +1,32 @@
+{
+  "hinweis": "Importierte Mock-Erwartungen. Nicht von Hand ändern, eigene Regeln in mock.json haben Vorrang.",
+  "exportiert": "2026-09-30T14:37:16.966Z",
+  "erwartungen": [
+    {
+      "name": "Malo 50818928522",
+      "id": 2982699,
+      "when": {
+        "query.parameter1": "50818928522"
+      },
+      "then": "200-erwartung-malo-50818928522.json"
+    },
+    {
+      "name": "Malo 20002213673",
+      "id": 3074921,
+      "when": {
+        "query.parameter1": "20002213673"
+      },
+      "then": "200-erwartung-malo-20002213673.json"
+    },
+    {
+      "name": "Malo default",
+      "id": 2993417,
+      "when": {
+        "query.parameter1": {
+          "exists": true
+        }
+      },
+      "then": "200-erwartung-malo-default.json"
+    }
+  ]
+}

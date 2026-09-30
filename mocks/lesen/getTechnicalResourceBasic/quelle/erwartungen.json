@@ -1,0 +1,14 @@
+{
+  "hinweis": "Importierte Mock-Erwartungen. Nicht von Hand ändern, eigene Regeln in mock.json haben Vorrang.",
+  "exportiert": "2026-09-30T14:37:16.966Z",
+  "erwartungen": [
+    {
+      "name": "D417MLM8164",
+      "id": 3056738,
+      "when": {
+        "query.parameter1": "D417MLM8164"
+      },
+      "then": "200-erwartung-d417mlm8164.json"
+    }
+  ]
+}

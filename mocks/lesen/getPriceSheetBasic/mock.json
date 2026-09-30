@@ -56,7 +56,7 @@
       "example": "SAP_LESEN_PREISBLATT_BASIS"
     }
   ],
-  "apidog": {
+  "quelle": {
     "operationId": "LESEN_PREISBLATT_BASIS",
     "stand": "093451c"
   }

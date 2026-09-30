@@ -1,0 +1,24 @@
+{
+  "hinweis": "Importierte Mock-Erwartungen. Nicht von Hand ändern, eigene Regeln in mock.json haben Vorrang.",
+  "exportiert": "2026-09-30T14:37:16.966Z",
+  "erwartungen": [
+    {
+      "name": "marktlokationsId = 10002137935",
+      "id": 3066311,
+      "when": {
+        "body.marktlokationsId": "10002137935"
+      },
+      "then": "200-erwartung-marktlokationsid-10002137935.json"
+    },
+    {
+      "name": "Default mit Platzhaltern",
+      "id": 3062799,
+      "when": {
+        "body.boTyp": {
+          "exists": true
+        }
+      },
+      "then": "200-erwartung-default-mit-platzhaltern.json"
+    }
+  ]
+}

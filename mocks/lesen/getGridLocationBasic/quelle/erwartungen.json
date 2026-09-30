@@ -1,0 +1,24 @@
+{
+  "hinweis": "Importierte Mock-Erwartungen. Nicht von Hand ändern, eigene Regeln in mock.json haben Vorrang.",
+  "exportiert": "2026-09-30T14:37:16.966Z",
+  "erwartungen": [
+    {
+      "name": "Nelo E1688110018",
+      "id": 2947287,
+      "when": {
+        "query.parameter1": "E1688110018"
+      },
+      "then": "200-erwartung-nelo-e1688110018.json"
+    },
+    {
+      "name": "Default",
+      "id": 2958808,
+      "when": {
+        "query.parameter1": {
+          "exists": true
+        }
+      },
+      "then": "200-erwartung-default.json"
+    }
+  ]
+}

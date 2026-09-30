@@ -10,8 +10,8 @@ namespace MacoMocks;
  *   mocks/_global.json                   globale Regeln (optional)
  *   mocks/<gruppe>/<endpunkt>/mock.json  Methode, Pfad, Command, Regeln
  *   mocks/<gruppe>/<endpunkt>/*.json     eigene Antworten, Name <status>[-<name>].json
- *   mocks/<gruppe>/<endpunkt>/apidog/    Antworten aus Apidog; gleicher Name im Endpunkt-Ordner gewinnt
- *   mocks/<gruppe>/<endpunkt>/apidog/erwartungen.json  Mock-Erwartungen aus Apidog (Regeln wie in mock.json)
+ *   mocks/<gruppe>/<endpunkt>/quelle/    importierte Antworten; gleicher Name im Endpunkt-Ordner gewinnt
+ *   mocks/<gruppe>/<endpunkt>/quelle/erwartungen.json  importierte Mock-Erwartungen (Regeln wie in mock.json)
  */
 final class Catalog
 {
@@ -99,7 +99,7 @@ final class Catalog
                 return;
             }
             foreach (scandir($abs) ?: [] as $entry) {
-                if ($entry[0] === '.' || $entry === 'apidog' || !is_dir($abs . '/' . $entry)) {
+                if ($entry[0] === '.' || $entry === 'quelle' || !is_dir($abs . '/' . $entry)) {
                     continue;
                 }
                 $walk($rel === '' ? $entry : $rel . '/' . $entry, $depth + 1);
@@ -133,7 +133,7 @@ final class Catalog
 
         $responses = [];
         $requestExamples = [];
-        foreach (['apidog/', ''] as $prefix) {
+        foreach (['quelle/', ''] as $prefix) {
             if (!is_dir($dir . '/' . $prefix)) {
                 continue;
             }
@@ -224,7 +224,7 @@ final class Catalog
     }
 
     /**
-     * apidog/erwartungen.json: {"erwartungen": [{"name", "apidogId", "when", "then"}, …]} in Prüfreihenfolge.
+     * quelle/erwartungen.json: {"erwartungen": [{"name", "id", "when", "then"}, …]} in Prüfreihenfolge.
      * Markiert die Antwortdateien der Erwartungen, damit sie weder Standard werden noch "set" bekommen.
      *
      * @param array<string, array> $responses
@@ -232,11 +232,11 @@ final class Catalog
      */
     private function loadExpectations(string $id, array &$responses): array
     {
-        $file = $this->mocksDir . '/' . $id . '/apidog/erwartungen.json';
+        $file = $this->mocksDir . '/' . $id . '/quelle/erwartungen.json';
         if (!is_file($file)) {
             return [];
         }
-        $where = "{$id}/apidog/erwartungen.json";
+        $where = "{$id}/quelle/erwartungen.json";
         $data = json_decode((string) file_get_contents($file), false);
         $list = $data instanceof \stdClass ? ($data->erwartungen ?? null) : null;
         if (!is_array($list)) {
@@ -245,13 +245,13 @@ final class Catalog
         }
         $out = [];
         foreach ($list as $i => $entry) {
-            // Erwartungen ohne Bedingung ("when": {}) greifen immer – wie in Apidog
+            // Erwartungen ohne Bedingung ("when": {}) greifen immer – wie im API-Tool
             $rule = $this->normalizeRule($entry, "{$where} Erwartung " . ($i + 1), $responses, true);
             if ($rule === null) {
                 continue;
             }
-            if (isset($entry->apidogId)) {
-                $rule['apidogId'] = (int) $entry->apidogId;
+            if (isset($entry->id)) {
+                $rule['id'] = (int) $entry->id;
             }
             if (isset($rule['then']['file'])) {
                 $responses[$rule['then']['file']]['erwartung'] = true;

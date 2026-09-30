@@ -84,7 +84,7 @@
       "type": "string"
     }
   ],
-  "apidog": {
+  "quelle": {
     "operationId": "LESEN_ENERGIEMENGE_LASTGANG",
     "stand": "093451c",
     "ausSchema": [

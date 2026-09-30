@@ -5,7 +5,7 @@
   "command": "LESEN_LOKATIONIDENT_BASIS",
   "rules": [],
   "parameters": [],
-  "apidog": {
+  "quelle": {
     "operationId": "LESEN_LOKATIONIDENT_BASIS",
     "stand": "093451c",
     "ausSchema": [

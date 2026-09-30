@@ -12,9 +12,9 @@ namespace MacoMocks;
  *      Gleicher Pfad mehrfach: Query-Parameter "command" entscheidet.
  *      Unbekannter Pfad mit "command": Suche über den Command (Präfixe wie SAP_ werden erkannt).
  *   2. Antwort: Auswahl per Header X-Mock-Response / Query __response → Paging-Prüfung
- *      → Regeln des Endpunkts → globale Regeln → Apidog-Erwartungen → default.
+ *      → Regeln des Endpunkts → globale Regeln → importierte Erwartungen → default.
  *      Parameter ohne Regel werden ignoriert.
- *   3. Aufbereiten: "set" (nicht bei Apidog-Erwartungen) und {{…}}-Platzhalter, Paging, Header.
+ *   3. Aufbereiten: "set" (nicht bei importierten Erwartungen) und {{…}}-Platzhalter, Paging, Header.
  *
  * Anfrage:  ['method' => 'GET', 'path' => '/x', 'query' => [...], 'headers' => [klein => wert], 'body' => string]
  * Antwort:  ['status' => int, 'headers' => [...], 'body' => ?string]
@@ -211,7 +211,7 @@ final class MockServer
         }
         foreach ($endpoint['expectations'] ?? [] as $rule) {
             if ($this->ruleMatches($rule)) {
-                return ['then' => $rule['then'], 'name' => $rule['then']['file'] ?? 'inline', 'reason' => 'Apidog-Erwartung: ' . $rule['name'], 'paging' => $paging];
+                return ['then' => $rule['then'], 'name' => $rule['then']['file'] ?? 'inline', 'reason' => 'Erwartung: ' . $rule['name'], 'paging' => $paging];
             }
         }
         return ['then' => ['file' => $endpoint['default']], 'name' => (string) $endpoint['default'], 'reason' => 'Standard', 'paging' => $paging];
@@ -337,7 +337,7 @@ final class MockServer
         }
 
         $headers = [];
-        // Antworten aus Apidog-Erwartungen kommen wie in Apidog unverändert (Mock-Skripte laufen dort auch nicht)
+        // Antworten importierter Erwartungen kommen unverändert, wie im API-Tool (Mock-Skripte laufen dort auch nicht)
         $set = $file !== null && ($endpoint['responses'][$file]['erwartung'] ?? false) ? [] : $endpoint['set'];
         $needsProcessing = $raw !== null && ($set || $decision['paging'] !== null || str_contains($raw, '{{'));
         if ($needsProcessing) {

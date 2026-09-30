@@ -8,7 +8,7 @@
 
 return [
     // Quelle der Mocks (öffentliches Repo) und Branch, dessen Stand ausgeliefert wird
-    'repo' => 'conuti-das/maco-apidog-mocks',
+    'repo' => 'conuti-das/maco-mocks',
     'branch' => 'main',
 
     // Lokale Kopie des Repos (Releases, Status). Muss für PHP beschreibbar sein.

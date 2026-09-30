@@ -71,7 +71,7 @@ if ($errors) {
     exit(1);
 }
 printf(
-    "ok: %d Endpunkte, %d Antworten, %d Regeln, %d Apidog-Erwartungen, %d globale Regeln, %d JSON-Dateien\n",
+    "ok: %d Endpunkte, %d Antworten, %d Regeln, %d Erwartungen, %d globale Regeln, %d JSON-Dateien\n",
     count($catalog->endpoints),
     $responseCount,
     $ruleCount,

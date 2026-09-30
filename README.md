@@ -1,7 +1,7 @@
-# maco-apidog-mocks
+# maco-mocks
 
 Mocks der MaKo-Backend-Schnittstellen **lesen** und **aktualisieren**, dazu ein PHP-Proxy, der sie unter
-**https://mocks.macoapp.de** ausliefert. Die Antworten stammen aus Apidog und liegen hier als einzelne
+**https://mocks.macoapp.de** ausliefert. Die Antworten stammen aus der API-Spezifikation und liegen hier als einzelne
 JSON-Dateien. Welche Antwort kommt, kann je Parameter, Header oder Body gesteuert werden.
 
 ```bash
@@ -21,7 +21,7 @@ mocks/
     getMarketlocationBasic/
       mock.json                    Methode, Pfad, Command, Regeln
       200-leer.json                eigene Antwort
-      apidog/                      aus Apidog – wird beim Import überschrieben
+      quelle/                      aus der API-Spezifikation – wird beim Import überschrieben
         200.json
         400.json
         erwartungen.json           Mock-Erwartungen (Varianten je Parameter)
@@ -29,15 +29,15 @@ mocks/
   aktualisieren/
     updateProcessData/
       mock.json
-      apidog/201.json, 400.json, anfrage-03002.json, anfrage-03003.json
+      quelle/201.json, 400.json, anfrage-03002.json, anfrage-03003.json
 proxy/                             PHP-Proxy für mocks.macoapp.de
-tools/                             Import aus Apidog, Prüfung
+tools/                             Import, Prüfung
 tests/                             Tests
 ```
 
 - **Antwortdateien** heißen `<status>.json` oder `<status>-<name>.json`, z. B. `200.json`, `200-leer.json`, `422.json`. Der Status steht im Namen.
-- Liegt eine Datei gleichen Namens im Endpunkt-Ordner und in `apidog/`, gewinnt die im Endpunkt-Ordner. So lässt sich eine Apidog-Antwort anpassen, ohne dass der nächste Import sie überschreibt.
-- `anfrage*.json` sind Anfragebeispiele aus Apidog, zum Nachlesen und Testen.
+- Liegt eine Datei gleichen Namens im Endpunkt-Ordner und in `quelle/`, gewinnt die im Endpunkt-Ordner. So lässt sich eine importierte Antwort anpassen, ohne dass der nächste Import sie überschreibt.
+- `anfrage*.json` sind Anfragebeispiele aus der Spezifikation, zum Nachlesen und Testen.
 
 ## Pflege
 
@@ -58,16 +58,16 @@ tests/                             Tests
 
 3. Pushen. Der Proxy lädt den neuen Stand automatisch (siehe unten).
 
-Reihenfolge je Anfrage: eigene Regeln (`mock.json`) → globale Testdaten (`_global.json`) → Apidog-Erwartungen (`apidog/erwartungen.json`) → `default` (sonst `200.json` bzw. die erste 2xx-Datei). Die erste passende Regel gewinnt. Parameter, die in keiner Regel vorkommen, werden ignoriert.
+Reihenfolge je Anfrage: eigene Regeln (`mock.json`) → globale Testdaten (`_global.json`) → Erwartungen (`quelle/erwartungen.json`) → `default` (sonst `200.json` bzw. die erste 2xx-Datei). Die erste passende Regel gewinnt. Parameter, die in keiner Regel vorkommen, werden ignoriert.
 
-### Varianten aus Apidog (Mock-Erwartungen)
+### Varianten (Mock-Erwartungen)
 
-Die Mock-Erwartungen aus Apidog (Endpunkt → Mock) liegen je Endpunkt in `apidog/erwartungen.json`, die Antworten daneben als `200-erwartung-<name>.json`. Die Regeln sehen aus wie in `mock.json` und werden beim Import überschrieben.
+Die Mock-Erwartungen aus dem API-Tool (Endpunkt → Mock) liegen je Endpunkt in `quelle/erwartungen.json`, die Antworten daneben als `200-erwartung-<name>.json`. Die Regeln sehen aus wie in `mock.json` und werden beim Import überschrieben.
 
-- Geprüft wird in der Apidog-Reihenfolge. Sammel-Erwartungen, die nur prüfen, ob ein Parameter da ist (z. B. „Default mit Platzhaltern“), oder gar keine Bedingung haben, kommen zuletzt. In Apidog verdecken sie sonst alles, was in der Liste darunter steht.
-- Die Antworten kommen unverändert, `set` greift dort nicht (wie die Mock-Skripte in Apidog).
+- Geprüft wird in der Reihenfolge aus dem API-Tool. Sammel-Erwartungen, die nur prüfen, ob ein Parameter da ist (z. B. „Default mit Platzhaltern“), oder gar keine Bedingung haben, kommen zuletzt. Sonst verdecken sie alles, was in der Liste darunter steht.
+- Die Antworten kommen unverändert, `set` greift dort nicht.
 - Body-Bedingungen ohne Pfad (`marktlokationsId`) prüfen das Feld auf oberster Ebene, `$.a.b` wird zu `a.b`.
-- Eine Variante anders haben: eigene Regel in `mock.json` anlegen, die gewinnt. Dauerhaft ändern: in Apidog und neu importieren.
+- Eine Variante anders haben: eigene Regel in `mock.json` anlegen, die gewinnt. Dauerhaft ändern: im API-Tool und neu importieren.
 
 ### Bedingungen (`when`)
 
@@ -92,7 +92,7 @@ Alle Bedingungen einer Regel müssen zutreffen. Für „oder“ mehrere Regeln a
 
 ### Antwort (`then`)
 
-- `"200-leer.json"`: Datei aus dem Endpunkt-Ordner oder `apidog/`
+- `"200-leer.json"`: Datei aus dem Endpunkt-Ordner oder `quelle/`
 - `{"file": "422.json", "headers": {"X-Grund": "..."}, "delay": 500}`: mit zusätzlichen Headern und Verzögerung in ms
 - `{"status": 204}` oder `{"status": 200, "body": []}`: ohne Datei
 
@@ -101,7 +101,7 @@ Alle Bedingungen einer Regel müssen zutreffen. Für „oder“ mehrere Regeln a
 In Antwortdateien und Headern werden Platzhalter ersetzt: `{{query.parameter1}}`, `{{header.x-id}}`, `{{path.id}}`,
 `{{body.a.b[0]}}`, `{{command}}`, `{{now}}`, `{{uuid}}`. Mit Standardwert: `{{query.parameter1|50754496000}}`.
 
-Um eine Apidog-Antwort nicht kopieren zu müssen, gibt es `set` in `mock.json`. Der Wert wird nur gesetzt, wenn der Parameter mitkommt und das Feld in der Antwort existiert:
+Um eine importierte Antwort nicht kopieren zu müssen, gibt es `set` in `mock.json`. Der Wert wird nur gesetzt, wenn der Parameter mitkommt und das Feld in der Antwort existiert:
 
 ```json
 "set": { "stammdaten.MARKTLOKATION[0].marktlokationsId": "{{query.parameter1}}" }
@@ -115,7 +115,7 @@ Header `X-Mock-Response: 422` oder Query `?__response=200-leer`, wahlweise mit S
 
 | Endpunkt | Verhalten |
 |---|---|
-| 19 Endpunkte | 92 Varianten aus Apidog, siehe Übersicht unter `/` |
+| 19 Endpunkte | 92 importierte Varianten, siehe Übersicht unter `/` |
 | `POST /identifyLocation` | Paging über `Treffer-Max-Anzahl`/`Treffer-Offset` mit Antwort-Headern `Treffer-*`; MaLo-ID `00000000000` → `[]`; MaLo-ID vorhanden → eine Marktlokation; sonst mehrere |
 | `POST /updateProcessData` | ohne `transaktionsdaten` → 400; 03002 und 03003 → 201 |
 | `GET /getMarketlocationBasic` | `parameter1=00000000000` → leere Liste |
@@ -133,21 +133,21 @@ php tests/run.php
 
 Läuft auch bei jedem Push (`.github/workflows/check.yml`, PHP 8.1 und 8.4). Der Proxy prüft jeden Stand vor dem Umschalten genauso und behält bei Fehlern den alten.
 
-## Import aus Apidog
+## Import
 
-Quelle ist das nächtliche Apidog-Backup (`apidog/openapi.json`, internes Repo). Auswahl und Gruppen stehen in `tools/import-apidog.json`.
+Quelle ist das nächtliche Backup der API-Spezifikation (`openapi.json`, internes Repo). Auswahl und Gruppen stehen in `tools/import.json`.
 
 Die Mock-Erwartungen stehen nicht im OpenAPI-Export. Sie kommen aus dem Browser:
 
-1. app.apidog.com öffnen, Projekt laden (Branch main) und einmal neu laden.
-2. Entwicklertools → Konsole, den Inhalt von `tools/apidog-erwartungen.js` einfügen. Das lädt `apidog-erwartungen-<projekt>.json` herunter.
+1. Das Projekt im Web-Client des API-Tools öffnen (Branch main) und einmal neu laden.
+2. Entwicklertools → Konsole, den Inhalt von `tools/erwartungen-export.js` einfügen. Das lädt `erwartungen-<projekt>.json` herunter.
 
 ```bash
-php tools/import-apidog.php /pfad/zu/openapi.json --erwartungen ~/Downloads/apidog-erwartungen-816353.json --stand <commit>
+php tools/import.php /pfad/zu/openapi.json --erwartungen ~/Downloads/erwartungen-<projekt>.json --stand <commit>
 php tools/validate.php
 ```
 
-Der Import schreibt nur `apidog/` und die Felder `summary`, `method`, `path`, `command`, `parameters`, `apidog` in `mock.json`. Regeln, `default`, `set`, `paging` und eigene Dateien bleiben. Ohne `--erwartungen` bleiben vorhandene Erwartungen stehen. Mit `"import": false` in `mock.json` wird ein Endpunkt übersprungen. Endpunkte, die in Apidog fehlen, werden nur gemeldet. Kaputtes JSON in Apidog-Antworten (Komma am Ende, fehlendes Komma, Kommentare) wird repariert und gemeldet.
+Der Import schreibt nur `quelle/` und die Felder `summary`, `method`, `path`, `command`, `parameters`, `quelle` in `mock.json`. Regeln, `default`, `set`, `paging` und eigene Dateien bleiben. Ohne `--erwartungen` bleiben vorhandene Erwartungen stehen. Mit `"import": false` in `mock.json` wird ein Endpunkt übersprungen. Endpunkte, die in der Spezifikation fehlen, werden nur gemeldet. Kaputtes JSON in Beispielantworten (Komma am Ende, fehlendes Komma, Kommentare) wird repariert und gemeldet.
 
 ## Proxy (`proxy/`)
 

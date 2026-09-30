@@ -56,7 +56,7 @@
       "example": "SAP_LESEN_ENERGIELIEFERVERTRAG_BASIS"
     }
   ],
-  "apidog": {
+  "quelle": {
     "operationId": "LESEN_ENERGIELIEFERVERTRAG_BASIS",
     "stand": "093451c"
   }

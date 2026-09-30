@@ -18,7 +18,7 @@
     }
   ],
   "parameters": [],
-  "apidog": {
+  "quelle": {
     "operationId": "AKTUALISIEREN_PROZESSDATEN",
     "stand": "093451c",
     "ausSchema": [

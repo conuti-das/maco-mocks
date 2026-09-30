@@ -5,7 +5,7 @@
   "command": "LESEN_MALOIDENT_BASIS",
   "rules": [],
   "parameters": [],
-  "apidog": {
+  "quelle": {
     "operationId": "LESEN_MALOIDENT_BASIS",
     "stand": "093451c",
     "ausSchema": [

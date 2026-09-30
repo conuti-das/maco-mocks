@@ -260,7 +260,7 @@ final class RepoSync
             }
             return $data;
         }
-        $headers[] = 'User-Agent: maco-apidog-mocks-proxy';
+        $headers[] = 'User-Agent: maco-mocks-proxy';
         if (!empty($this->config['githubToken']) && str_contains($url, 'github.com')) {
             $headers[] = 'Authorization: Bearer ' . $this->config['githubToken'];
         }

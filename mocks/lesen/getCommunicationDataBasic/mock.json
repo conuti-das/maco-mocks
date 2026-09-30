@@ -31,7 +31,7 @@
       "example": "SAP_LESEN_KOMMUNIKATIONSDATEN_BASIS"
     }
   ],
-  "apidog": {
+  "quelle": {
     "operationId": "LESEN_KOMMUNIKATIONSDATEN_BASIS",
     "stand": "093451c"
   }

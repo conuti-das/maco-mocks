@@ -46,7 +46,7 @@
       "example": "LESEN_PROZESSDATEN_ZUORDNUNGSERMAECHTIGUNG"
     }
   ],
-  "apidog": {
+  "quelle": {
     "operationId": "LESEN_PROZESSDATEN_ZUORDNUNGERMAECHTIGUNG",
     "stand": "093451c",
     "ausSchema": [

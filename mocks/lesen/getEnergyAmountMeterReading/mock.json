@@ -64,7 +64,7 @@
       "example": "SAP_LESEN_ENERGIEMENGE_ZAEHLERSTAND"
     }
   ],
-  "apidog": {
+  "quelle": {
     "operationId": "LESEN_ENERGIEMENGE_ZAEHLERSTAND",
     "stand": "093451c",
     "ausSchema": [

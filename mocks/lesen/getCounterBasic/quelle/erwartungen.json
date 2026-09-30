@@ -1,0 +1,104 @@
+{
+  "hinweis": "Importierte Mock-Erwartungen. Nicht von Hand ändern, eigene Regeln in mock.json haben Vorrang.",
+  "exportiert": "2026-09-30T14:37:16.966Z",
+  "erwartungen": [
+    {
+      "name": "Malo 50930151704",
+      "id": 3048075,
+      "when": {
+        "query.parameter1": "50930151704"
+      },
+      "then": "200-erwartung-malo-50930151704.json"
+    },
+    {
+      "name": "Melo DE0073395252733953513649640716001 GAS",
+      "id": 3037052,
+      "when": {
+        "query.parameter1": "DE0073395252733953513649640716001"
+      },
+      "then": "200-erwartung-melo-de0073395252733953513649640716001-gas.json"
+    },
+    {
+      "name": "Melo DE0073395252733953513649640711337",
+      "id": 3026158,
+      "when": {
+        "query.parameter1": "DE0073395252733953513649640711337"
+      },
+      "then": "200-erwartung-melo-de0073395252733953513649640711337.json"
+    },
+    {
+      "name": "KonfigurationsId 34590456ujdfsdghdlktztwqq-053trg",
+      "id": 3021121,
+      "when": {
+        "query.parameter1": "34590456ujdfsdghdlktztwqq-053trg"
+      },
+      "then": "200-erwartung-konfigurationsid-34590456ujdfsdghdlktztwqq-053trg.json"
+    },
+    {
+      "name": "Malo 50754496001",
+      "id": 3024375,
+      "when": {
+        "query.parameter1": "50754496001"
+      },
+      "then": "200-erwartung-malo-50754496001.json"
+    },
+    {
+      "name": "Malo 50855857221",
+      "id": 3071414,
+      "when": {
+        "query.parameter1": "50855857221"
+      },
+      "then": "200-erwartung-malo-50855857221.json"
+    },
+    {
+      "name": "Malo 12345678901",
+      "id": 3029769,
+      "when": {
+        "query.parameter1": "12345678901"
+      },
+      "then": "200-erwartung-malo-12345678901.json"
+    },
+    {
+      "name": "Malo 50754496002",
+      "id": 3026070,
+      "when": {
+        "query.parameter1": "50754496002"
+      },
+      "then": "200-erwartung-malo-50754496002.json"
+    },
+    {
+      "name": "Malo Gas 98167038547",
+      "id": 3028996,
+      "when": {
+        "query.parameter1": "98167038547"
+      },
+      "then": "200-erwartung-malo-gas-98167038547.json"
+    },
+    {
+      "name": "DE70016045739G0000000000000042897",
+      "id": 3037305,
+      "when": {
+        "query.parameter1": "DE70016045739G0000000000000042897"
+      },
+      "then": "200-erwartung-de70016045739g0000000000000042897.json"
+    },
+    {
+      "name": "Melo DE0073395252733953513649640711234",
+      "id": 3021120,
+      "when": {
+        "query.parameter1": "DE0073395252733953513649640711234"
+      },
+      "then": "200-erwartung-melo-de0073395252733953513649640711234.json"
+    },
+    {
+      "name": "default",
+      "id": 3024251,
+      "when": {
+        "query.parameter1": {
+          "exists": true
+        }
+      },
+      "then": "200-erwartung-default.json"
+    }
+  ]
+}
