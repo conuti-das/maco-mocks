@@ -99,21 +99,21 @@ test('Katalog: 28 Endpunkte ohne Fehler', function () use ($catalog) {
 });
 
 test('lesen: Standardantwort, fremde Parameter werden ignoriert', function () use ($server, $mocks) {
-    $a = $server->handle(req('GET', '/getAccountingBasic', ['command' => 'LESEN_BILANZIERUNG_BASIS', 'parameter1' => '1', 'egal' => 'x']));
-    $b = $server->handle(req('GET', '/getAccountingBasic'));
+    $a = $server->handle(req('GET', '/getTrancheBasic', ['command' => 'LESEN_TRANCHE_BASIS', 'parameter1' => '1', 'egal' => 'x']));
+    $b = $server->handle(req('GET', '/getTrancheBasic'));
     eq(200, $a['status']);
     eq($a['body'], $b['body']);
     eq('200.json', $a['headers']['X-Mock-Response']);
     eq('Standard', $a['headers']['X-Mock-Reason']);
     eq('application/json; charset=utf-8', $a['headers']['Content-Type']);
-    eq(file_get_contents("{$mocks}/lesen/getAccountingBasic/apidog/200.json"), $a['body'], 'unveränderte Datei wird 1:1 ausgeliefert');
+    eq(file_get_contents("{$mocks}/lesen/getTrancheBasic/apidog/200.json"), $a['body'], 'unveränderte Datei wird 1:1 ausgeliefert');
 });
 
 test('lesen: parameter1 wird gespiegelt, ohne parameter1 bleibt der Beispielwert', function () use ($server) {
-    $with = body($server->handle(req('GET', '/getMarketlocationBasic', ['parameter1' => '12345678901'])));
+    $with = body($server->handle(req('GET', '/getMaloidentMarketlocation', ['parameter1' => '12345678901'])));
     eq('12345678901', $with['stammdaten']['MARKTLOKATION'][0]['marktlokationsId']);
-    $without = body($server->handle(req('GET', '/getMarketlocationBasic')));
-    eq('50754496000', $without['stammdaten']['MARKTLOKATION'][0]['marktlokationsId']);
+    $without = body($server->handle(req('GET', '/getMaloidentMarketlocation')));
+    eq('57685676748', $without['stammdaten']['MARKTLOKATION'][0]['marktlokationsId']);
 });
 
 test('lesen: Regel je Parameter liefert eigene Antwortdatei', function () use ($server) {
@@ -122,6 +122,44 @@ test('lesen: Regel je Parameter liefert eigene Antwortdatei', function () use ($
     eq('200-leer.json', $r['headers']['X-Mock-Response']);
     eq(['stammdaten' => ['MARKTLOKATION' => []]], body($r));
     ok(str_starts_with($r['headers']['X-Mock-Reason'], 'Regel: Unbekannte Marktlokation'), $r['headers']['X-Mock-Reason']);
+});
+
+test('Apidog-Erwartungen: Variante je Parameter, unverändert ausgeliefert', function () use ($server, $mocks) {
+    $r = $server->handle(req('GET', '/getMarketlocationBasic', ['parameter1' => '51000000001']));
+    eq(200, $r['status']);
+    eq('Apidog-Erwartung: Malo STROM 51000000001 Test SAP pos. APERAK', $r['headers']['X-Mock-Reason']);
+    eq('200-erwartung-malo-strom-51000000001-test-sap-pos-aperak.json', $r['headers']['X-Mock-Response']);
+    eq(file_get_contents("{$mocks}/lesen/getMarketlocationBasic/apidog/200-erwartung-malo-strom-51000000001-test-sap-pos-aperak.json"), $r['body']);
+    eq('51000000001', body($r)[0]['marktlokationsId']);
+    // parameter2 statt parameter1
+    eq('Apidog-Erwartung: Malo 50754496666 GAS Zaehler', $server->handle(req('GET', '/getMarketlocationBasic', ['parameter2' => 'ZAEHLER']))['headers']['X-Mock-Reason'], 'Umlaute im Header umgeschrieben');
+});
+
+test('Apidog-Erwartungen: Sammel-Erwartung zuletzt, Regeln und Testdaten davor', function () use ($server) {
+    $reason = static fn (array $query): string => $server->handle(req('GET', '/getMarketlocationBasic', $query))['headers']['X-Mock-Reason'];
+    $any = $server->handle(req('GET', '/getMarketlocationBasic', ['parameter1' => '99999999999']));
+    eq('Apidog-Erwartung: Default mit Platzhaltern', $any['headers']['X-Mock-Reason']);
+    eq('#parameter1#', body($any)[0]['marktlokationsId'], 'kein set auf Apidog-Antworten');
+    eq('Apidog-Erwartung: Malo 50754496001', $reason(['parameter1' => '50754496001']), 'steht in Apidog hinter dem Default');
+    eq('Regel: Unbekannte Marktlokation: parameter1 = 00000000000', $reason(['parameter1' => '00000000000']));
+    eq('Globale Regel: Testdaten parameter1=FEHLER400 -> 400', $reason(['parameter1' => 'FEHLER400']));
+    eq('Standard', $reason([]));
+});
+
+test('Apidog-Erwartungen: ungleich, Body-Felder, enthält nicht, ohne Bedingung', function () use ($server) {
+    $reason = static fn (array $r): string => $server->handle($r)['headers']['X-Mock-Reason'];
+    eq('Apidog-Erwartung: Zuordnungsermaechtigung vorhanden', $reason(req('GET', '/getAllocationAuthorization', ['parameter4' => '11Y0-0000-0076-N'])));
+    eq('Apidog-Erwartung: Zuordnungsermaechtigung nicht vorhanden', $reason(req('GET', '/getAllocationAuthorization', ['parameter4' => 'anders'])));
+    eq('Apidog-Erwartung: Zuordnungsermaechtigung nicht vorhanden', $reason(req('GET', '/getAllocationAuthorization')));
+    eq('Apidog-Erwartung: marktlokationsId = 10002137935', $reason(req('POST', '/identifyLocation', [], [], ['marktlokationsId' => '10002137935'])));
+    eq('Apidog-Erwartung: Default mit Platzhaltern', $reason(req('POST', '/identifyLocation', [], [], ['boTyp' => 'MARKTLOKATION'])));
+    eq('Regel: Identifikation per Marktlokations-ID -> eine Marktlokation', $reason(req('POST', '/identifyLocation', [], [], ['stammdaten' => ['MARKTLOKATION' => [['marktlokationsId' => '10002137935']]]])));
+    eq('Apidog-Erwartung: MaloIdent Mock', $reason(req('POST', '/identifyMarketlocation', [], [], ['malo' => 'abc'])));
+    eq('Standard', $reason(req('POST', '/identifyMarketlocation', [], [], ['malo' => 'xyz'])));
+    $price = $server->handle(req('GET', '/getPriceSheetBasic'));
+    eq('200-erwartung-default-2.json', $price['headers']['X-Mock-Response'], 'Erwartung ohne Bedingung greift immer');
+    eq('200-erwartung-default.json', $server->handle(req('GET', '/getPriceSheetBasic', ['parameter3' => '1']))['headers']['X-Mock-Response']);
+    eq('Apidog-Erwartung: Malo 50754497777', $reason(req('GET', '/getPriceSheetBasic', ['parameter1' => '50754497777'])));
 });
 
 test('Auswahl per Header/Query nach Status oder Dateiname', function () use ($server) {
@@ -246,6 +284,72 @@ test('Validierung meldet kaputte Regeln und Dateien', function () {
     }
 });
 
+test('Übersicht: jede Variante verlinkt, POST mit Senden, nur unerreichbare per Auswahl', function () use ($catalog) {
+    $config = require ROOT . '/proxy/config.php';
+    $overview = new MacoMocks\Overview($catalog, 'test', $config);
+    $html = $overview->html();
+    ok(str_contains($html, 'href="/getMarketlocationBasic?parameter1=51000000001"'), 'GET-Variante als Link');
+    ok(str_contains($html, 'href="/getMarketlocationBasic?parameter2=ZAEHLER"'), 'Variante über parameter2');
+    ok(str_contains($html, 'data-url="/identifyLocation" data-headers="{&quot;content-type&quot;:&quot;application/json&quot;}" data-body="{&quot;marktlokationsId&quot;:&quot;10002137935&quot;}"'), 'POST-Variante mit Body');
+    $forced = [];
+    $count = 0;
+    foreach ($catalog->endpoints as $ep) {
+        foreach ($overview->variants($ep) as $v) {
+            $count++;
+            if ($v['forced'] !== null) {
+                $forced[] = $ep['id'] . ' ' . $v['name'];
+            }
+        }
+    }
+    eq(124, $count, 'Varianten');
+    eq(['lesen/getAllocationAuthorization Standard', 'lesen/getPriceSheetBasic Standard', 'lesen/identifyMarketlocation Standard'], $forced);
+});
+
+test('Import: Erwartungen, Reihenfolge, JSON-Reparatur, ohne --erwartungen bleiben sie stehen', function () {
+    $dir = tempDir();
+    $openapi = ['openapi' => '3.0.1', 'paths' => ['/getX' => ['get' => [
+        'operationId' => 'LESEN_X', 'tags' => ['LESEN | READ'], 'summary' => 'X lesen',
+        'parameters' => [['in' => 'query', 'name' => 'parameter1', 'schema' => ['type' => 'string']]],
+        'responses' => ['200' => ['content' => ['application/json' => ['example' => ['id' => 'beispiel']]]]],
+    ]]]];
+    file_put_contents("{$dir}/openapi.json", json_encode($openapi));
+    $api = ['id' => 1, 'name' => 'X lesen', 'method' => 'GET', 'path' => '/getX', 'operationId' => 'LESEN_X'];
+    $expectation = static fn (int $id, int $ordering, string $name, array $conditions, string $body): array => [
+        'id' => $id, 'name' => $name, 'ordering' => $ordering, 'api' => $api, 'conditions' => $conditions,
+        'response' => ['code' => 200, 'delay' => 0, 'headers' => [], 'bodyType' => 'json', 'bodyData' => $body],
+    ];
+    file_put_contents("{$dir}/erwartungen.json", json_encode(['erwartungen' => [
+        $expectation(1, 10, 'Default', [['location' => 'query', 'name' => 'parameter1', 'value' => 'true', 'comparison' => 'exists']], '{"id": "#parameter1#"}'),
+        $expectation(2, 20, 'Malo 1', [['location' => 'query', 'name' => 'parameter1', 'value' => '1', 'comparison' => 'equal']], "{\n \"a\": {\"b\": 1}\n \"c\": [1, 2,],\n // Kommentar\n}"),
+        $expectation(3, 20, 'Malo 2 neuer', [['location' => 'query', 'name' => 'parameter1', 'value' => '2', 'comparison' => 'equal']], '{"id": "2"}'),
+        $expectation(4, 5, 'Immer', [], '{"immer": true}'),
+        $expectation(5, 1, 'Kaputt', [['location' => 'cookie', 'name' => 'x', 'value' => '1', 'comparison' => 'equal']], '{}'),
+    ]]));
+    $run = static function (string $args) use ($dir): string {
+        exec(escapeshellarg(PHP_BINARY) . ' ' . escapeshellarg(ROOT . '/tools/import-apidog.php') . ' ' . escapeshellarg("{$dir}/openapi.json") . " --mocks {$dir}/mocks {$args} 2>&1", $out, $code);
+        eq(0, $code, implode("\n", $out));
+        return implode("\n", $out);
+    };
+    $log = $run('--erwartungen ' . escapeshellarg("{$dir}/erwartungen.json"));
+    ok(str_contains($log, '4 übernommen'), $log);
+    ok(str_contains($log, '„Kaputt“ nicht übernommen (Ort cookie nicht unterstützt)'), $log);
+    ok(str_contains($log, '„Malo 1“: Antwort repariert (fehlendes Komma ergänzt, Komma am Ende entfernt, Kommentare entfernt)'), $log);
+    $rules = json_decode((string) file_get_contents("{$dir}/mocks/lesen/getX/apidog/erwartungen.json"), true)['erwartungen'];
+    eq(['Malo 2 neuer', 'Malo 1', 'Default', 'Immer'], array_column($rules, 'name'), 'konkret (neuere zuerst), vorhanden, ohne Bedingung');
+    eq(['a' => ['b' => 1], 'c' => [1, 2]], json_decode((string) file_get_contents("{$dir}/mocks/lesen/getX/apidog/200-erwartung-malo-1.json"), true));
+
+    $c = Catalog::fromDirectory("{$dir}/mocks", true);
+    eq([], $c->errors);
+    eq('200.json', $c->endpoints[0]['default'], 'Erwartungsdatei wird nie Standard');
+    $s = new MockServer($c);
+    eq('Apidog-Erwartung: Malo 2 neuer', $s->handle(req('GET', '/getX', ['parameter1' => '2']))['headers']['X-Mock-Reason']);
+    eq('Apidog-Erwartung: Default', $s->handle(req('GET', '/getX', ['parameter1' => '9']))['headers']['X-Mock-Reason']);
+    eq('Apidog-Erwartung: Immer', $s->handle(req('GET', '/getX'))['headers']['X-Mock-Reason']);
+
+    $run('');
+    ok(is_file("{$dir}/mocks/lesen/getX/apidog/erwartungen.json") && is_file("{$dir}/mocks/lesen/getX/apidog/200-erwartung-default.json"), 'Import ohne --erwartungen lässt sie stehen');
+});
+
 // ---------------------------------------------------------------------------
 // Lokale Repo-Kopie und Update
 
@@ -283,6 +387,24 @@ test('Update: laden, prüfen, umschalten, unverändert erkennen, aufräumen', fu
     $left = array_values(array_filter(scandir("{$data}/releases"), static fn ($e) => $e[0] !== '.'));
     eq(2, count($left), 'keepReleases=2');
     ok(in_array(str_repeat('d', 40), $left, true), 'aktueller Stand bleibt');
+});
+
+test('Update: Index einer älteren Proxy-Version wird neu aufgebaut', function () use ($mocks) {
+    $data = tempDir();
+    $sha = str_repeat('8', 40);
+    $sync = new RepoSync(syncConfig($data, githubZip($mocks, $sha)));
+    eq('updated', $sync->update('test')['status']);
+    $indexFile = "{$data}/releases/{$sha}/index.json";
+    $old = json_decode((string) file_get_contents($indexFile), true);
+    unset($old['format']);
+    foreach ($old['endpoints'] as &$ep) {
+        unset($ep['expectations']);
+    }
+    unset($ep);
+    file_put_contents($indexFile, json_encode($old));
+    $catalog = $sync->catalog();
+    ok(count($catalog->endpoints[array_search('lesen/getMarketlocationBasic', array_column($catalog->endpoints, 'id'), true)]['expectations']) > 20, 'Erwartungen wieder da');
+    eq(Catalog::FORMAT, json_decode((string) file_get_contents($indexFile), true)['format'], 'Index neu gespeichert');
 });
 
 test('Update: fehlerhafter Stand wird abgelehnt, alter bleibt aktiv', function () use ($mocks) {
@@ -395,9 +517,13 @@ test('HTTP: index.php im PHP-Webserver', function () use ($mocks) {
         for ($i = 0; $i < 50 && $fetch('GET', '/_status')[0] !== 200; $i++) {
             usleep(100000);
         }
-        [$status, $content] = $fetch('GET', '/getMarketlocationBasic?parameter1=11111111111&command=LESEN_MARKTLOKATION_BASIS&a.b=1');
+        [$status, $content, $headers] = $fetch('GET', '/getMarketlocationBasic?parameter1=51000000001&command=LESEN_MARKTLOKATION_BASIS&a.b=1');
         eq(200, $status);
-        eq('11111111111', json_decode($content, true)['stammdaten']['MARKTLOKATION'][0]['marktlokationsId']);
+        eq('51000000001', json_decode($content, true)[0]['marktlokationsId']);
+        ok(str_contains($headers, 'X-Mock-Reason: Apidog-Erwartung: Malo STROM 51000000001'), $headers);
+        [$status, $html] = $fetch('GET', '/');
+        eq(200, $status);
+        ok(str_contains($html, 'href="/getMarketlocationBasic?parameter1=51000000001"'), 'Übersicht verlinkt Varianten');
         [$status, , $headers] = $fetch('POST', '/identifyLocation', ['Content-Type: application/json', 'Treffer-Max-Anzahl: 1'], '{}');
         eq(200, $status);
         ok(str_contains($headers, 'Treffer-Weitere-Vorhanden: true'), $headers);

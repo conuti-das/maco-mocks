@@ -11,11 +11,15 @@ namespace MacoMocks;
  *   mocks/<gruppe>/<endpunkt>/mock.json  Methode, Pfad, Command, Regeln
  *   mocks/<gruppe>/<endpunkt>/*.json     eigene Antworten, Name <status>[-<name>].json
  *   mocks/<gruppe>/<endpunkt>/apidog/    Antworten aus Apidog; gleicher Name im Endpunkt-Ordner gewinnt
+ *   mocks/<gruppe>/<endpunkt>/apidog/erwartungen.json  Mock-Erwartungen aus Apidog (Regeln wie in mock.json)
  */
 final class Catalog
 {
+    /** Aufbau des gespeicherten Index; bei Änderung baut der Proxy ältere Indexe neu auf. */
+    public const FORMAT = 2;
     public const RESPONSE_FILE = '/^([1-5]\d\d)(-[A-Za-z0-9._-]+)?\.json$/';
-    public const OPERATORS = ['equals', 'not', 'in', 'notIn', 'regex', 'contains', 'exists', 'gt', 'gte', 'lt', 'lte'];
+    public const REQUEST_FILE = '/^anfrage(-[A-Za-z0-9._-]+)?\.json$/';
+    public const OPERATORS = ['equals', 'not', 'in', 'notIn', 'regex', 'contains', 'notContains', 'exists', 'gt', 'gte', 'lt', 'lte'];
     private const METHODS = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'];
     private const SOURCES = ['query', 'header', 'path', 'body'];
 
@@ -61,7 +65,17 @@ final class Catalog
 
     public function toArray(): array
     {
-        return ['endpoints' => $this->endpoints, 'globalRules' => $this->globalRules];
+        return ['format' => self::FORMAT, 'endpoints' => $this->endpoints, 'globalRules' => $this->globalRules];
+    }
+
+    /** Anfragebeispiel (anfrage*.json) als Text, z. B. für die Übersicht. */
+    public function requestExample(array $endpoint, string $file): ?string
+    {
+        if (!in_array($file, $endpoint['requestExamples'] ?? [], true)) {
+            return null;
+        }
+        $text = @file_get_contents($this->mocksDir . '/' . $endpoint['id'] . '/' . $file);
+        return $text === false ? null : $text;
     }
 
     public function responseFile(array $endpoint, string $name): string
@@ -118,11 +132,16 @@ final class Catalog
         $command = isset($mock->command) ? (string) $mock->command : null;
 
         $responses = [];
+        $requestExamples = [];
         foreach (['apidog/', ''] as $prefix) {
             if (!is_dir($dir . '/' . $prefix)) {
                 continue;
             }
             foreach (scandir($dir . '/' . $prefix) ?: [] as $file) {
+                if (preg_match(self::REQUEST_FILE, $file) && is_file($dir . '/' . $prefix . $file)) {
+                    $requestExamples[$file] = $prefix . $file;
+                    continue;
+                }
                 if (!preg_match(self::RESPONSE_FILE, $file, $m) || !is_file($dir . '/' . $prefix . $file)) {
                     continue;
                 }
@@ -136,9 +155,12 @@ final class Catalog
             }
         }
         ksort($responses, SORT_STRING);
+        ksort($requestExamples, SORT_STRING);
         if (!$responses) {
             $this->errors[] = "{$id}: keine Antwortdatei (<status>[-name].json) gefunden";
         }
+
+        $expectations = $this->loadExpectations($id, $responses);
 
         $default = isset($mock->default) ? (string) $mock->default : self::pickDefault($responses);
         if ($default !== null && !isset($responses[$default])) {
@@ -191,11 +213,69 @@ final class Catalog
             'default' => $default,
             'responses' => $responses,
             'rules' => $rules,
+            'expectations' => $expectations,
             'set' => $set,
             'paging' => $paging,
             'headers' => self::stringMap($mock->headers ?? null),
             'delay' => (int) ($mock->delay ?? 0),
+            'requestExamples' => array_values($requestExamples),
+            'parameters' => self::parameters($mock->parameters ?? null),
         ];
+    }
+
+    /**
+     * apidog/erwartungen.json: {"erwartungen": [{"name", "apidogId", "when", "then"}, …]} in Prüfreihenfolge.
+     * Markiert die Antwortdateien der Erwartungen, damit sie weder Standard werden noch "set" bekommen.
+     *
+     * @param array<string, array> $responses
+     * @return list<array<string, mixed>>
+     */
+    private function loadExpectations(string $id, array &$responses): array
+    {
+        $file = $this->mocksDir . '/' . $id . '/apidog/erwartungen.json';
+        if (!is_file($file)) {
+            return [];
+        }
+        $where = "{$id}/apidog/erwartungen.json";
+        $data = json_decode((string) file_get_contents($file), false);
+        $list = $data instanceof \stdClass ? ($data->erwartungen ?? null) : null;
+        if (!is_array($list)) {
+            $this->errors[] = "{$where}: Liste \"erwartungen\" fehlt";
+            return [];
+        }
+        $out = [];
+        foreach ($list as $i => $entry) {
+            // Erwartungen ohne Bedingung ("when": {}) greifen immer – wie in Apidog
+            $rule = $this->normalizeRule($entry, "{$where} Erwartung " . ($i + 1), $responses, true);
+            if ($rule === null) {
+                continue;
+            }
+            if (isset($entry->apidogId)) {
+                $rule['apidogId'] = (int) $entry->apidogId;
+            }
+            if (isset($rule['then']['file'])) {
+                $responses[$rule['then']['file']]['erwartung'] = true;
+            }
+            $out[] = $rule;
+        }
+        return $out;
+    }
+
+    /** @return list<array{in: string, name: string, example?: string}> */
+    private static function parameters(mixed $list): array
+    {
+        $out = [];
+        foreach (is_array($list) ? $list : [] as $p) {
+            if (!$p instanceof \stdClass || !isset($p->name, $p->in)) {
+                continue;
+            }
+            $item = ['in' => (string) $p->in, 'name' => (string) $p->name];
+            if (isset($p->example) && is_scalar($p->example)) {
+                $item['example'] = (string) $p->example;
+            }
+            $out[] = $item;
+        }
+        return $out;
     }
 
     private function loadGlobalRules(): void
@@ -222,7 +302,7 @@ final class Catalog
      *
      * @param array<string, array>|null $responses null = globale Regel (Datei wird je Endpunkt geprüft)
      */
-    private function normalizeRule(mixed $rule, string $where, ?array $responses): ?array
+    private function normalizeRule(mixed $rule, string $where, ?array $responses, bool $allowAlways = false): ?array
     {
         if (!$rule instanceof \stdClass) {
             $this->errors[] = "{$where}: muss ein Objekt sein";
@@ -230,7 +310,7 @@ final class Catalog
         }
         $name = (string) ($rule->name ?? $where);
         $when = $rule->when ?? null;
-        if (!$when instanceof \stdClass || !get_object_vars($when)) {
+        if (!$when instanceof \stdClass || (!get_object_vars($when) && !$allowAlways)) {
             $this->errors[] = "{$where} ({$name}): when fehlt oder ist leer";
             return null;
         }
@@ -351,9 +431,11 @@ final class Catalog
         if (isset($responses['200.json'])) {
             return '200.json';
         }
-        foreach ($responses as $name => $r) {
-            if ($r['status'] < 300) {
-                return $name;
+        foreach ([false, true] as $expectationFiles) {
+            foreach ($responses as $name => $r) {
+                if ($r['status'] < 300 && ($r['erwartung'] ?? false) === $expectationFiles) {
+                    return $name;
+                }
             }
         }
         return array_key_first($responses);

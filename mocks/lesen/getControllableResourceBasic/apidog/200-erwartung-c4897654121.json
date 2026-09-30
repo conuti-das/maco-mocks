@@ -1,0 +1,48 @@
+[
+  {
+    "boTyp": "STEUERBARE_RESSOURCE",
+    "versionStruktur": "1",
+    "ressourcenId": "C4897654121",
+    "sparte": "ENUM_Sparte",
+    "gueltigkeitszeitraum": {
+      "zeitraumId": 1,
+      "startdatum": "2024-12-31T23:00:00Z",
+      "enddatum": "2025-12-31T23:00:00Z"
+    },
+    "datenqualitaet": "ENUM_qualitaet",
+    "lokationszuordnung": "<ENUM>",
+    "steuerkanal": "AN_AUS",
+    "konfigurationsprodukt": "<string>",
+    "produktdatenRelevanteRolle": "ENUM_Marktrolle",
+    "keinKonfigurationsprodukt": true,
+    "auftraggebenderMarktpartner": {
+      "boTyp": "MARKTTEILNEHMER",
+      "versionStruktur": "1",
+      "marktrolle": "ENUM_Marktrolle",
+      "rollencodenummer": "<string>"
+    },
+    "marktrollen": [
+      {
+        "boTyp": "MARKTTEILNEHMER",
+        "versionStruktur": "1",
+        "zuordnungVon": "2024-12-31T23:00:00Z",
+        "zuordnungBis": "2025-12-31T23:00:00Z",
+        "marktrolle": "ENUM_Marktrolle",
+        "gewerbekennzeichnung": true,
+        "rollencodenummer": "<string>",
+        "rollencodetyp": "<string>",
+        "weiterverpflichtet": false,
+        "messstellenbetreiberEigenschaft": "<ENUM>"
+      }
+    ],
+    "zugeordneteDefinition": {
+      "schaltzeitdefinition": "9991000000713",
+      "leistungskurvendefinition": null
+    },
+    "erforderlicheProdukte": [
+      {
+        "produktCode": null
+      }
+    ]
+  }
+]

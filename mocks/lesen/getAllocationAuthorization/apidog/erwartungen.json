@@ -1,0 +1,24 @@
+{
+  "hinweis": "Aus Apidog importiert (Mock-Erwartungen). Nicht von Hand ändern, eigene Regeln in mock.json haben Vorrang.",
+  "exportiert": "2026-09-30T14:37:16.966Z",
+  "erwartungen": [
+    {
+      "name": "Zuordnungsermächtigung vorhanden",
+      "apidogId": 3033378,
+      "when": {
+        "query.parameter4": "11Y0-0000-0076-N"
+      },
+      "then": "200-erwartung-zuordnungsermaechtigung-vorhanden.json"
+    },
+    {
+      "name": "Zuordnungsermächtigung nicht vorhanden",
+      "apidogId": 3033379,
+      "when": {
+        "query.parameter4": {
+          "not": "11Y0-0000-0076-N"
+        }
+      },
+      "then": "200-erwartung-zuordnungsermaechtigung-nicht-vorhanden.json"
+    }
+  ]
+}

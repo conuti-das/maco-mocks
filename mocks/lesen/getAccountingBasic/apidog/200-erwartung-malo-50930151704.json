@@ -1,0 +1,40 @@
+[
+  {
+    "boTyp": "BILANZIERUNG",
+    "versionStruktur": "1",
+    "aggregationsverantwortung": "VNB",
+    "zeitreihentyp": "TLS",
+    "prognosegrundlage": "PROFILE",
+    "bilanzierungsbeginn": "2025-12-31T23:00:00Z",
+    "bilanzierungsende": "9999-12-31T22:59:59Z",
+    "bilanzkreis": "11XEONBAYERN---I",
+    "temperaturarbeit": {
+      "wert": 4.063,
+      "einheit": "KWHK"
+    },
+    "jahresverbrauchsprognose": {
+      "wert": 1,
+      "einheit": "KWH"
+    },
+    "wahlrechtPrognosegrundlage": "DURCH_LF",
+    "grundWahlrechtPrognosegrundlage": "DURCH_LF",
+    "abwicklungsmodell": "MODELL_1_BILANZIERUNG_AN_MARKTLOKATION",
+    "lastprofile": [
+      {
+        "bezeichnung": "WP0",
+        "verfahren": "SYNTHETISCH",
+        "profilart": "ART_TAGESPARAMETERABHAENGIGES_LASTPROFIL",
+        "profilschar": "WP0",
+        "einspeisung": false,
+        "tagesparameter": {
+          "temperaturmessstelle": "Z99",
+          "dienstanbieter": "ZT3",
+          "herausgeber": "BDEW"
+        }
+      }
+    ],
+    "detailsPrognosegrundlage": [
+      "TLP_TEP"
+    ]
+  }
+]

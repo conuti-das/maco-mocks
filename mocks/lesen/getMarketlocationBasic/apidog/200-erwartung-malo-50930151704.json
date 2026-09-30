@@ -1,0 +1,331 @@
+[
+  {
+    "boTyp": "MARKTLOKATION",
+    "versionStruktur": "1",
+    "marktlokationsId": "50930151704",
+    "sparte": "STROM",
+    "energierichtung": "AUSSP",
+    "bilanzierungsmethode": "TLP_GETRENNT",
+    "verbrauchsart": [
+      "W"
+    ],
+    "unterbrechbar": false,
+    "netzebene": "NSP",
+    "netzbetreiberCodeNr": "9900683000008",
+    "gebietTyp": "VERTEILNETZ",
+    "bilanzierungsgebiet": "11YR00000004025V",
+    "grundversorgerCodeNr": "9903854000005",
+    "endkunde": {
+      "boTyp": "GESCHAEFTSPARTNER",
+      "versionStruktur": "1",
+      "anrede": "Ohne Anrede",
+      "name1": "Ingrisch",
+      "name2": "Sebastian",
+      "gewerbekennzeichnung": false,
+      "partneradresse": {
+        "postleitzahl": "65232",
+        "ort": "Taunusstein",
+        "strasse": "Kurt-Schumacher-Str.",
+        "hausnummer": "8",
+        "landescode": "DE"
+      },
+      "geschaeftspartnerrolle": [
+        "KUNDE"
+      ]
+    },
+    "lokationsadresse": {
+      "postleitzahl": "65232",
+      "ort": "Taunusstein",
+      "strasse": "Kurt-Schumacher-Straße",
+      "hausnummer": "8",
+      "landescode": "DE",
+      "zusatzInformation": {
+        "zusatz1": "K3112",
+        "zusatz2": "Wärmepumpe Bezug",
+        "zusatz3": "WP"
+      }
+    },
+    "regelzone": "10YDE-RWENET---I",
+    "zeitreihentyp": "TLS",
+    "messtechnischeEinordnung": "KME_MME",
+    "sperrstatus": "ENTSPERRT",
+    "versorgungsart": "GRUNDVERSORGUNG",
+    "redispatch": false,
+    "zukuenftigerMeldepunkt": false,
+    "lokationszuordnung": "UNVERAENDERT",
+    "produktdatenRelevanteRolle": "LF",
+    "marktrollen": [
+      {
+        "boTyp": "MARKTTEILNEHMER",
+        "versionStruktur": "1",
+        "geschaeftspartnerrolle": "MARKTPARTNER",
+        "anrede": "Firma",
+        "name1": "RWE Energy AG",
+        "partneradresse": {
+          "postleitzahl": "44139",
+          "ort": "Dortmund",
+          "strasse": "Rheinlanddamm",
+          "hausnummer": "24",
+          "landescode": "DE"
+        },
+        "gewerbekennzeichnung": true,
+        "marktrolle": "UENB",
+        "rollencodenummer": "4045399000077",
+        "rollencodetyp": "GLN",
+        "weiterverpflichtet": false,
+        "zuordnungVon": "2025-12-31T23:00:00Z",
+        "zuordnungBis": "9999-12-31T22:59:59Z"
+      },
+      {
+        "boTyp": "MARKTTEILNEHMER",
+        "versionStruktur": "1",
+        "geschaeftspartnerrolle": "MARKTPARTNER",
+        "anrede": "Ohne Anrede",
+        "name1": "E.ON Energie Deutschland GmbH",
+        "partneradresse": {
+          "ort": "Regensburg",
+          "postfach": "100744",
+          "landescode": "DE"
+        },
+        "gewerbekennzeichnung": true,
+        "marktrolle": "LF",
+        "rollencodenummer": "9903323000007",
+        "rollencodetyp": "BDEW",
+        "umsatzsteuerId": "DE259922663",
+        "faxnummer": "0941/38384513",
+        "weiterverpflichtet": false,
+        "bankverbindung": [
+          {
+            "iban": "DE04700202700062004312",
+            "bic": "HYVEDEMMXXX",
+            "kreditinstitut": "UniCredit Bank - HypoVereinsbank"
+          },
+          {
+            "iban": "DE21500500000012345005",
+            "bic": "HELADEFFXXX",
+            "kreditinstitut": "Landesbank Hessen-Thür Girozentrale"
+          }
+        ],
+        "zuordnungVon": "2025-12-31T23:00:00Z",
+        "zuordnungBis": "9999-12-31T22:59:59Z"
+      },
+      {
+        "boTyp": "MARKTTEILNEHMER",
+        "versionStruktur": "1",
+        "geschaeftspartnerrolle": "MARKTPARTNER",
+        "anrede": "Ohne Anrede",
+        "name1": "Stadtwerke Wiesbaden Netz GmbH",
+        "partneradresse": {
+          "postleitzahl": "65189",
+          "ort": "Wiesbaden",
+          "strasse": "Konradinerallee",
+          "hausnummer": "25",
+          "landescode": "DE"
+        },
+        "gewerbekennzeichnung": true,
+        "marktrolle": "MSB",
+        "rollencodenummer": "9906464000001",
+        "rollencodetyp": "BDEW",
+        "weiterverpflichtet": false,
+        "messstellenbetreiberEigenschaft": "GRUNDZUSTAENDIGER_MESSSTELLENBETREIBER",
+        "bankverbindung": [
+          {
+            "iban": "DE84510500150103051363",
+            "bic": "NASSDE55XXX",
+            "kreditinstitut": "Nassauische Sparkasse"
+          }
+        ],
+        "zuordnungVon": "2025-12-31T23:00:00Z",
+        "zuordnungBis": "9999-12-31T23:59:59Z"
+      },
+      {
+        "boTyp": "MARKTTEILNEHMER",
+        "versionStruktur": "1",
+        "geschaeftspartnerrolle": "MARKTPARTNER",
+        "anrede": "Ohne Anrede",
+        "name1": "Stadtwerke Wiesbaden Netz GmbH",
+        "partneradresse": {
+          "postleitzahl": "65189",
+          "ort": "Wiesbaden",
+          "strasse": "Konradinerallee",
+          "hausnummer": "25",
+          "landescode": "DE"
+        },
+        "gewerbekennzeichnung": true,
+        "marktrolle": "NB",
+        "rollencodenummer": "9900683000008",
+        "rollencodetyp": "BDEW",
+        "weiterverpflichtet": false,
+        "bankverbindung": [
+          {
+            "iban": "DE84510500150103051363",
+            "bic": "NASSDE55XXX",
+            "kreditinstitut": "Nassauische Sparkasse"
+          }
+        ],
+        "zuordnungVon": "2025-12-31T23:00:00Z",
+        "zuordnungBis": "9999-12-31T22:59:59Z"
+      }
+    ],
+    "zaehlwerke": [
+      {
+        "zaehlwerkId": "001",
+        "bezeichnung": "HT",
+        "richtung": "AUSSP",
+        "obisKennzahl": "1-0:1.9.0",
+        "wandlerfaktor": 1,
+        "einheit": "KWH",
+        "verbrauchsart": [
+          "W"
+        ],
+        "unterbrechbarkeit": "UV",
+        "waermenutzung": "WAERMEPUMPE",
+        "steuerbefreit": false,
+        "vorkommastelle": 6,
+        "nachkommastelle": 0,
+        "abrechnungsrelevant": true,
+        "zaehlzeiten": {
+          "zaehlzeitDefinition": ""
+        },
+        "messprodukt": "9991000000044",
+        "wertegranularitaet": "JAEHRLICH",
+        "keinKonfigurationsprodukt": true,
+        "verwendungszwecke": [
+          {
+            "marktrolle": "LF",
+            "zweck": [
+              "NETZNUTZUNGSABRECHNUNG",
+              "MEHRMINDERMENGENABRECHNUNG",
+              "ENDKUNDENABRECHNUNG"
+            ]
+          },
+          {
+            "marktrolle": "NB",
+            "zweck": [
+              "NETZNUTZUNGSABRECHNUNG",
+              "MEHRMINDERMENGENABRECHNUNG"
+            ]
+          }
+        ]
+      },
+      {
+        "zaehlwerkId": "001",
+        "bezeichnung": "HT",
+        "richtung": "AUSSP",
+        "obisKennzahl": "1-0:1.9.0",
+        "wandlerfaktor": 1,
+        "einheit": "KWH",
+        "verbrauchsart": [
+          "W"
+        ],
+        "unterbrechbarkeit": "UV",
+        "waermenutzung": "WAERMEPUMPE",
+        "steuerbefreit": false,
+        "vorkommastelle": 6,
+        "nachkommastelle": 0,
+        "abrechnungsrelevant": true,
+        "zaehlzeiten": {
+          "zaehlzeitDefinition": ""
+        },
+        "messprodukt": "9991000000044",
+        "wertegranularitaet": "JAEHRLICH",
+        "keinKonfigurationsprodukt": true,
+        "verwendungszwecke": [
+          {
+            "marktrolle": "LF",
+            "zweck": [
+              "NETZNUTZUNGSABRECHNUNG",
+              "MEHRMINDERMENGENABRECHNUNG",
+              "ENDKUNDENABRECHNUNG"
+            ]
+          },
+          {
+            "marktrolle": "NB",
+            "zweck": [
+              "NETZNUTZUNGSABRECHNUNG",
+              "MEHRMINDERMENGENABRECHNUNG"
+            ]
+          }
+        ]
+      }
+    ],
+    "netznutzungsabrechnungsdaten": [
+      {
+        "artikelId": "1-02-0-004",
+        "artikelIdTyp": "ARTIKELID",
+        "gemeinderabatt": 0,
+        "abrechnungBlindarbeit": false,
+        "zahlerBlindarbeitLf": false,
+        "differenzDaten": false,
+        "zaehlzeiten": {
+          "zaehlzeitDefinition": ""
+        }
+      },
+      {
+        "artikelId": "1-08-3-001",
+        "artikelIdTyp": "ARTIKELID",
+        "gemeinderabatt": 0,
+        "abrechnungBlindarbeit": false,
+        "zahlerBlindarbeitLf": false,
+        "differenzDaten": false,
+        "zaehlzeiten": {
+          "zaehlzeitDefinition": ""
+        }
+      },
+      {
+        "artikelId": "1-10-1",
+        "artikelIdTyp": "GRUPPENARTIKELID",
+        "gemeinderabatt": 0,
+        "abrechnungBlindarbeit": false,
+        "zahlerBlindarbeitLf": false,
+        "differenzDaten": false,
+        "zaehlzeiten": {
+          "zaehlzeitDefinition": ""
+        }
+      },
+      {
+        "artikelId": "1-10-2",
+        "artikelIdTyp": "GRUPPENARTIKELID",
+        "gemeinderabatt": 0,
+        "abrechnungBlindarbeit": false,
+        "zahlerBlindarbeitLf": false,
+        "differenzDaten": false,
+        "zaehlzeiten": {
+          "zaehlzeitDefinition": ""
+        }
+      },
+      {
+        "artikelId": "1-10-4",
+        "artikelIdTyp": "GRUPPENARTIKELID",
+        "gemeinderabatt": 0,
+        "abrechnungBlindarbeit": false,
+        "zahlerBlindarbeitLf": false,
+        "differenzDaten": false,
+        "zaehlzeiten": {
+          "zaehlzeitDefinition": ""
+        }
+      }
+    ],
+    "messstellenbetriebsabrdaten": [
+      {
+        "artikelId": "4-02-0-011"
+      },
+      {
+        "artikelId": "4-02-0-019"
+      }
+    ],
+    "energieherkunft": [
+      {
+        "erzeugungsart": "EEG",
+        "anteilprozent": 100
+      }
+    ],
+    "marktlokationsTyp": [
+      {
+        "typ": "STANDARD_MARKTLOKATION",
+        "gueltigAb": "2023-07-23T22:00:00Z",
+        "gueltigBis": "9999-12-31T22:59:59Z"
+      }
+    ]
+  }
+]

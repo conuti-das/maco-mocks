@@ -1,0 +1,13 @@
+{
+  "boTyp": "TECHNISCHE_RESSOURCE",
+  "versionStruktur": "1",
+  "ressourcenId": "D417MLM8164",
+  "sparte": "STROM",
+  "gueltigkeitszeitraum": {
+    "zeitraumId": 1,
+    "startdatum": "2025-06-23T22:00:00Z",
+    "enddatum": "2025-07-23T22:00:00Z"
+  },
+  "datenqualitaet": "GUELTIGE_DATEN",
+  "fernsteuerbarkeit": true
+}

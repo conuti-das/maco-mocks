@@ -1,0 +1,79 @@
+[
+  {
+    "boTyp": "NETZNUTZUNGSVERTRAG",
+    "versionStruktur": "1",
+    "sparte": "STROM",
+    "vertragsart": "NETZNUTZUNGSVERTRAG",
+    "vertragsnummer": "99999",
+    "lokationsId": "12345678901",
+    "lokationsTyp": "MALO",
+    "vertragsstatus": "AKTIV",
+    "vertragsende": "9999-12-31T23:59:59Z",
+    "vertragsbeginn": "2025-11-30T23:00:00Z",
+    "gemeinderabatt": 0,
+    "vertragskonditionen": {
+      "netznutzungszahler": "LIEFERANT",
+      "netznutzungsvertrag": "LIEFERANTEN_NB",
+      "netznutzungsabrechnungsvariante": "ARBEITSPREIS_LEISTUNGSPREIS",
+      "netznutzungsabrechnung": {
+        "dauer": 365,
+        "startdatum": "20251228",
+        "enddatum": "20261228",
+        "abrechnungsZeitraum": "1228"
+      },
+      "beinhaltetSingulaerGenutzteBetriebsmittel": false,
+      "netznutzungsabrechnungsgrundlage": "LIEFERSCHEIN",
+      "haushaltskunde": true,
+      "abrechnungUeberNna": true,
+      "gemeinderabatt": [],
+      "startAbrechnungsjahr": "20251204",
+      "naechstenetznutzungsabrechnung": "2026",
+      "abrechnungsintervall": 12,
+      "netznutzungsabrechnungIntervall": 12,
+      "kuendigungsfrist": {
+        "startdatum": "2025-11-30T23:00:00Z",
+        "enddatum": "9999-12-31T23:59:59Z"
+      },
+      "vertragslaufzeit": {
+        "startdatum": "2025-11-30T23:00:00Z",
+        "enddatum": "9999-12-31T23:59:59Z"
+      },
+      "kuendigungstermin": "00000000",
+      "abschlagszyklus": {
+        "zeiteinheit": "MONAT",
+        "dauer": 1
+      },
+      "anzahlAbschlaege": 12,
+      "vertragsverlaengerung": {
+        "startdatum": "2025-11-30T23:00:00Z",
+        "enddatum": "9999-12-31T23:59:59Z"
+      }
+    },
+    "abrechnungUeberNna": true,
+    "vertragspartner2": [
+      {
+        "boTyp": "GESCHAEFTSPARTNER",
+        "versionStruktur": "1",
+        "anrede": "Ohne Anrede",
+        "name1": "Leeranlage ESWE",
+        "name2": "202512014010493551",
+        "gewerbekennzeichnung": false,
+        "partneradresse": {
+          "postleitzahl": "65195",
+          "ort": "Wiesbaden",
+          "strasse": "Riederbergstraße",
+          "hausnummer": "30",
+          "landescode": "DE"
+        },
+        "geschaeftspartnerrolle": [
+          "KUNDE"
+        ]
+      }
+    ],
+    "enFG": [
+      {
+        "grundlageVerringerungUmlagen": "KEINE_ANGABE"
+      }
+    ]
+  }
+]

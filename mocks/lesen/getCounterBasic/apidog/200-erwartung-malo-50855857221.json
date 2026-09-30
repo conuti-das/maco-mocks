@@ -1,0 +1,134 @@
+{
+  "boTyp": "ZAEHLER",
+  "versionStruktur": "1",
+  "zaehlernummer": "12345",
+  "messlokationsId": "DE0073395252733953513649640711234",
+  "marktlokationsId": "50855857221",
+  "sparte": "ENUM_Sparte",
+  "gueltigkeitszeitraum": {
+    "zeitraumId": 1,
+    "startdatum": "2024-12-31T23:00:00Z",
+    "enddatum": "2025-12-31T23:00:00Z"
+  },
+  "datenqualitaet": "ENUM_qualitaet",
+  "zaehlerauspraegung": "ENUM_Zaehlerauspraegung",
+  "zaehlertyp": "ENUM_Zaehlertyp",
+  "tarifart": "ENUM_Tarifart",
+  "zaehlerkonstante": 5.4,
+  "eichungBis": "2032",
+  "zaehlwerke": [
+    {
+      "zaehlwerkId": "<string>",
+      "bezeichnung": "<string>",
+      "richtung": "ENUM_Energierichtung",
+      "obisKennzahl": "1-1:1.8.0",
+      "vorkommastellen": 5,
+      "nachkommastellen": 3,
+      "wandlerfaktor": 6,
+      "einheit": "ENUM_Mengeneinheit",
+      "schwachlastfaehig": "ENUM_Schwachlastfaehig",
+      "verwendungszwecke": [
+        {
+          "marktrolle": "ENUM_Marktrolle",
+          "zweck": [
+            "ENUM_Verwendungszweck1",
+            "ENUM_Verwendungszweck2"
+          ]
+        }
+      ],
+      "verbrauchsart": [
+        "ENUM_Verbrauchsart"
+      ],
+      "unterbrechbarkeit": "ENUM_Unterbrechbarkeit",
+      "waermenutzung": "ENUM_Waermenutzung",
+      "konzessionsabgabe": {
+        "satz": "ENUM_Abgabeart",
+        "kosten": 126.47,
+        "kategorie": "<string>"
+      },
+      "steuerbefreit": true,
+      "vorkommastelle": 8,
+      "nachkommastelle": 0,
+      "abrechnungsrelevant": false,
+      "anzahlAblesungen": 15,
+      "zaehlzeiten": {
+        "zaehlzeitDefinition": "<string>",
+        "register": "<string>",
+        "schwachlastfaehig": "ENUM_Schwachlastfaehig"
+      },
+      "konfiguration": "34590456ujdfsdghdlktztwqq-053trg",
+      "wertegranularitaet": "ENUM_siehe.Liste.Kommentar",
+      "notwendigkeitZweiteMessung": "ENUM_siehe.Liste.Kommentar",
+      "werteuebermittlungVerwendungszweck": "ENUM_siehe.Liste.Kommentar",
+      "artEMobilitaet": "ENUM_siehe.Liste.Kommentar"
+    }
+  ],
+  "zaehlerhersteller": {
+    "boTyp": "GESCHAEFTSPARTNER",
+    "versionStruktur": "1",
+    "anrede": "<string>",
+    "name1": "<string>",
+    "name2": "<string>",
+    "name3": "<string>",
+    "name4": "<string>",
+    "gewerbekennzeichnung": true,
+    "hrnummer": "<string>",
+    "amtsgericht": "<string>",
+    "kontaktweg": [
+      "ENUM_Kontaktart1",
+      "ENUM_Kontaktart2",
+      "..."
+    ],
+    "umsatzsteuerId": "<string>",
+    "glaeubigerId": "<string>",
+    "eMailAdresse": "<string>",
+    "website": "<string>",
+    "geschaeftspartnerrolle": [
+      "ENUM_Geschaeftspartnerrolle1",
+      "ENUM_Geschaeftspartnerrolle2",
+      "..."
+    ],
+    "partneradresse": {
+      "postleitzahl": "<string>",
+      "ort": "<string>",
+      "strasse": "<string>",
+      "hausnummer": "<string>",
+      "postfach": "<string>",
+      "adresszusatz": "<string>",
+      "coErgaenzung": "<string>",
+      "landescode": "ENUM_Landescode",
+      "ortsteil": "<string>"
+    }
+  },
+  "gateway": "<string>",
+  "fernschaltung": "ENUM_Fernschaltung",
+  "messwerterfassung": "ENUM_Messwerterfassung",
+  "zaehlertypspezifikation": "ENUM_Zaehlertypspezifikation",
+  "befestigungsart": "ENUM_Befestigungsart",
+  "zaehlergroesse": "ENUM_Geraetemerkmal",
+  "geraete": [
+    {
+      "geraetenummer": "<string>",
+      "weitereGeraetenummern": [
+        "<string>",
+        "<string>"
+      ],
+      "geraeteeigenschaften": {
+        "geraetetyp": "ENUM_Geraetetyp",
+        "geraetemerkmal": "ENUM_Geraetemerkmal",
+        "faktor": 1,
+        "volumenerfassung": "ENUM_Volumenerfassung.siehe.Liste.Kommentar",
+        "eichungBis": "2032",
+        "herstellungsdatum": "2019",
+        "baujahr": "<string>",
+        "serialnummer": "<string>"
+      }
+    }
+  ],
+  "mengenumwertertyp": "ENUM_Mengenumwertertyp.siehe.Liste.Kommentar",
+  "volumenerfassung": "ENUM_Volumenerfassung.siehe.Liste.Kommentar",
+  "serialnummer": "<string>",
+  "geraetemerkmal": "ENUM_Geraetemerkmal",
+  "herstellungsdatum": "2019",
+  "baujahr": "<string>"
+}

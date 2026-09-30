@@ -1,0 +1,13 @@
+[
+  {
+    "boTyp": "VERTRAG",
+    "versionStruktur": "1",
+    "vertragsart": "NETZNUTZUNGSVERTRAG",
+    "sparte": "GAS",
+    "vertragsbeginn": "2024-06-01T04:00:00Z",
+    "vertragsende": "2024-06-01T04:00:00Z",
+    "lokationsId": "50754444444",
+    "lokationsTyp": "MALO",
+    "netznutzungsabrechnungsvariante": "ARBEITSPREIS_GRUNDPREIS"
+  }
+]

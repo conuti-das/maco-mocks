@@ -2,26 +2,51 @@
 
 declare(strict_types=1);
 
-// Übernimmt Endpunkte und Beispiele aus dem Apidog-Backup (OpenAPI-Export) nach mocks/.
+// Übernimmt Endpunkte und Beispiele aus dem Apidog-Backup (OpenAPI-Export) nach mocks/,
+// optional auch die Mock-Erwartungen (Varianten je Parameter) aus Apidog.
 //
-//   php tools/import-apidog.php <openapi.json> [--stand <commit>] [--dry-run]
+//   php tools/import-apidog.php <openapi.json> [--erwartungen <apidog-erwartungen.json>] [--stand <commit>] [--dry-run]
 //
 // Auswahl und Gruppen: tools/import-apidog.json. Der Import schreibt nur
 //   mocks/<gruppe>/<endpunkt>/apidog/*    Antworten (<status>[-name].json) und Anfragebeispiele (anfrage*.json)
+//   mocks/<gruppe>/<endpunkt>/apidog/erwartungen.json + <status>-erwartung-<name>.json   Mock-Erwartungen
 //   mocks/<gruppe>/<endpunkt>/mock.json   Felder summary, method, path, command, parameters, apidog
 // Regeln, default, set, paging und eigene Antwortdateien im Endpunkt-Ordner bleiben unangetastet.
 // Mit "import": false in mock.json wird ein Endpunkt beim Import übersprungen.
+// Die Erwartungs-Datei erzeugt tools/apidog-erwartungen.js im Browser. Ohne --erwartungen bleiben
+// vorhandene Erwartungen stehen.
 
 ini_set('memory_limit', '1G');
 
 $args = parseArgs(array_slice($argv, 1));
 $openapiFile = $args['_'][0] ?? null;
 if ($openapiFile === null || !is_file($openapiFile)) {
-    fwrite(STDERR, "Aufruf: php tools/import-apidog.php <openapi.json> [--stand <commit>] [--dry-run]\n");
+    fwrite(STDERR, "Aufruf: php tools/import-apidog.php <openapi.json> [--erwartungen <apidog-erwartungen.json>] [--stand <commit>] [--dry-run]\n");
     exit(1);
 }
+$expectationsByKey = null;
+$expectationsExport = null;
+if (isset($args['erwartungen'])) {
+    $expectationsExport = is_string($args['erwartungen']) && is_file($args['erwartungen'])
+        ? json_decode((string) file_get_contents($args['erwartungen']), false)
+        : null;
+    if (!$expectationsExport instanceof stdClass || !is_array($expectationsExport->erwartungen ?? null)) {
+        fwrite(STDERR, "Keine Erwartungs-Datei (tools/apidog-erwartungen.js): " . (is_string($args['erwartungen']) ? $args['erwartungen'] : '') . "\n");
+        exit(1);
+    }
+    $expectationsByKey = [];
+    foreach ($expectationsExport->erwartungen as $expectation) {
+        $api = $expectation->api ?? null;
+        if (!$api instanceof stdClass) {
+            continue;
+        }
+        // Apidog-Kopien (Pfad mit _ am Ende) gehören wie beim Import der Endpunkte zum Original
+        $key = strtoupper((string) $api->method) . ' ' . rtrim((string) $api->path, '_') . ' ' . ($api->operationId ?? '');
+        $expectationsByKey[$key][] = $expectation;
+    }
+}
 $root = dirname(__DIR__);
-$mocksDir = $root . '/mocks';
+$mocksDir = isset($args['mocks']) && is_string($args['mocks']) ? rtrim($args['mocks'], '/') : $root . '/mocks'; // --mocks nur für Tests
 $config = json_decode((string) file_get_contents(__DIR__ . '/import-apidog.json'), true);
 $dryRun = isset($args['dry-run']);
 $stand = isset($args['stand']) && is_string($args['stand']) ? $args['stand'] : null;
@@ -88,8 +113,9 @@ foreach (findMockJson($mocksDir) as $relDir) {
 }
 
 // 3. Schreiben ------------------------------------------------------------------------
-$report = ['neu' => [], 'aktualisiert' => [], 'übersprungen' => [], 'ausSchema' => []];
+$report = ['neu' => [], 'aktualisiert' => [], 'übersprungen' => [], 'ausSchema' => [], 'erwartungen' => 0, 'hinweise' => []];
 $usedDirs = array_flip($existing);
+$usedExpectationKeys = [];
 foreach ($endpoints as $key => $entry) {
     $op = $entry['op'];
     $command = (string) ($op->operationId ?? '');
@@ -142,6 +168,42 @@ foreach ($endpoints as $key => $entry) {
         $files[count($requestExamples) === 1 ? 'anfrage.json' : "anfrage-{$example['name']}.json"] = $example['value'];
     }
 
+    // Mock-Erwartungen (Varianten je Parameter)
+    $keep = [];
+    if ($expectationsByKey !== null) {
+        $pathKey = $entry['method'] . ' ' . rtrim($entry['path'], '_') . ' ';
+        $expectationKey = $pathKey . $command;
+        $renamed = null;
+        if (!isset($expectationsByKey[$expectationKey])) {
+            // Command in Apidog umbenannt? Dann über Methode + Pfad, wenn beides eindeutig ist
+            $candidates = array_values(array_filter(array_keys($expectationsByKey), static fn ($k) => str_starts_with($k, $pathKey)));
+            $samePath = array_filter($endpoints, static fn ($e) => $e['method'] . ' ' . rtrim($e['path'], '_') . ' ' === $pathKey);
+            if (count($candidates) === 1 && count($samePath) === 1) {
+                $expectationKey = $candidates[0];
+                $renamed = substr($expectationKey, strlen($pathKey));
+            }
+        }
+        $usedExpectationKeys[$expectationKey] = true;
+        [$expectationRules, $expectationFiles, $notes] = convertExpectations($expectationsByKey[$expectationKey] ?? [], array_keys($files));
+        if ($renamed !== null) {
+            array_unshift($notes, "Command heißt in Apidog inzwischen {$renamed} (OpenAPI-Stand: {$command}), Erwartungen trotzdem übernommen");
+        }
+        $files += $expectationFiles;
+        if ($expectationRules) {
+            $files['erwartungen.json'] = [
+                'hinweis' => 'Aus Apidog importiert (Mock-Erwartungen). Nicht von Hand ändern, eigene Regeln in mock.json haben Vorrang.',
+                'exportiert' => $expectationsExport->exportiert ?? null,
+                'erwartungen' => $expectationRules,
+            ];
+            $report['erwartungen'] += count($expectationRules);
+        }
+        foreach ($notes as $note) {
+            $report['hinweise'][] = "{$relDir}: {$note}";
+        }
+    } else {
+        $keep = keptExpectationFiles("{$dir}/apidog");
+    }
+
     // mock.json: nur Apidog-Felder setzen
     $mock = $isNew ? new stdClass() : $mock;
     $fresh = new stdClass();
@@ -180,7 +242,7 @@ foreach ($endpoints as $key => $entry) {
         mkdir("{$dir}/apidog", 0775, true);
     }
     foreach (scandir("{$dir}/apidog") ?: [] as $old) {
-        if (str_ends_with($old, '.json') && !isset($files[$old])) {
+        if (str_ends_with($old, '.json') && !isset($files[$old]) && !isset($keep[$old])) {
             unlink("{$dir}/apidog/{$old}"); // apidog/ gehört dem Import
         }
     }
@@ -200,6 +262,15 @@ foreach ($report['ausSchema'] as $line) {
 }
 foreach ($gone as $relDir) {
     echo "  nicht mehr in Apidog (bleibt stehen, bitte prüfen): {$relDir}\n";
+}
+if ($expectationsByKey !== null) {
+    echo '  Mock-Erwartungen: ' . $report['erwartungen'] . " übernommen\n";
+    foreach ($report['hinweise'] as $line) {
+        echo "  {$line}\n";
+    }
+    foreach (array_diff_key($expectationsByKey, $usedExpectationKeys) as $key => $list) {
+        echo '  Erwartungen ohne importierten Endpunkt (nicht übernommen): ' . trim($key) . ' (' . count($list) . ")\n";
+    }
 }
 
 // -------------------------------------------------------------------------------------
@@ -440,6 +511,243 @@ function slug(string $text): string
 {
     $text = strtr(mb_strtolower($text), ['ä' => 'ae', 'ö' => 'oe', 'ü' => 'ue', 'ß' => 'ss']);
     return substr(trim((string) preg_replace('/[^a-z0-9]+/', '-', $text), '-'), 0, 60);
+}
+
+// -------------------------------------------------------------------------------------
+// Mock-Erwartungen
+
+/**
+ * Apidog prüft Erwartungen von oben nach unten (Feld ordering, bei Gleichstand die neuere zuerst).
+ * Sammel-Erwartungen – nur „Parameter vorhanden“ (z. B. "Default mit Platzhaltern") oder ganz ohne
+ * Bedingung – kommen hier ans Ende. Sonst verdecken sie konkrete Varianten weiter unten in der Liste.
+ *
+ * @param list<stdClass> $list
+ * @param list<string> $takenFiles
+ * @return array{0: list<array>, 1: array<string, mixed>, 2: list<string>}
+ */
+function convertExpectations(array $list, array $takenFiles): array
+{
+    usort($list, static fn ($a, $b) => [(int) ($a->ordering ?? 0), -(int) $a->id] <=> [(int) ($b->ordering ?? 0), -(int) $b->id]);
+    $groups = [[], [], []]; // konkret, nur "vorhanden", ohne Bedingung
+    foreach ($list as $expectation) {
+        $conditions = is_array($expectation->conditions ?? null) ? $expectation->conditions : [];
+        $onlyExists = !array_filter($conditions, static fn ($c) => ($c->comparison ?? '') !== 'exists');
+        $groups[!$conditions ? 2 : ($onlyExists ? 1 : 0)][] = $expectation;
+    }
+
+    $rules = [];
+    $files = [];
+    $notes = [];
+    $taken = array_flip($takenFiles);
+    foreach (array_merge(...$groups) as $expectation) {
+        $name = trim((string) ($expectation->name ?? '')) ?: 'Erwartung ' . $expectation->id;
+        $when = new stdClass();
+        $problems = [];
+        foreach (is_array($expectation->conditions ?? null) ? $expectation->conditions : [] as $condition) {
+            $mapped = mapExpectationCondition($condition);
+            if (is_string($mapped)) {
+                $problems[] = $mapped;
+            } elseif (property_exists($when, $mapped[0])) {
+                $problems[] = "Feld {$mapped[0]} doppelt";
+            } else {
+                $when->{$mapped[0]} = $mapped[1];
+            }
+        }
+        if ($problems) {
+            $notes[] = "„{$name}“ nicht übernommen (" . implode(', ', $problems) . ')';
+            continue;
+        }
+
+        $response = $expectation->response ?? new stdClass();
+        [$body, $repair] = lenientJson((string) ($response->bodyData ?? ''));
+        if ($repair === null) {
+            $notes[] = "„{$name}“ nicht übernommen (Antwort ist kein JSON)";
+            continue;
+        }
+        if ($repair !== '') {
+            $notes[] = "„{$name}“: Antwort repariert ({$repair}), bitte in Apidog korrigieren";
+        }
+        $status = (int) ($response->code ?? 200);
+        $status = $status >= 100 && $status <= 599 ? $status : 200;
+        $file = uniqueFileName("{$status}-erwartung-" . (slug($name) ?: 'id-' . $expectation->id), $taken);
+        $taken[$file] = true;
+        $files[$file] = $body;
+
+        $then = $file;
+        $headers = new stdClass();
+        foreach (is_array($response->headers ?? null) ? $response->headers : [] as $header) {
+            if (isset($header->name) && trim((string) $header->name) !== '') {
+                $headers->{trim((string) $header->name)} = (string) ($header->value ?? '');
+            }
+        }
+        $delay = (int) ($response->delay ?? 0);
+        if (get_object_vars($headers) || $delay > 0) {
+            $then = ['file' => $file] + (get_object_vars($headers) ? ['headers' => $headers] : []) + ($delay > 0 ? ['delay' => $delay] : []);
+        }
+        $rules[] = ['name' => $name, 'apidogId' => (int) $expectation->id, 'when' => $when, 'then' => $then];
+    }
+    return [$rules, $files, $notes];
+}
+
+/**
+ * Apidog-Bedingung → Schlüssel und Wert für "when". Body-Felder: "feld", "a.b[0].c" oder JSONPath "$.a.b".
+ *
+ * @return array{0: string, 1: mixed}|string Fehlertext, wenn nicht abbildbar
+ */
+function mapExpectationCondition(mixed $condition): array|string
+{
+    if (!$condition instanceof stdClass) {
+        return 'Bedingung unlesbar';
+    }
+    $location = (string) ($condition->location ?? '');
+    $name = trim((string) ($condition->name ?? ''));
+    $value = is_scalar($condition->value ?? null) ? (string) $condition->value : '';
+    $comparison = (string) ($condition->comparison ?? '');
+    $source = match ($location) {
+        'query', 'header', 'body', 'path' => $location,
+        default => null,
+    };
+    if ($source === null) {
+        return "Ort {$location} nicht unterstützt";
+    }
+    if ($name === '') {
+        return 'Parametername fehlt';
+    }
+    if ($source === 'body') {
+        $name = (string) preg_replace('/^\$\.?/', '', $name);
+        if ($name === '' || str_contains($name, '*') || str_contains($name, '..') || str_contains($name, '?(')) {
+            return "Body-Pfad {$condition->name} nicht unterstützt";
+        }
+    }
+    $key = "{$source}.{$name}";
+    return match ($comparison) {
+        'equal' => [$key, $value],
+        'notEqual' => [$key, ['not' => $value]],
+        'exists' => [$key, ['exists' => true]],
+        'notExists', 'notExist' => [$key, ['exists' => false]],
+        'include', 'contains' => [$key, ['contains' => $value]],
+        'notInclude', 'notContains' => [$key, ['notContains' => $value]],
+        'greaterThan', 'greater' => [$key, ['gt' => (float) $value]],
+        'greaterOrEqual', 'greaterThanOrEqual' => [$key, ['gte' => (float) $value]],
+        'lessThan', 'less' => [$key, ['lt' => (float) $value]],
+        'lessOrEqual', 'lessThanOrEqual' => [$key, ['lte' => (float) $value]],
+        'regex', 'regExp', 'match' => [$key, ['regex' => $value]],
+        default => "Vergleich {$comparison} nicht unterstützt",
+    };
+}
+
+/** @return array<string, true> Dateien bestehender Erwartungen, die ein Import ohne --erwartungen stehen lässt */
+function keptExpectationFiles(string $apidogDir): array
+{
+    $file = "{$apidogDir}/erwartungen.json";
+    if (!is_file($file)) {
+        return [];
+    }
+    $keep = ['erwartungen.json' => true];
+    $data = json_decode((string) file_get_contents($file), false);
+    foreach (is_array($data->erwartungen ?? null) ? $data->erwartungen : [] as $rule) {
+        $then = $rule->then ?? null;
+        $name = is_string($then) ? $then : (string) ($then->file ?? '');
+        if ($name !== '') {
+            $keep[str_ends_with($name, '.json') ? $name : $name . '.json'] = true;
+        }
+    }
+    return $keep;
+}
+
+/** @param array<string, mixed> $taken */
+function uniqueFileName(string $base, array $taken): string
+{
+    $name = "{$base}.json";
+    for ($i = 2; isset($taken[$name]); $i++) {
+        $name = "{$base}-{$i}.json";
+    }
+    return $name;
+}
+
+/**
+ * Apidog nimmt es mit JSON nicht genau (Kommentare, Komma am Ende, fehlendes Komma). Erst streng lesen,
+ * dann repariert.
+ *
+ * @return array{0: mixed, 1: ?string} Wert und Reparatur ('' = keine, null = nicht lesbar)
+ */
+function lenientJson(string $text): array
+{
+    $value = json_decode($text, false);
+    if (json_last_error() === JSON_ERROR_NONE && trim($text) !== '') {
+        return [$value, ''];
+    }
+    $fixes = [];
+    $value = json_decode(repairJson($text, $fixes), false);
+    if (json_last_error() !== JSON_ERROR_NONE || trim($text) === '') {
+        return [null, null];
+    }
+    return [$value, implode(', ', array_keys($fixes))];
+}
+
+/** Entfernt Kommentare und Kommas vor } oder ], ergänzt fehlende Kommas zwischen Werten. */
+function repairJson(string $s, array &$fixes): string
+{
+    $out = '';
+    $len = strlen($s);
+    $inString = false;
+    $last = ''; // letztes Zeichen außerhalb von Strings (ohne Leerraum)
+    $skip = static function (int $i) use ($s, $len): int {
+        // Leerraum und Kommentare überspringen, Index des nächsten Zeichens
+        while ($i < $len) {
+            if (ctype_space($s[$i])) {
+                $i++;
+            } elseif ($s[$i] === '/' && ($s[$i + 1] ?? '') === '/') {
+                $end = strpos($s, "\n", $i);
+                $i = $end === false ? $len : $end;
+            } elseif ($s[$i] === '/' && ($s[$i + 1] ?? '') === '*') {
+                $end = strpos($s, '*/', $i + 2);
+                $i = $end === false ? $len : $end + 2;
+            } else {
+                break;
+            }
+        }
+        return $i;
+    };
+    for ($i = 0; $i < $len; $i++) {
+        $c = $s[$i];
+        if ($inString) {
+            $out .= $c;
+            if ($c === '\\' && $i + 1 < $len) {
+                $out .= $s[++$i];
+            } elseif ($c === '"') {
+                $inString = false;
+                $last = '"';
+            }
+            continue;
+        }
+        if ($c === '/' && (($s[$i + 1] ?? '') === '/' || ($s[$i + 1] ?? '') === '*')) {
+            $i = $skip($i) - 1;
+            $fixes['Kommentare entfernt'] = true;
+            continue;
+        }
+        if (ctype_space($c)) {
+            $out .= $c;
+            continue;
+        }
+        if ($c === ',') {
+            $next = $skip($i + 1);
+            if ($next < $len && ($s[$next] === '}' || $s[$next] === ']')) {
+                $fixes['Komma am Ende entfernt'] = true;
+                continue;
+            }
+        } elseif (($c === '"' || $c === '{' || $c === '[') && ($last === '"' || $last === '}' || $last === ']' || $last === 'e' || $last === 'l' || ctype_digit($last))) {
+            $out .= ',';
+            $fixes['fehlendes Komma ergänzt'] = true;
+        }
+        $out .= $c;
+        if ($c === '"') {
+            $inString = true;
+        } else {
+            $last = $c;
+        }
+    }
+    return $out;
 }
 
 function parseArgs(array $list): array

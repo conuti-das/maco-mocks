@@ -1,0 +1,17 @@
+{
+  "boTyp": "LEISTUNGSKURVENDEFINITION",
+  "versionStruktur": "1",
+  "code": "AL",
+  "beginndatum": "2023-12-31T23:00:00Z",
+  "endedatum": "2024-12-31T23:00:00Z",
+  "version": "2024-08-01T13:45:18Z",
+  "leistungskurven": [
+    {
+      "aenderungszeitpunkt": "2024-12-14T23:00:00Z",
+      "haeufigkeit": "JAEHRLICH",
+      "schwellwert": {
+        "obererSchwellwert": 20
+      }
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "boTyp": "SCHALTZEITDEFINITION",
+  "versionStruktur": "1",
+  "code": "ZZ1",
+  "beginndatum": "2023-07-31T23:00:00Z",
+  "endedatum": "2024-12-31T23:00:00Z",
+  "version": "2024-08-08T05:30:44Z",
+  "schaltzeiten": [
+    {
+      "aenderungszeitpunkt": "2024-10-14T05:30:00Z",
+      "haeufigkeit": "JAEHRLICH",
+      "schalthandlung": "LEISTUNG_AN"
+    }
+  ]
+}

@@ -12,8 +12,9 @@ namespace MacoMocks;
  *      Gleicher Pfad mehrfach: Query-Parameter "command" entscheidet.
  *      Unbekannter Pfad mit "command": Suche über den Command (Präfixe wie SAP_ werden erkannt).
  *   2. Antwort: Auswahl per Header X-Mock-Response / Query __response → Paging-Prüfung
- *      → Regeln des Endpunkts → globale Regeln → default. Parameter ohne Regel werden ignoriert.
- *   3. Aufbereiten: "set" und {{…}}-Platzhalter, Paging, Header.
+ *      → Regeln des Endpunkts → globale Regeln → Apidog-Erwartungen → default.
+ *      Parameter ohne Regel werden ignoriert.
+ *   3. Aufbereiten: "set" (nicht bei Apidog-Erwartungen) und {{…}}-Platzhalter, Paging, Header.
  *
  * Anfrage:  ['method' => 'GET', 'path' => '/x', 'query' => [...], 'headers' => [klein => wert], 'body' => string]
  * Antwort:  ['status' => int, 'headers' => [...], 'body' => ?string]
@@ -36,7 +37,32 @@ final class MockServer
         if ($method === 'OPTIONS') {
             return self::preflight($request['headers']['access-control-request-headers'] ?? '*');
         }
+        $routed = $this->route($request);
+        if (!isset($routed['endpoint'])) {
+            return $routed;
+        }
+        return $this->respond($routed['endpoint'], $method === 'HEAD');
+    }
 
+    /**
+     * Welche Antwort eine Anfrage bekäme, ohne sie zu bauen (für die Übersicht).
+     *
+     * @return array{endpoint: string, response: string, reason: string}|null
+     */
+    public function explain(array $request): ?array
+    {
+        $routed = $this->route($request);
+        if (!isset($routed['endpoint'])) {
+            return null;
+        }
+        $decision = $this->decide($routed['endpoint']);
+        return ['endpoint' => $routed['endpoint']['id'], 'response' => $decision['name'], 'reason' => $decision['reason']];
+    }
+
+    /** @return array{endpoint: array}|array{status: int, headers: array, body: ?string} */
+    private function route(array $request): array
+    {
+        $method = strtoupper($request['method']);
         $path = rawurldecode($request['path']);
         if (strlen($path) > 1 && str_ends_with($path, '/')) {
             $path = rtrim($path, '/');
@@ -81,7 +107,7 @@ final class MockServer
             'body' => null,
             'bodyParsed' => false,
         ];
-        return $this->respond($endpoint, $method === 'HEAD');
+        return ['endpoint' => $endpoint];
     }
 
     // ------------------------------------------------------------------
@@ -183,6 +209,11 @@ final class MockServer
                 return ['then' => $rule['then'], 'name' => $rule['then']['file'] ?? 'inline', 'reason' => 'Globale Regel: ' . $rule['name'], 'paging' => $paging];
             }
         }
+        foreach ($endpoint['expectations'] ?? [] as $rule) {
+            if ($this->ruleMatches($rule)) {
+                return ['then' => $rule['then'], 'name' => $rule['then']['file'] ?? 'inline', 'reason' => 'Apidog-Erwartung: ' . $rule['name'], 'paging' => $paging];
+            }
+        }
         return ['then' => ['file' => $endpoint['default']], 'name' => (string) $endpoint['default'], 'reason' => 'Standard', 'paging' => $paging];
     }
 
@@ -225,16 +256,20 @@ final class MockServer
             return $present === (bool) $expected;
         }
         if (!$present) {
-            return $op === 'not' || $op === 'notIn';
+            return $op === 'not' || $op === 'notIn' || $op === 'notContains';
         }
         $text = is_scalar($value) ? (is_bool($value) ? ($value ? 'true' : 'false') : (string) $value) : (string) json_encode($value, JSON_UNESCAPED_UNICODE);
+        $contains = static fn (): bool => is_array($value)
+            ? in_array((string) $expected, array_map('strval', array_filter($value, 'is_scalar')), true)
+            : str_contains($text, (string) $expected);
         return match ($op) {
             'equals' => $text === (string) $expected,
             'not' => $text !== (string) $expected,
             'in' => in_array($text, (array) $expected, true),
             'notIn' => !in_array($text, (array) $expected, true),
             'regex' => (bool) preg_match('~' . str_replace('~', '\~', (string) $expected) . '~', $text),
-            'contains' => is_array($value) ? in_array((string) $expected, array_map('strval', array_filter($value, 'is_scalar')), true) : str_contains($text, (string) $expected),
+            'contains' => $contains(),
+            'notContains' => !$contains(),
             'gt' => is_numeric($text) && (float) $text > (float) $expected,
             'gte' => is_numeric($text) && (float) $text >= (float) $expected,
             'lt' => is_numeric($text) && (float) $text < (float) $expected,
@@ -302,10 +337,12 @@ final class MockServer
         }
 
         $headers = [];
-        $needsProcessing = $raw !== null && ($endpoint['set'] || $decision['paging'] !== null || str_contains($raw, '{{'));
+        // Antworten aus Apidog-Erwartungen kommen wie in Apidog unverändert (Mock-Skripte laufen dort auch nicht)
+        $set = $file !== null && ($endpoint['responses'][$file]['erwartung'] ?? false) ? [] : $endpoint['set'];
+        $needsProcessing = $raw !== null && ($set || $decision['paging'] !== null || str_contains($raw, '{{'));
         if ($needsProcessing) {
             $body = json_decode($raw, false);
-            foreach ($endpoint['set'] as $target => $template) {
+            foreach ($set as $target => $template) {
                 $value = $this->renderString($template, true);
                 if ($value !== null) {
                     self::setPath($body, self::parsePath($target), $value);

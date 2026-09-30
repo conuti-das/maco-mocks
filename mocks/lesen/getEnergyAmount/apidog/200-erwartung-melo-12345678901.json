@@ -1,0 +1,34 @@
+[
+  {
+    "boTyp": "ENERGIEMENGE",
+    "versionStruktur": "1",
+    "lokationsId": "12345678901",
+    "lokationsTyp": "MALO",
+    "energieverbrauch": [
+      {
+        "messwertstatus": "ABGELESEN",
+        "obiskennzahl": "1-0:1.9.0",
+        "wert": 2500,
+        "position": 1,
+        "startdatum": "2024-05-01T22:00:00Z",
+        "enddatum": "2024-06-01T22:00:00Z"
+      },
+      {
+        "messwertstatus": "ABGELESEN",
+        "obiskennzahl": "1-0:1.29.0",
+        "wert": 11000,
+        "position": 1,
+        "startdatum": "2024-05-01T22:00:00Z",
+        "enddatum": "2024-06-01T22:00:00Z"
+      },
+      {
+        "messwertstatus": "ABGELESEN",
+        "obiskennzahl": "1-0:1.6.0",
+        "wert": 500,
+        "position": 1,
+        "startdatum": "2024-05-01T22:00:00Z",
+        "enddatum": "2024-06-01T22:00:00Z"
+      }
+    ]
+  }
+]

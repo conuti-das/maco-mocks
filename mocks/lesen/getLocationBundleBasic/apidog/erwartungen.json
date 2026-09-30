@@ -1,0 +1,38 @@
+{
+  "hinweis": "Aus Apidog importiert (Mock-Erwartungen). Nicht von Hand ändern, eigene Regeln in mock.json haben Vorrang.",
+  "exportiert": "2026-09-30T14:37:16.966Z",
+  "erwartungen": [
+    {
+      "name": "Malo 50754497777",
+      "apidogId": 3030933,
+      "when": {
+        "query.parameter1": "50754497777"
+      },
+      "then": "200-erwartung-malo-50754497777.json"
+    },
+    {
+      "name": "Malo 50754496001",
+      "apidogId": 3033528,
+      "when": {
+        "query.parameter1": "50754496001"
+      },
+      "then": "200-erwartung-malo-50754496001.json"
+    },
+    {
+      "name": "Malo 50754412345",
+      "apidogId": 3033310,
+      "when": {
+        "query.parameter1": "50754412345"
+      },
+      "then": "200-erwartung-malo-50754412345.json"
+    },
+    {
+      "name": "Malo 55123678945",
+      "apidogId": 3039213,
+      "when": {
+        "query.parameter1": "55123678945"
+      },
+      "then": "200-erwartung-malo-55123678945.json"
+    }
+  ]
+}

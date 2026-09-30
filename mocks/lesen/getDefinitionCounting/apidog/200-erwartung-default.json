@@ -1,0 +1,15 @@
+{
+  "boTyp": "ZAEHLZEITDEFINITION",
+  "versionStruktur": "1",
+  "code": "AAL",
+  "beginndatum": "2023-12-31T23:00:00Z",
+  "endedatum": "2024-12-31T23:00:00Z",
+  "version": "2024-08-01T17:15:46Z",
+  "zaehlzeiten": [
+    {
+      "aenderungszeitpunkt": "2024-08-14T22:00:00Z",
+      "register": "AAL",
+      "haeufigkeit": "JAEHRLICH"
+    }
+  ]
+}

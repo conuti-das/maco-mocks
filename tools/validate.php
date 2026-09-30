@@ -42,8 +42,10 @@ foreach ($items as $item) {
 $server = new MockServer($catalog, 'validate');
 $responseCount = 0;
 $ruleCount = 0;
+$expectationCount = 0;
 foreach ($catalog->endpoints as $endpoint) {
     $ruleCount += count($endpoint['rules']);
+    $expectationCount += count($endpoint['expectations']);
     $path = (string) preg_replace('/\{[^}]+\}/', 'x', $endpoint['path']);
     foreach ($endpoint['responses'] as $name => $meta) {
         $responseCount++;
@@ -69,10 +71,11 @@ if ($errors) {
     exit(1);
 }
 printf(
-    "ok: %d Endpunkte, %d Antworten, %d Regeln, %d globale Regeln, %d JSON-Dateien\n",
+    "ok: %d Endpunkte, %d Antworten, %d Regeln, %d Apidog-Erwartungen, %d globale Regeln, %d JSON-Dateien\n",
     count($catalog->endpoints),
     $responseCount,
     $ruleCount,
+    $expectationCount,
     count($catalog->globalRules),
     $fileCount,
 );

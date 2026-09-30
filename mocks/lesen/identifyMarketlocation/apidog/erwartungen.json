@@ -1,0 +1,16 @@
+{
+  "hinweis": "Aus Apidog importiert (Mock-Erwartungen). Nicht von Hand ändern, eigene Regeln in mock.json haben Vorrang.",
+  "exportiert": "2026-09-30T14:37:16.966Z",
+  "erwartungen": [
+    {
+      "name": "MaloIdent Mock",
+      "apidogId": 3053667,
+      "when": {
+        "body.malo": {
+          "notContains": "z"
+        }
+      },
+      "then": "200-erwartung-maloident-mock.json"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+[
+  {
+    "boTyp": "MARKTLOKATION",
+    "versionStruktur": "1",
+    "marktlokationsId": "50074561189",
+    "marktlokationsTyp": [
+      {
+        "typ": "STANDARD_MARKTLOKATION",
+        "gueltigAb": "2023-08-01T22:00:00Z",
+        "gueltigBis": "2025-08-01T22:00:00Z"
+      }
+    ],
+    "sparte": "STROM",
+    "energierichtung": "EINSP",
+    "inbetriebnahmedatum": "2023-08-01T22:00:00Z",
+    "datenqualitaet": null,
+    "bilanzierungsmethode": "SLP",
+    "verbrauchsart": "KL",
+    "unterbrechbar": false,
+    "netzebene": "NSP",
+    "umspannung": null,
+    "netzbetreiberCodeNr": "9900702000004",
+    "gebietTyp": "VERSORGUNGSGEBIET",
+    "netzgebietNr": "12345",
+    "bilanzierungsgebiet": "11YR00000004025V",
+    "zugehoerigeMarktlokationen": [
+      {
+        "marktlokationsId": "50074561189",
+        "typ": "STANDARD_MARKTLOKATION"
+      },
+      {
+        "marktlokationsId": "50074561179",
+        "typ": "RUHENDE_MARKTLOKATION"
+      },
+      {
+        "marktlokationsId": "50074561169",
+        "typ": "STANDARD_MARKTLOKATION"
+      }
+    ]
+  }
+]

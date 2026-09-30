@@ -1,0 +1,36 @@
+[
+  {
+    "boTyp": "BILANZIERUNG",
+    "versionStruktur": "1",
+    "marktlokationsId": "50074561188",
+    "bilanzkreise": [
+      {
+        "bezeichnung": "11Y0-0000-0076-N",
+        "prioritaet": 1
+      }
+    ],
+    "jahresverbrauchsprognose": {
+      "wert": 50000,
+      "einheit": "KWH"
+    },
+    "vorjahresverbrauch": {
+      "wert": 45.8,
+      "einheit": "KWH"
+    },
+    "prognosegrundlage": "PROFILE",
+    "bilanzierungsbeginn": "2026-04-30T23:00:00Z",
+    "lastprofile": [
+      {
+        "verfahren": "SYNTHETISCH",
+        "bezeichnung": "SLP",
+        "herausgeber": "NB",
+        "tagesparameter": {
+          "klimazone": "1234",
+          "temperaturmessstelle": "1234",
+          "dienstanbieter": "1234",
+          "herausgeber": "NB"
+        }
+      }
+    ]
+  }
+]

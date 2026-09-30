@@ -1,0 +1,270 @@
+[
+  {
+    "boTyp": "MESSLOKATION",
+    "versionStruktur": "1",
+    "messlokationsId": "DE00068365232STROM000008000366174",
+    "sparte": "STROM",
+    "energierichtung": "AUSSP",
+    "netzebenemessung": "NSP",
+    "grundzustaendigerMSBCodeNr": "SMSB00001",
+    "messadresse": {
+      "postleitzahl": "65232",
+      "ort": "Taunusstein",
+      "strasse": "Kurt-Schumacher-Straße",
+      "hausnummer": "8",
+      "landescode": "DE",
+      "zusatzInformation": {
+        "zusatz1": "Wärmepumpe Bezug"
+      }
+    },
+    "bilanzierungsmethode": "SLP",
+    "abrechnungmessstellenbetriebnna": true,
+    "betriebszustand": "REGELBETRIEB",
+    "ablesekartenempfaenger": {
+      "anrede": "Ohne Anrede",
+      "name1": "Ingrisch",
+      "name2": "Sebastian",
+      "gewerbekennzeichnung": false,
+      "partneradresse": {
+        "postleitzahl": "65232",
+        "ort": "Taunusstein",
+        "strasse": "Kurt-Schumacher-Straße",
+        "hausnummer": "8",
+        "landescode": "DE",
+        "zusatzInformation": {
+          "zusatz1": "Wärmepumpe Bezug"
+        }
+      }
+    },
+    "referenzMarktlokationsId": "50930199275",
+    "zukuenftigerMeldepunkt": false,
+    "lokationszuordnung": "UNVERAENDERT",
+    "geraete": [
+      {
+        "geraetetyp": "MODERNE_MESSEINRICHTUNG",
+        "bezeichnung": "MME-ET-ZRZ-direkt-MME mit 3-Punktaufhängung",
+        "geraetenummer": "1ESY1163240237",
+        "geraeteeigenschaften": {
+          "geraetemerkmal": "EINTARIF"
+        }
+      }
+    ],
+    "messlokationszaehler": [
+      "1ESY1163240248",
+      "1ESY1163240237"
+    ],
+    "zaehlwerke": [
+      {
+        "zaehlwerkId": "001",
+        "bezeichnung": "HT",
+        "richtung": "AUSSP",
+        "obisKennzahl": "1-0:1.8.0",
+        "wandlerfaktor": 1,
+        "einheit": "KWH",
+        "steuerbefreit": false,
+        "vorkommastelle": 6,
+        "nachkommastelle": 0,
+        "abrechnungsrelevant": false,
+        "zaehlzeiten": {
+          "zaehlzeitDefinition": ""
+        },
+        "messprodukt": "9991000000151",
+        "wertegranularitaet": "JAEHRLICH",
+        "keinKonfigurationsprodukt": true
+      },
+      {
+        "zaehlwerkId": "002",
+        "bezeichnung": "HT",
+        "richtung": "EINSP",
+        "obisKennzahl": "1-0:2.8.0",
+        "wandlerfaktor": 1,
+        "einheit": "KWH",
+        "steuerbefreit": false,
+        "vorkommastelle": 6,
+        "nachkommastelle": 0,
+        "abrechnungsrelevant": false,
+        "zaehlzeiten": {
+          "zaehlzeitDefinition": ""
+        },
+        "messprodukt": "9991000000151",
+        "wertegranularitaet": "JAEHRLICH",
+        "keinKonfigurationsprodukt": true
+      }
+    ],
+    "marktrollen": [
+      {
+        "boTyp": "MARKTTEILNEHMER",
+        "versionStruktur": "1",
+        "geschaeftspartnerrolle": "MARKTPARTNER",
+        "anrede": "Ohne Anrede",
+        "name1": "Stadtwerke Wiesbaden Netz GmbH",
+        "partneradresse": {
+          "postleitzahl": "65189",
+          "ort": "Wiesbaden",
+          "strasse": "Konradinerallee",
+          "hausnummer": "25",
+          "landescode": "DE"
+        },
+        "gewerbekennzeichnung": true,
+        "marktrolle": "MSB",
+        "rollencodenummer": "9906464000001",
+        "rollencodetyp": "BDEW",
+        "weiterverpflichtet": false,
+        "messstellenbetreiberEigenschaft": "GRUNDZUSTAENDIGER_MESSSTELLENBETREIBER",
+        "bankverbindung": [
+          {
+            "iban": "DE84510500150103051363",
+            "bic": "NASSDE55XXX",
+            "kreditinstitut": "Nassauische Sparkasse"
+          }
+        ],
+        "zuordnungVon": "2025-12-31T23:00:00Z",
+        "zuordnungBis": "9999-12-31T22:59:59Z"
+      },
+      {
+        "gewerbekennzeichnung": false,
+        "marktrolle": "GMSB",
+        "rollencodenummer": "9906464000001",
+        "rollencodetyp": "BDEW",
+        "weiterverpflichtet": false,
+        "messstellenbetreiberEigenschaft": "GRUNDZUSTAENDIGER_MESSSTELLENBETREIBER",
+        "zuordnungVon": "2025-12-31T23:00:00Z",
+        "zuordnungBis": "9999-12-30T23:00:00Z"
+      }
+    ]
+  },
+  {
+    "boTyp": "MESSLOKATION",
+    "versionStruktur": "1",
+    "messlokationsId": "DE00068365232STROM000008000366131",
+    "sparte": "STROM",
+    "energierichtung": "AUSSP",
+    "netzebenemessung": "NSP",
+    "grundzustaendigerMSBCodeNr": "SMSB00001",
+    "messadresse": {
+      "postleitzahl": "65232",
+      "ort": "Taunusstein",
+      "strasse": "Kurt-Schumacher-Straße",
+      "hausnummer": "8",
+      "landescode": "DE",
+      "zusatzInformation": {
+        "zusatz1": "Allg. Strom"
+      }
+    },
+    "bilanzierungsmethode": "SLP",
+    "abrechnungmessstellenbetriebnna": true,
+    "betriebszustand": "REGELBETRIEB",
+    "ablesekartenempfaenger": {
+      "anrede": "Ohne Anrede",
+      "name1": "Ingrisch",
+      "name2": "Sebastian",
+      "gewerbekennzeichnung": false,
+      "partneradresse": {
+        "postleitzahl": "65232",
+        "ort": "Taunusstein",
+        "strasse": "Kurt-Schumacher-Straße",
+        "hausnummer": "8",
+        "landescode": "DE",
+        "zusatzInformation": {
+          "zusatz1": "Allg. Strom"
+        }
+      }
+    },
+    "referenzMarktlokationsId": "50930151697",
+    "zukuenftigerMeldepunkt": false,
+    "lokationszuordnung": "UNVERAENDERT",
+    "geraete": [
+      {
+        "geraetetyp": "MODERNE_MESSEINRICHTUNG",
+        "bezeichnung": "MME-ET-ZRZ-direkt-MME mit 3-Punktaufhängung",
+        "geraetenummer": "1ESY1163240248",
+        "geraeteeigenschaften": {
+          "geraetemerkmal": "EINTARIF"
+        }
+      }
+    ],
+    "messlokationszaehler": [
+      "1ESY1163240248",
+      "1ESY1163240237"
+    ],
+    "zaehlwerke": [
+      {
+        "zaehlwerkId": "001",
+        "bezeichnung": "HT",
+        "richtung": "AUSSP",
+        "obisKennzahl": "1-0:1.8.0",
+        "wandlerfaktor": 1,
+        "einheit": "KWH",
+        "steuerbefreit": false,
+        "vorkommastelle": 6,
+        "nachkommastelle": 0,
+        "abrechnungsrelevant": false,
+        "zaehlzeiten": {
+          "zaehlzeitDefinition": ""
+        },
+        "messprodukt": "9991000000151",
+        "wertegranularitaet": "JAEHRLICH",
+        "keinKonfigurationsprodukt": true
+      },
+      {
+        "zaehlwerkId": "002",
+        "bezeichnung": "HT",
+        "richtung": "EINSP",
+        "obisKennzahl": "1-0:2.8.0",
+        "wandlerfaktor": 1,
+        "einheit": "KWH",
+        "steuerbefreit": false,
+        "vorkommastelle": 6,
+        "nachkommastelle": 0,
+        "abrechnungsrelevant": false,
+        "zaehlzeiten": {
+          "zaehlzeitDefinition": ""
+        },
+        "messprodukt": "9991000000151",
+        "wertegranularitaet": "JAEHRLICH",
+        "keinKonfigurationsprodukt": true
+      }
+    ],
+    "marktrollen": [
+      {
+        "boTyp": "MARKTTEILNEHMER",
+        "versionStruktur": "1",
+        "geschaeftspartnerrolle": "MARKTPARTNER",
+        "anrede": "Ohne Anrede",
+        "name1": "Stadtwerke Wiesbaden Netz GmbH",
+        "partneradresse": {
+          "postleitzahl": "65189",
+          "ort": "Wiesbaden",
+          "strasse": "Konradinerallee",
+          "hausnummer": "25",
+          "landescode": "DE"
+        },
+        "gewerbekennzeichnung": true,
+        "marktrolle": "MSB",
+        "rollencodenummer": "9906464000001",
+        "rollencodetyp": "BDEW",
+        "weiterverpflichtet": false,
+        "messstellenbetreiberEigenschaft": "GRUNDZUSTAENDIGER_MESSSTELLENBETREIBER",
+        "bankverbindung": [
+          {
+            "iban": "DE84510500150103051363",
+            "bic": "NASSDE55XXX",
+            "kreditinstitut": "Nassauische Sparkasse"
+          }
+        ],
+        "zuordnungVon": "2025-12-31T23:00:00Z",
+        "zuordnungBis": "9999-12-31T22:59:59Z"
+      },
+      {
+        "gewerbekennzeichnung": false,
+        "marktrolle": "GMSB",
+        "rollencodenummer": "9906464000001",
+        "rollencodetyp": "BDEW",
+        "weiterverpflichtet": false,
+        "messstellenbetreiberEigenschaft": "GRUNDZUSTAENDIGER_MESSSTELLENBETREIBER",
+        "zuordnungVon": "2025-12-31T23:00:00Z",
+        "zuordnungBis": "9999-12-30T23:00:00Z"
+      }
+    ]
+  }
+]

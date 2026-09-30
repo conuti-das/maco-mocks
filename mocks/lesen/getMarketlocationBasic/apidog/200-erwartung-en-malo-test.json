@@ -1,0 +1,421 @@
+[
+  {
+    "boType": "MARKET_LOCATION",
+    "structureVersion": "1",
+    "marketLocationId": "10037104444",
+    "marketLocationType": [
+      {
+        "typeValue": "STANDARD_MARKET_LOCATION",
+        "validFrom": "2023-08-01T22:00:00Z",
+        "validTo": "2023-08-01T22:00:00Z"
+      }
+    ],
+    "futureReportingPoint": null,
+    "sector": "ELECTRICITY",
+    "validityPeriod": {
+      "periodId": null,
+      "startDate": null,
+      "endDate": null
+    },
+    "inbetriebnahmedatum": "2023-08-01T22:00:00Z",
+    "dataQuality": null,
+    "energyDirection": "FEED_OUT",
+    "balancingMethod": "SLP",
+    "consumptionType": [
+      "KL"
+    ],
+    "interruptible": false,
+    "gridLevel": "NSP",
+    "transformation": null,
+    "gridOperatorCodeNumber": "9900936000002",
+    "areaType": "SUPPLY_AREA",
+    "gridAreaNumber": "12345",
+    "balancingArea": "11YR00000004025V",
+    "defaultSupplierCodeNumber": "9900683000008",
+    "endCustomer": {
+      "boType": "BUSINESS_PARTNER",
+      "structureVersion": "1",
+      "salutation": "Herr",
+      "name1": "Haiko",
+      "name2": "Fisch",
+      "name3": null,
+      "commercialClassification": false,
+      "commercialRegisterNumber": null,
+      "courtOfRegistration": null,
+      "contactChannel": [
+        "PHONE_CALL",
+        "EMAIL"
+      ],
+      "vatId": null,
+      "creditorId": null,
+      "eMailAddress": "hai.fisch@web.de",
+      "website": null,
+      "partnerAddress": {
+        "postalCode": "65189",
+        "city": "Wiesbaden",
+        "street": "Korallenweg",
+        "houseNumber": "10",
+        "poBox": null,
+        "addressSupplement": null,
+        "coSupplement": null,
+        "countryCode": "DE",
+        "district": "Riff"
+      }
+    },
+    "locationAddress": {
+      "postalCode": "65189",
+      "city": "Wiesbaden",
+      "street": "Korallenweg",
+      "houseNumber": "10",
+      "poBox": null,
+      "addressSupplement": null,
+      "coSupplement": null,
+      "countryCode": "DE",
+      "district": "Riff",
+      "additionalInformation": {
+        "supplement1": null,
+        "supplement2": null,
+        "supplement3": null,
+        "supplement4": null,
+        "supplement5": null
+      }
+    },
+    "katasteradresse": {
+      "cadastralDistrict": "1",
+      "parcel": "1",
+      "parcelNumber": "1"
+    },
+    "geoCoordinates": {
+      "latitude": "1",
+      "longitude": "1",
+      "eastingValue": "1",
+      "northValue": "1",
+      "zone": "UTMZone31",
+      "northing": "1",
+      "easting": "1"
+    },
+    "marketRoles": [
+      {
+        "boType": "MARKET_PARTICIPANT",
+        "structureVersion": "1",
+        "validityPeriod": {
+          "periodId": 1,
+          "startDate": "2022-12-31T23:00:00Z",
+          "endDate": "2026-07-01T04:00:00Z"
+        },
+        "marketRole": "MSB",
+        "commercialClassification": true,
+        "roleCodeNumber": "9906464000001",
+        "roleCodeType": "BDEW",
+        "subContracted": false,
+        "meteringPointOperatorAttribute": "DEFAULT_METERING_POINT_OPERATOR"
+      },
+      {
+        "boType": "MARKET_PARTICIPANT",
+        "structureVersion": "1",
+        "validityPeriod": {
+          "periodId": 1,
+          "startDate": "2022-12-31T23:00:00Z",
+          "endDate": "2025-12-31T23:00:00Z"
+        },
+        "marketRole": "NB",
+        "commercialClassification": true,
+        "roleCodeNumber": "9900683000008",
+        "roleCodeType": "BDEW"
+      },
+      {
+        "boType": "MARKET_PARTICIPANT",
+        "structureVersion": "1",
+        "validityPeriod": {
+          "periodId": 1,
+          "startDate": "2022-12-31T23:00:00Z",
+          "endDate": "2026-12-31T23:00:00Z"
+        },
+        "marketRole": "LF",
+        "commercialClassification": true,
+        "roleCodeNumber": "9904000000005",
+        "roleCodeType": "BDEW"
+      },
+      {
+        "boType": "MARKET_PARTICIPANT",
+        "structureVersion": "1",
+        "validityPeriod": {
+          "periodId": 1,
+          "startDate": "2022-12-31T23:00:00Z",
+          "endDate": "2025-12-31T23:00:00Z"
+        },
+        "marketRole": "UENB",
+        "commercialClassification": true,
+        "roleCodeNumber": "4033872000058",
+        "roleCodeType": "BDEW"
+      },
+      {
+        "boType": "MARKET_PARTICIPANT",
+        "structureVersion": "1",
+        "validityPeriod": {
+          "periodId": 1,
+          "startDate": "2022-12-31T23:00:00Z",
+          "endDate": "2025-12-31T23:00:00Z"
+        },
+        "marketRole": "BIKO",
+        "commercialClassification": true,
+        "roleCodeNumber": "4033872000027",
+        "roleCodeType": "BDEW"
+      },
+      {
+        "boType": "MARKET_PARTICIPANT",
+        "structureVersion": "1",
+        "validityPeriod": {
+          "periodId": 1,
+          "startDate": "2022-12-31T23:00:00Z",
+          "endDate": "2025-12-31T23:00:00Z"
+        },
+        "marketRole": "BKV",
+        "commercialClassification": true,
+        "roleCodeNumber": "4033872000034",
+        "roleCodeType": "BDEW"
+      }
+    ],
+    "controlZone": "1",
+    "marketArea": "1234",
+    "timeSeriesType": "SLS",
+    "meterRegisters": [
+      {
+        "meterRegisterId": "1",
+        "designation": "HT",
+        "direction": "FEED_OUT",
+        "obisCode": "1-1:1.9.0",
+        "transformerFactor": 1,
+        "unit": "KWH",
+        "offPeakCapable": "NOT_OFF_PEAK_CAPABLE",
+        "purposesOfUse": [
+          {
+            "marketRole": "NB",
+            "purpose": [
+              "GRID_ACCESS_BILLING"
+            ]
+          }
+        ],
+        "consumptionType": [
+          "KL"
+        ],
+        "interruptibility": "NUV",
+        "heatUsage": null,
+        "concessionFee": {
+          "rate": "TA",
+          "costs": 0,
+          "category": "1"
+        },
+        "taxExempt": false,
+        "integerDigits": 7,
+        "decimalPlaces": 3,
+        "billingRelevant": true,
+        "numberOfReadings": 1,
+        "meteringTimes": {
+          "meteringTimeDefinition": null,
+          "register": null,
+          "offPeakCapable": null
+        },
+        "loadCurveDefinition": null,
+        "configuration": null,
+        "meteringProduct": "9991000000044",
+        "valueGranularity": "ANNUAL",
+        "necessitySecondMeasurement": "NOT_PRESENT",
+        "valueTransmissionPurpose": "NOT_PRESENT",
+        "typeElectricMobility": null
+      }
+    ],
+    "meterRegistersInvolvedMarketRole": [
+      "NB"
+    ],
+    "consumptionQuantity": [
+      {
+        "startDate": "2023-10-14T07:52:00Z",
+        "endDate": "2024-10-14T07:52:00Z",
+        "valueDeterminationMethod": "FORECAST",
+        "measurementValueStatus": "FORECAST_VALUE",
+        "statusAdditionalInformation": [
+          {
+            "kind": "PLAUSIBILITY_HINT",
+            "status": "CUSTOMER_SELF_READING"
+          }
+        ],
+        "obisNumber": "1-1:1.9.0",
+        "value": 2500,
+        "unit": "KWH"
+      }
+    ],
+    "associatedMeteringLocations": [
+      {
+        "meteringLocationId": "DE0009697056900614312080040415111",
+        "arithmetic": "ADDITION",
+        "validSince": "2022-10-14T07:52:00Z",
+        "validTo": "2025-10-14T07:52:00Z"
+      }
+    ],
+    "meteringTechnicalClassification": "IMS",
+    "gridAccessBillingData": [
+      {
+        "articleId": "1",
+        "articleIdType": "ARTICLE_ID",
+        "quantity": 5,
+        "municipalDiscount": 5.45,
+        "surcharge": 5.78,
+        "installment": 5.87,
+        "singularEquipment": {
+          "value": null,
+          "unit": null
+        },
+        "priceSingularEquipment": {
+          "value": null,
+          "unit": null,
+          "referenceValue": null,
+          "status": null
+        },
+        "billingReactivePower": null,
+        "payerReactivePower": null,
+        "payerReactivePowerSupplier": null,
+        "meteringTimes": {
+          "meteringTimeDefinition": null,
+          "register": null
+        }
+      }
+    ],
+    "meteringPointOperationBillingData": [
+      {
+        "meteringPointOperationBilling": true,
+        "articleId": "1",
+        "articleIdType": "ARTICLE_ID",
+        "quantity": 5,
+        "surcharge": 5.78,
+        "installment": 5.87
+      }
+    ],
+    "lockStatus": "UNLOCKED",
+    "referenceMarketLocationId": "10037104444",
+    "energyOrigin": [
+      {
+        "generationType": null,
+        "sharePercent": null
+      }
+    ],
+    "supplyType": null,
+    "owner": {
+      "boType": "BUSINESS_PARTNER",
+      "structureVersion": "1",
+      "salutation": "Herr",
+      "name1": "Haiko",
+      "name2": "Fisch>",
+      "name3": null,
+      "commercialClassification": false,
+      "businessPartnerRole": [
+        "OWNER"
+      ],
+      "commercialRegisterNumber": null,
+      "courtOfRegistration": null,
+      "contactChannel": [
+        "PHONE_CALL"
+      ],
+      "vatId": null,
+      "creditorId": null,
+      "eMailAddress": "hai.fisch@web.de",
+      "website": null,
+      "partnerAddress": {
+        "postalCode": "65189",
+        "city": "Wiesbaden",
+        "street": "Körallenweg",
+        "houseNumber": "10",
+        "poBox": null,
+        "addressSupplement": null,
+        "coSupplement": null,
+        "countryCode": "DE",
+        "district": "Riff"
+      }
+    },
+    "propertyManager": {
+      "boType": "BUSINESS_PARTNER",
+      "structureVersion": "1",
+      "salutation": "Herr",
+      "name1": "Haiko",
+      "name2": "Fisch>",
+      "name3": null,
+      "commercialClassification": false,
+      "businessPartnerRole": [
+        "PROPERTY_MANAGER"
+      ],
+      "commercialRegisterNumber": null,
+      "courtOfRegistration": null,
+      "contactChannel": [
+        "PHONE_CALL"
+      ],
+      "vatId": null,
+      "creditorId": null,
+      "eMailAddress": "hai.fisch@web.de",
+      "website": null,
+      "partnerAddress": {
+        "postalCode": "65189",
+        "city": "Wiesbaden",
+        "street": "Körallenweg",
+        "houseNumber": "10",
+        "poBox": null,
+        "addressSupplement": null,
+        "coSupplement": null,
+        "countryCode": "DE",
+        "district": "Riff"
+      }
+    },
+    "compensationRecipient": null,
+    "statusGeneratingMalo": null,
+    "remoteControllability": "TECHNICALLY_NOT_REMOTE_CONTROLLABLE",
+    "promotionCountry": null,
+    "redispatch": false,
+    "locationAssignment": null,
+    "gridFeeModule": null,
+    "productDataRelevantRole": "LF",
+    "configurationProduct": null,
+    "loadCurveDefinition": null,
+    "involvedMarketPartner": {
+      "boType": "MARKET_PARTICIPANT",
+      "structureVersion": "1",
+      "marketRole": "NB",
+      "commercialClassification": true,
+      "roleCodeNumber": "9900683000008",
+      "roleCodeType": "BDEW"
+    },
+    "requiredProductPackage": [
+      {
+        "productPackageId": 1,
+        "product": [
+          {
+            "productCode": "9991000002008",
+            "productAttributeCode": "9991000002115",
+            "valueDetails": null
+          }
+        ],
+        "implementationLevelRequirement": "ASSIGNMENT_ONLY_IF_PRODUCT_PACKAGE_IMPLEMENTABLE",
+        "prioritization": "PRIORITY1"
+      }
+    ],
+    "datenDerBeteiligtenMarktrolle": [
+      {
+        "marketLocationId": null,
+        "controlZone": null,
+        "balancingArea": null,
+        "gridLevel": null,
+        "meterRegisters": [
+          {
+            "obisCode": null,
+            "purposesOfUse": [
+              {
+                "purpose": [
+                  null
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "packageId": null
+  }
+]

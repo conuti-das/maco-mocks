@@ -10,7 +10,7 @@ curl -X POST https://mocks.macoapp.de/updateProcessData -H 'Content-Type: applic
 curl -X POST https://mocks.macoapp.de/identifyLocation -H 'Treffer-Max-Anzahl: 1' -d '{}' -i        # -> Treffer-* Header
 ```
 
-Übersicht aller Endpunkte: `/` (HTML) und `/_mocks` (JSON).
+Übersicht: **https://mocks.macoapp.de/** zeigt alle Methoden mit ihren Varianten. GET-Varianten sind Links, POST-Varianten schickt „Senden“ direkt ab. Als JSON: `/_mocks`.
 
 ## Aufbau
 
@@ -24,6 +24,8 @@ mocks/
       apidog/                      aus Apidog – wird beim Import überschrieben
         200.json
         400.json
+        erwartungen.json           Mock-Erwartungen (Varianten je Parameter)
+        200-erwartung-malo-50074561169.json …
   aktualisieren/
     updateProcessData/
       mock.json
@@ -56,7 +58,16 @@ tests/                             Tests
 
 3. Pushen. Der Proxy lädt den neuen Stand automatisch (siehe unten).
 
-Die erste passende Regel gewinnt. Parameter, die in keiner Regel vorkommen, werden ignoriert. Passt keine Regel, kommt `default` (sonst `200.json` bzw. die erste 2xx-Datei).
+Reihenfolge je Anfrage: eigene Regeln (`mock.json`) → globale Testdaten (`_global.json`) → Apidog-Erwartungen (`apidog/erwartungen.json`) → `default` (sonst `200.json` bzw. die erste 2xx-Datei). Die erste passende Regel gewinnt. Parameter, die in keiner Regel vorkommen, werden ignoriert.
+
+### Varianten aus Apidog (Mock-Erwartungen)
+
+Die Mock-Erwartungen aus Apidog (Endpunkt → Mock) liegen je Endpunkt in `apidog/erwartungen.json`, die Antworten daneben als `200-erwartung-<name>.json`. Die Regeln sehen aus wie in `mock.json` und werden beim Import überschrieben.
+
+- Geprüft wird in der Apidog-Reihenfolge. Sammel-Erwartungen, die nur prüfen, ob ein Parameter da ist (z. B. „Default mit Platzhaltern“), oder gar keine Bedingung haben, kommen zuletzt. In Apidog verdecken sie sonst alles, was in der Liste darunter steht.
+- Die Antworten kommen unverändert, `set` greift dort nicht (wie die Mock-Skripte in Apidog).
+- Body-Bedingungen ohne Pfad (`marktlokationsId`) prüfen das Feld auf oberster Ebene, `$.a.b` wird zu `a.b`.
+- Eine Variante anders haben: eigene Regel in `mock.json` anlegen, die gewinnt. Dauerhaft ändern: in Apidog und neu importieren.
 
 ### Bedingungen (`when`)
 
@@ -75,7 +86,7 @@ Alle Bedingungen einer Regel müssen zutreffen. Für „oder“ mehrere Regeln a
 | `"MELO"` | gleich |
 | `["MALO", "MELO"]` | einer davon |
 | `{"not": "MALO"}`, `{"notIn": [...]}` | ungleich, keiner davon |
-| `{"regex": "^5"}`, `{"contains": "x"}` | regulärer Ausdruck, enthält |
+| `{"regex": "^5"}`, `{"contains": "x"}`, `{"notContains": "x"}` | regulärer Ausdruck, enthält, enthält nicht |
 | `{"exists": true}`, `{"exists": false}` | vorhanden, fehlt |
 | `{"gt": 10}`, `{"gte"}`, `{"lt"}`, `{"lte"}` | Zahlenvergleich |
 
@@ -104,9 +115,10 @@ Header `X-Mock-Response: 422` oder Query `?__response=200-leer`, wahlweise mit S
 
 | Endpunkt | Verhalten |
 |---|---|
+| 19 Endpunkte | 92 Varianten aus Apidog, siehe Übersicht unter `/` |
 | `POST /identifyLocation` | Paging über `Treffer-Max-Anzahl`/`Treffer-Offset` mit Antwort-Headern `Treffer-*`; MaLo-ID `00000000000` → `[]`; MaLo-ID vorhanden → eine Marktlokation; sonst mehrere |
 | `POST /updateProcessData` | ohne `transaktionsdaten` → 400; 03002 und 03003 → 201 |
-| `GET /getMarketlocationBasic` | `parameter1` wird gespiegelt; `parameter1=00000000000` → leere Liste |
+| `GET /getMarketlocationBasic` | `parameter1=00000000000` → leere Liste |
 | `GET /getMaloidentMarketlocation` | `parameter1` wird gespiegelt |
 | alle (`_global.json`) | `parameter1=FEHLER400` → 400, `parameter1=FEHLER422` → 422, sofern der Endpunkt die Datei hat |
 
@@ -125,12 +137,17 @@ Läuft auch bei jedem Push (`.github/workflows/check.yml`, PHP 8.1 und 8.4). Der
 
 Quelle ist das nächtliche Apidog-Backup (`apidog/openapi.json`, internes Repo). Auswahl und Gruppen stehen in `tools/import-apidog.json`.
 
+Die Mock-Erwartungen stehen nicht im OpenAPI-Export. Sie kommen aus dem Browser:
+
+1. app.apidog.com öffnen, Projekt laden (Branch main) und einmal neu laden.
+2. Entwicklertools → Konsole, den Inhalt von `tools/apidog-erwartungen.js` einfügen. Das lädt `apidog-erwartungen-<projekt>.json` herunter.
+
 ```bash
-php tools/import-apidog.php /pfad/zu/openapi.json --stand <commit>
+php tools/import-apidog.php /pfad/zu/openapi.json --erwartungen ~/Downloads/apidog-erwartungen-816353.json --stand <commit>
 php tools/validate.php
 ```
 
-Der Import schreibt nur `apidog/` und die Felder `summary`, `method`, `path`, `command`, `parameters`, `apidog` in `mock.json`. Regeln, `default`, `set`, `paging` und eigene Dateien bleiben. Mit `"import": false` in `mock.json` wird ein Endpunkt übersprungen. Endpunkte, die in Apidog fehlen, werden nur gemeldet.
+Der Import schreibt nur `apidog/` und die Felder `summary`, `method`, `path`, `command`, `parameters`, `apidog` in `mock.json`. Regeln, `default`, `set`, `paging` und eigene Dateien bleiben. Ohne `--erwartungen` bleiben vorhandene Erwartungen stehen. Mit `"import": false` in `mock.json` wird ein Endpunkt übersprungen. Endpunkte, die in Apidog fehlen, werden nur gemeldet. Kaputtes JSON in Apidog-Antworten (Komma am Ende, fehlendes Komma, Kommentare) wird repariert und gemeldet.
 
 ## Proxy (`proxy/`)
 

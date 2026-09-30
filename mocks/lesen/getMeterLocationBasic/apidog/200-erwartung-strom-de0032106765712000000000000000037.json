@@ -1,0 +1,235 @@
+[
+  {
+    "boTyp": "MESSLOKATION",
+    "versionStruktur": "1",
+    "messlokationsId": "DE0032106765712000000000000000060",
+    "sparte": "STROM",
+    "energierichtung": "AUSSP",
+    "netzebenemessung": "NSP",
+    "grundzustaendigerMSBCodeNr": "SMSB00001",
+    "messadresse": {
+      "postleitzahl": "65207",
+      "ort": "Wiesbaden",
+      "strasse": "Costloffstraße",
+      "hausnummer": "41",
+      "landescode": "DE"
+    },
+    "bilanzierungsmethode": "SLP",
+    "abrechnungmessstellenbetriebnna": true,
+    "betriebszustand": "REGELBETRIEB",
+    "ablesekartenempfaenger": {
+      "anrede": "Ohne Anrede",
+      "name1": "Julia Schmidt-Loose",
+      "name2": "Christian Schmidt",
+      "gewerbekennzeichnung": false,
+      "partneradresse": {
+        "postleitzahl": "65207",
+        "ort": "Wiesbaden",
+        "strasse": "Costloffstraße",
+        "hausnummer": "41",
+        "landescode": "DE"
+      }
+    },
+    "referenzMarktlokationsId": "50754496000",
+    "zukuenftigerMeldepunkt": false,
+    "lokationszuordnung": "UNVERAENDERT",
+    "geraete": [
+      {
+        "geraetetyp": "MODERNE_MESSEINRICHTUNG",
+        "bezeichnung": "MME-ET-ZRZ-direkt-MME mit 3-Punktaufhängung",
+        "geraetenummer": "1EMH0015009292",
+        "geraeteeigenschaften": {
+          "geraetemerkmal": "EINTARIF"
+        }
+      },
+      {
+        "geraetetyp": "MODERNE_MESSEINRICHTUNG",
+        "bezeichnung": "MME-ET-ZRZ-direkt-MME mit 3-Punktaufhängung",
+        "geraetenummer": "EPPC0205728409",
+        "geraeteeigenschaften": {
+          "geraetemerkmal": "EINTARIF"
+        }
+      }
+    ],
+    "messlokationszaehler": [
+      "1EMH0015009292",
+      "EPPC0205728409"
+    ],
+    "zaehlwerke": [
+      {
+        "zaehlwerkId": "001",
+        "bezeichnung": "HT",
+        "richtung": "AUSSP",
+        "obisKennzahl": "1-0:1.8.1",
+        "wandlerfaktor": 1,
+        "einheit": "KWH",
+        "steuerbefreit": false,
+        "vorkommastelle": 6,
+        "nachkommastelle": 0,
+        "abrechnungsrelevant": false,
+        "wertegranularitaet": "JAEHRLICH",
+        "keinKonfigurationsprodukt": true,
+        "messprodukt": "9991000000151",
+        "notwendigkeitZweiteMessung": "NICHT_VORHANDEN",
+        "werteuebermittlungVerwendungszweck": "NICHT_VORHANDEN",
+        "zaehlzeiten": {
+          "zaehlzeitDefinition": ""
+        }
+      },
+      {
+        "zaehlwerkId": "002",
+        "bezeichnung": "HT",
+        "richtung": "EINSP",
+        "obisKennzahl": "1-0:2.8.1",
+        "wandlerfaktor": 1,
+        "einheit": "KWH",
+        "steuerbefreit": false,
+        "vorkommastelle": 6,
+        "nachkommastelle": 0,
+        "abrechnungsrelevant": false,
+        "wertegranularitaet": "JAEHRLICH",
+        "keinKonfigurationsprodukt": true,
+        "messprodukt": "9991000000151",
+        "notwendigkeitZweiteMessung": "NICHT_VORHANDEN",
+        "werteuebermittlungVerwendungszweck": "NICHT_VORHANDEN",
+        "zaehlzeiten": {
+          "zaehlzeitDefinition": ""
+        }
+      }
+    ],
+    "marktrollen": [
+      {
+        "boTyp": "MARKTTEILNEHMER",
+        "versionStruktur": "1",
+        "geschaeftspartnerrolle": "MARKTPARTNER",
+        "anrede": "Ohne Anrede",
+        "name1": "Stadtwerke Wiesbaden Netz GmbH",
+        "partneradresse": {
+          "postleitzahl": "65189",
+          "ort": "Wiesbaden",
+          "strasse": "Konradinerallee",
+          "hausnummer": "25",
+          "landescode": "DE"
+        },
+        "gewerbekennzeichnung": true,
+        "marktrolle": "MSB",
+        "rollencodenummer": "9904446000007",
+        "rollencodetyp": "DVGW",
+        "weiterverpflichtet": false,
+        "messstellenbetreiberEigenschaft": "WETTBEWERBLICHER_MESSSTELLENBETREIBER",
+        "bankverbindung": [
+          {
+            "iban": "DE84510500150103051363",
+            "bic": "NASSDE55XXX",
+            "kreditinstitut": "Nassauische Sparkasse"
+          }
+        ],
+        "zuordnungVon": "2026-06-30T23:00:00Z",
+        "zuordnungBis": "9999-12-31T22:59:59Z"
+      },
+      {
+        "gewerbekennzeichnung": false,
+        "marktrolle": "GMSB",
+        "rollencodenummer": "9800191400007",
+        "rollencodetyp": "DVGW",
+        "weiterverpflichtet": false,
+        "messstellenbetreiberEigenschaft": "GRUNDZUSTAENDIGER_MESSSTELLENBETREIBER",
+        "zuordnungVon": "2025-12-17T23:00:00Z",
+        "zuordnungBis": "9999-12-30T23:00:00Z"
+      },
+      {
+        "boTyp": "MARKTTEILNEHMER",
+        "versionStruktur": "1",
+        "geschaeftspartnerrolle": "MARKTPARTNER",
+        "anrede": "Ohne Anrede",
+        "name1": "Stadtwerke Wiesbaden Netz GmbH",
+        "partneradresse": {
+          "postleitzahl": "65189",
+          "ort": "Wiesbaden",
+          "strasse": "Konradinerallee",
+          "hausnummer": "25",
+          "landescode": "DE"
+        },
+        "gewerbekennzeichnung": true,
+        "marktrolle": "LF",
+        "rollencodenummer": "9979052000006",
+        "rollencodetyp": "DVGW",
+        "weiterverpflichtet": false,
+        "messstellenbetreiberEigenschaft": "GRUNDZUSTAENDIGER_MESSSTELLENBETREIBER",
+        "bankverbindung": [
+          {
+            "iban": "DE84510500150103051363",
+            "bic": "NASSDE55XXX",
+            "kreditinstitut": "Nassauische Sparkasse"
+          }
+        ],
+        "zuordnungVon": "2025-12-17T23:00:00Z",
+        "zuordnungBis": "9999-12-31T22:59:59Z"
+      },
+      {
+        "boTyp": "MARKTTEILNEHMER",
+        "versionStruktur": "1",
+        "geschaeftspartnerrolle": "MARKTPARTNER",
+        "anrede": "Ohne Anrede",
+        "name1": "Stadtwerke Wiesbaden Netz GmbH",
+        "partneradresse": {
+          "postleitzahl": "65189",
+          "ort": "Wiesbaden",
+          "strasse": "Konradinerallee",
+          "hausnummer": "25",
+          "landescode": "DE"
+        },
+        "gewerbekennzeichnung": true,
+        "marktrolle": "MSBA",
+        "rollencodenummer": "9906464000001",
+        "rollencodetyp": "DVGW",
+        "weiterverpflichtet": false,
+        "messstellenbetreiberEigenschaft": "GRUNDZUSTAENDIGER_MESSSTELLENBETREIBER",
+        "bankverbindung": [
+          {
+            "iban": "DE84510500150103051363",
+            "bic": "NASSDE55XXX",
+            "kreditinstitut": "Nassauische Sparkasse"
+          }
+        ],
+        "zuordnungVon": "2025-12-17T23:00:00Z",
+        "zuordnungBis": "2026-06-30T23:59:59Z"
+      },
+      {
+        "boTyp": "MARKTTEILNEHMER",
+        "versionStruktur": "1",
+        "geschaeftspartnerrolle": "MARKTPARTNER",
+        "anrede": "Ohne Anrede",
+        "name1": "Stadtwerke Wiesbaden Netz GmbH",
+        "partneradresse": {
+          "postleitzahl": "65189",
+          "ort": "Wiesbaden",
+          "strasse": "Konradinerallee",
+          "hausnummer": "25",
+          "landescode": "DE"
+        },
+        "gewerbekennzeichnung": true,
+        "marktrolle": "NB",
+        "rollencodenummer": "9870006600000",
+        "rollencodetyp": "DVGW",
+        "weiterverpflichtet": false,
+        "bankverbindung": [
+          {
+            "iban": "DE84510500150103051363",
+            "bic": "NASSDE55XXX",
+            "kreditinstitut": "Nassauische Sparkasse"
+          }
+        ],
+        "zuordnungVon": "2025-12-17T23:00:00Z",
+        "zuordnungBis": "9999-12-31T22:59:59Z"
+      }
+    ],
+    "verwendungsumfang": "MESSLOKATION_PROZESSUAL_BEHANDELT",
+    "datenqualitaet": "GUELTIGE_DATEN",
+    "gueltigkeitszeitraum": {
+      "startdatum": "2025-12-23T23:00:00Z",
+      "enddatum": "2025-12-29T23:00:00Z",
+      "zeitraumId": 1
+    }
+  }
+]

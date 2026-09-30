@@ -1,0 +1,34 @@
+[
+  {
+    "boTyp": "NETZLOKATION",
+    "versionStruktur": "1",
+    "netzlokationsId": "E1688110077",
+    "sparte": "STROM",
+    "steuerkanal": true,
+    "leistungskurvendefinition": "9991000000722",
+    "gueltigkeitszeitraum": {
+      "zeitraumId": 1,
+      "startdatum": "2024-10-20T22:00:00Z",
+      "enddatum": "2024-12-24T23:00:00Z"
+    },
+    "datenqualitaet": "IM_SYSTEM_VORHANDENE_DATEN",
+    "marktrollen": [
+      {
+        "boTyp": "MARKTTEILNEHMER",
+        "versionStruktur": "1",
+        "zuordnungVon": "2024-12-31T23:00:00Z",
+        "zuordnungBis": "2025-12-31T23:00:00Z",
+        "marktrolle": "MSB",
+        "gewerbekennzeichnung": true,
+        "rollencodenummer": "9906464000001",
+        "rollencodetyp": "GLN",
+        "messstellenbetreiberEigenschaft": "GRUNDZUSTAENDIGER_MESSSTELLENBETREIBER"
+      }
+    ],
+    "abrechnungsdaten": [
+      {
+        "zahlerBlindarbeitLf": true
+      }
+    ]
+  }
+]

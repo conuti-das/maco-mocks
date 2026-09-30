@@ -1,0 +1,38 @@
+[
+  {
+    "boTyp": "BILANZIERUNG",
+    "versionStruktur": "1",
+    "marktlokationsId": "50754491337",
+    "aggregationsverantwortung": "VNB",
+    "zeitreihentyp": "SLS",
+    "prognosegrundlage": "WERTE",
+    "temperaturarbeit": {
+      "einheit": "KWHK"
+    },
+    "jahresverbrauchsprognose": {
+      "wert": 590,
+      "einheit": "KWH"
+    },
+    "wahlrechtPrognosegrundlage": "DURCH_LF",
+    "grundWahlrechtPrognosegrundlage": "DURCH_LF",
+    "abwicklungsmodell": "MODELL_1_BILANZIERUNG_AN_MARKTLOKATION",
+    "datenqualitaet": "GUELTIGE_DATEN",
+    "gueltigkeitszeitraum": {
+      "startdatum": "2026-05-05T22:00:00Z",
+      "enddatum": "2026-05-08T22:00:00Z",
+      "zeitraumId": 2
+    },
+    "lastprofile": [
+      {
+        "bezeichnung": "H0",
+        "verfahren": "SYNTHETISCH",
+        "profilart": "ART_STANDARDLASTPROFIL",
+        "profilschar": "H0",
+        "einspeisung": false
+      }
+    ],
+    "detailsPrognosegrundlage": [
+      "SLP_SEP"
+    ]
+  }
+]

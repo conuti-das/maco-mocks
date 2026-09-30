@@ -1,0 +1,44 @@
+[
+  {
+    "boTyp": "VERTRAG",
+    "versionStruktur": "1",
+    "vertragsart": "MESSSTELLENBETRIEBSVERTRAG",
+    "sparte": "STROM",
+    "vertragsbeginn": "2025-07-30T22:00:00Z",
+    "vertragsende": "2028-09-30T22:00:00Z",
+    "vertragskonditionen": {
+      "abrechnungUeberNna": true,
+      "vertragslaufzeit": {
+        "enddatum": "2027-09-30T22:00:00Z"
+      },
+      "geplanteTurnusablesung": {
+        "ableseZeitraum": "0101"
+      }
+    },
+    "vertragspartner2": [
+      {
+        "boTyp": "GESCHAEFTSPARTNER",
+        "versionStruktur": "1",
+        "anrede": "Ohne Anrede",
+        "name1": "Maco",
+        "name2": "Hai",
+        "gewerbekennzeichnung": false,
+        "partneradresse": {
+          "postleitzahl": "65199",
+          "ort": "Wiesbaden",
+          "strasse": "Korallenallee.",
+          "hausnummer": "32",
+          "landescode": "DE"
+        },
+        "geschaeftspartnerrolle": [
+          "KUNDE"
+        ]
+      }
+    ],
+    "lokationsId": "50754496001",
+    "lokationsTyp": "MALO",
+    "korrespondenzpartner": {
+      "name1": "Exist"
+    }
+  }
+]

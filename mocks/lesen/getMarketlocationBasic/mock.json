@@ -12,9 +12,6 @@
       "then": "200-leer.json"
     }
   ],
-  "set": {
-    "stammdaten.MARKTLOKATION[0].marktlokationsId": "{{query.parameter1}}"
-  },
   "parameters": [
     {
       "in": "query",

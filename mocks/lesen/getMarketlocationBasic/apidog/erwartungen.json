@@ -1,0 +1,216 @@
+{
+  "hinweis": "Aus Apidog importiert (Mock-Erwartungen). Nicht von Hand ändern, eigene Regeln in mock.json haben Vorrang.",
+  "exportiert": "2026-09-30T14:37:16.966Z",
+  "erwartungen": [
+    {
+      "name": "Malo STROM 51000000001 Test SAP pos. APERAK",
+      "apidogId": 3040615,
+      "when": {
+        "query.parameter1": "51000000001"
+      },
+      "then": "200-erwartung-malo-strom-51000000001-test-sap-pos-aperak.json"
+    },
+    {
+      "name": "Malo 50074561169",
+      "apidogId": 3034005,
+      "when": {
+        "query.parameter1": "50074561169"
+      },
+      "then": "200-erwartung-malo-50074561169.json"
+    },
+    {
+      "name": "Malo Gas 98167038547",
+      "apidogId": 3028993,
+      "when": {
+        "query.parameter1": "98167038547"
+      },
+      "then": "200-erwartung-malo-gas-98167038547.json"
+    },
+    {
+      "name": "Malo 50754496666 GAS",
+      "apidogId": 2993333,
+      "when": {
+        "query.parameter1": "50754496666"
+      },
+      "then": "200-erwartung-malo-50754496666-gas.json"
+    },
+    {
+      "name": "Malo 44897654121 GAS",
+      "apidogId": 3031305,
+      "when": {
+        "query.parameter1": "44897654121"
+      },
+      "then": "200-erwartung-malo-44897654121-gas.json"
+    },
+    {
+      "name": "Malo 50754497777 GAS",
+      "apidogId": 3030415,
+      "when": {
+        "query.parameter1": "50754497777"
+      },
+      "then": "200-erwartung-malo-50754497777-gas.json"
+    },
+    {
+      "name": "Malo 50754499999",
+      "apidogId": 3033214,
+      "when": {
+        "query.parameter1": "50123456789"
+      },
+      "then": "200-erwartung-malo-50754499999.json"
+    },
+    {
+      "name": "Malo 50754498888",
+      "apidogId": 3033144,
+      "when": {
+        "query.parameter1": "50754498888"
+      },
+      "then": "200-erwartung-malo-50754498888.json"
+    },
+    {
+      "name": "Malo 50754496666 GAS Zähler",
+      "apidogId": 2993334,
+      "when": {
+        "query.parameter2": "ZAEHLER"
+      },
+      "then": "200-erwartung-malo-50754496666-gas-zaehler.json"
+    },
+    {
+      "name": "Malo 50818928514 (Aperak Z10)",
+      "apidogId": 2977844,
+      "when": {
+        "query.parameter1": "50818928514"
+      },
+      "then": "200-erwartung-malo-50818928514-aperak-z10.json"
+    },
+    {
+      "name": "Malo 50818928515",
+      "apidogId": 2977874,
+      "when": {
+        "query.parameter1": "50818928515"
+      },
+      "then": "200-erwartung-malo-50818928515.json"
+    },
+    {
+      "name": "Malo 50818928522",
+      "apidogId": 2983637,
+      "when": {
+        "query.parameter1": "50818928522"
+      },
+      "then": "200-erwartung-malo-50818928522.json"
+    },
+    {
+      "name": "Malo 12345678901",
+      "apidogId": 2861007,
+      "when": {
+        "query.parameter1": "12345678901"
+      },
+      "then": "200-erwartung-malo-12345678901.json"
+    },
+    {
+      "name": "Malo 50754496666 leer - Zähler",
+      "apidogId": 2928880,
+      "when": {
+        "query.parameter1": "12345667890"
+      },
+      "then": "200-erwartung-malo-50754496666-leer-zaehler.json"
+    },
+    {
+      "name": "Malo 50754496666 doppel (Gas)",
+      "apidogId": 3034186,
+      "when": {
+        "query.parameter1": "12345667891"
+      },
+      "then": "200-erwartung-malo-50754496666-doppel-gas.json"
+    },
+    {
+      "name": "Malo 50930151704",
+      "apidogId": 3048072,
+      "when": {
+        "query.parameter1": "50930151704"
+      },
+      "then": "200-erwartung-malo-50930151704.json"
+    },
+    {
+      "name": "Malo 50754444444 GAS",
+      "apidogId": 3033306,
+      "when": {
+        "query.parameter1": "50754444444"
+      },
+      "then": "200-erwartung-malo-50754444444-gas.json"
+    },
+    {
+      "name": "Malo 50754491337",
+      "apidogId": 3026157,
+      "when": {
+        "query.parameter1": "DE0032106765712000000000000000037"
+      },
+      "then": "200-erwartung-malo-50754491337.json"
+    },
+    {
+      "name": "Malo 50074561189",
+      "apidogId": 3034003,
+      "when": {
+        "query.parameter1": "50074561189"
+      },
+      "then": "200-erwartung-malo-50074561189.json"
+    },
+    {
+      "name": "Malo 50074561179",
+      "apidogId": 3034004,
+      "when": {
+        "query.parameter1": "50074561179"
+      },
+      "then": "200-erwartung-malo-50074561179.json"
+    },
+    {
+      "name": "EN Malo Test",
+      "apidogId": 3057993,
+      "when": {
+        "query.parameter1": "111111111"
+      },
+      "then": "200-erwartung-en-malo-test.json"
+    },
+    {
+      "name": "Malo 50754444444 GAS (MELO)",
+      "apidogId": 3040029,
+      "when": {
+        "query.parameter1": "DE70016045739G0000000000000042897"
+      },
+      "then": "200-erwartung-malo-50754444444-gas-melo.json"
+    },
+    {
+      "name": "Malo 50754496001",
+      "apidogId": 2861006,
+      "when": {
+        "query.parameter1": "50754496001"
+      },
+      "then": "200-erwartung-malo-50754496001.json"
+    },
+    {
+      "name": "Malo 50855857221",
+      "apidogId": 3071413,
+      "when": {
+        "query.parameter1": "50855857221"
+      },
+      "then": "200-erwartung-malo-50855857221.json"
+    },
+    {
+      "name": "Malo 50929624754",
+      "apidogId": 3030920,
+      "when": {
+        "query.parameter1": "50929624754"
+      },
+      "then": "200-erwartung-malo-50929624754.json"
+    },
+    {
+      "name": "Default mit Platzhaltern",
+      "apidogId": 2861235,
+      "when": {
+        "query.parameter1": {
+          "exists": true
+        }
+      },
+      "then": "200-erwartung-default-mit-platzhaltern.json"
+    }
+  ]
+}

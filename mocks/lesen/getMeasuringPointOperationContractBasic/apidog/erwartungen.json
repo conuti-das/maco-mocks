@@ -1,0 +1,38 @@
+{
+  "hinweis": "Aus Apidog importiert (Mock-Erwartungen). Nicht von Hand ändern, eigene Regeln in mock.json haben Vorrang.",
+  "exportiert": "2026-09-30T14:37:16.966Z",
+  "erwartungen": [
+    {
+      "name": "50733287912",
+      "apidogId": 3053785,
+      "when": {
+        "query.parameter1": "50733287912"
+      },
+      "then": "200-erwartung-50733287912.json"
+    },
+    {
+      "name": "50929624754",
+      "apidogId": 3073328,
+      "when": {
+        "query.parameter1": "50929624754"
+      },
+      "then": "200-erwartung-50929624754.json"
+    },
+    {
+      "name": "GAS DE70016045739G0000000000000042897",
+      "apidogId": 3037053,
+      "when": {
+        "query.parameter1": "DE70016045739G0000000000000042897"
+      },
+      "then": "200-erwartung-gas-de70016045739g0000000000000042897.json"
+    },
+    {
+      "name": "50754496001",
+      "apidogId": 3048564,
+      "when": {
+        "query.parameter1": "50754496001"
+      },
+      "then": "200-erwartung-50754496001.json"
+    }
+  ]
+}

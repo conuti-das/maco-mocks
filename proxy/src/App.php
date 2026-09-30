@@ -226,6 +226,7 @@ final class App
                 'default' => $ep['default'],
                 'antworten' => array_map(static fn (array $r): int => $r['status'], $ep['responses']),
                 'regeln' => array_map(static fn (array $r): string => $r['name'], $ep['rules']),
+                'erwartungen' => array_map(static fn (array $r): string => $r['name'], $ep['expectations'] ?? []),
             ], $catalog->endpoints),
             'globaleRegeln' => array_map(static fn (array $r): string => $r['name'], $catalog->globalRules),
         ];
@@ -233,50 +234,7 @@ final class App
 
     private function overview(Catalog $catalog, string $version): array
     {
-        $e = static fn (mixed $s): string => htmlspecialchars((string) $s, ENT_QUOTES, 'UTF-8');
-        $rows = '';
-        foreach ($catalog->endpoints as $ep) {
-            $responses = [];
-            foreach ($ep['responses'] as $name => $r) {
-                $label = $e($name);
-                $responses[] = $name === $ep['default'] ? "<strong>{$label}</strong>" : $label;
-            }
-            $rules = array_map(static fn (array $r): string => $e($r['name']), $ep['rules']);
-            if ($ep['paging']) {
-                $rules[] = 'Paging über ' . $e($ep['paging']['limitHeader']) . ' / ' . $e($ep['paging']['offsetHeader']);
-            }
-            $rows .= '<tr><td>' . $e($ep['method']) . '</td><td><code>' . $e($ep['path']) . '</code></td><td><code>'
-                . $e($ep['command'] ?? '') . '</code><br><span class="muted">' . $e($ep['summary']) . '</span></td><td>'
-                . implode('<br>', $responses) . '</td><td>' . (implode('<br>', $rules) ?: '–') . '</td></tr>';
-        }
-        $repo = 'https://github.com/' . $this->config['repo'];
-        $html = <<<HTML
-<!doctype html>
-<html lang="de">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MaKo Backend-Mocks</title>
-<style>
-  :root { color-scheme: light dark; --fg: #1d2330; --bg: #fff; --muted: #5b6475; --line: #d9dde5; --accent: #0b5cad; }
-  @media (prefers-color-scheme: dark) { :root { --fg: #e6e9ef; --bg: #14171d; --muted: #9aa3b2; --line: #2c323d; --accent: #6fb1ff; } }
-  body { font: 15px/1.5 system-ui, sans-serif; color: var(--fg); background: var(--bg); margin: 0 auto; padding: 24px 16px; max-width: 1150px; }
-  h1 { font-size: 22px; margin: 0 0 4px; } p, .muted { color: var(--muted); } a { color: var(--accent); }
-  .wrap { overflow-x: auto; } table { border-collapse: collapse; width: 100%; font-size: 14px; }
-  th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); vertical-align: top; } code { font-size: 12px; }
-</style>
-</head>
-<body>
-<h1>MaKo Backend-Mocks</h1>
-<p>Stand <code>{$e($version)}</code> aus <a href="{$e($repo)}">{$e($this->config['repo'])}</a> · JSON-Übersicht: <a href="_mocks">/_mocks</a> · Status: <a href="_status">/_status</a></p>
-<p>Parameter ohne Regel werden ignoriert. Eine bestimmte Antwort erzwingen: Header <code>X-Mock-Response: 422</code> oder <code>?__response=200-leer</code>. Welche Regel gegriffen hat, steht in <code>X-Mock-Reason</code>.</p>
-<div class="wrap"><table>
-<thead><tr><th>Methode</th><th>Pfad</th><th>Command</th><th>Antworten (Standard fett)</th><th>Regeln</th></tr></thead>
-<tbody>{$rows}</tbody>
-</table></div>
-</body>
-</html>
-HTML;
+        $html = (new Overview($catalog, $version, $this->config))->html();
         return ['status' => 200, 'headers' => ['Content-Type' => 'text/html; charset=utf-8', 'Cache-Control' => 'no-store'], 'body' => $html];
     }
 

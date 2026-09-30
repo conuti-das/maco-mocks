@@ -1,0 +1,54 @@
+[
+  {
+    "boTyp": "VERTRAG",
+    "versionStruktur": "1",
+    "lokationsId": "50775963363",
+    "lokationsTyp": "MALO",
+    "vertragsart": "ENERGIELIEFERVERTRAG",
+    "vertragsnummer": "EEC.GNEEQC",
+    "sparte": "STROM",
+    "vertragsstatus": "AKTIV",
+    "vertragsbeginn": "2026-08-31T22:00:00Z",
+    "vertragsende": "9999-12-31T23:59:59Z",
+    "vertragskonditionen": {
+      "kuendigungsfrist": {
+        "zeiteinheit": "WOCHE",
+        "dauer": 4,
+        "startdatum": "2026-08-31T22:00:00Z",
+        "enddatum": "9999-12-31T23:59:59Z",
+        "zeitraumText": "01MT"
+      },
+      "kuendigungstermin": "2027-08-31T22:00:00Z",
+      "vertragslaufzeit": {
+        "dauer": 12,
+        "einheit": "MONAT",
+        "startdatum": "2026-08-31T22:00:00Z",
+        "enddatum": "2027-08-31T22:00:00Z"
+      }
+    },
+    "vertragspartner1": [
+      {
+        "boTyp": "GESCHAEFTSPARTNER",
+        "versionStruktur": "1",
+        "name1": "Enpal Energy GmbH",
+        "geschaeftspartnerrolle": [
+          "LIEFERANT"
+        ]
+      }
+    ],
+    "vertragspartner2": [
+      {
+        "boTyp": "GESCHAEFTSPARTNER",
+        "versionStruktur": "1",
+        "name1": "Termination",
+        "name2": "Incoming",
+        "geschaeftspartnerrolle": [
+          "KUNDE"
+        ]
+      }
+    ],
+    "gueltigkeitszeitraum": {
+      "startdatum": "2026-08-31T22:00:00Z"
+    }
+  }
+]

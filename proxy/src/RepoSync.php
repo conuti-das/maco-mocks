@@ -42,7 +42,19 @@ final class RepoSync
         }
         $release = $this->dataDir . '/releases/' . $current['release'];
         $index = is_file($release . '/index.json') ? json_decode((string) file_get_contents($release . '/index.json'), true) : null;
-        return is_array($index) ? Catalog::fromArray($index, $release . '/mocks') : null;
+        if (is_array($index) && ($index['format'] ?? 1) === Catalog::FORMAT) {
+            return Catalog::fromArray($index, $release . '/mocks');
+        }
+        // Index fehlt oder stammt von einer älteren Proxy-Version: aus dem Release neu aufbauen
+        if (!is_dir($release . '/mocks')) {
+            return null;
+        }
+        $catalog = Catalog::fromDirectory($release . '/mocks', false);
+        if ($catalog->errors) {
+            return is_array($index) ? Catalog::fromArray($index, $release . '/mocks') : null;
+        }
+        @file_put_contents($release . '/index.json', json_encode($catalog->toArray(), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), LOCK_EX);
+        return $catalog;
     }
 
     /** @return array{status: string, message: string, sha?: string} */

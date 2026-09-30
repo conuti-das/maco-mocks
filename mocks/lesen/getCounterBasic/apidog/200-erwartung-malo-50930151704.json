@@ -1,0 +1,130 @@
+[
+  {
+    "boTyp": "ZAEHLER",
+    "versionStruktur": "1",
+    "zaehlernummer": "1ESY1163240237",
+    "sparte": "STROM",
+    "zaehlerauspraegung": "ZWEIRICHTUNGSZAEHLER",
+    "zaehlertyp": "MODERNEMESSEINRICHTUNG",
+    "tarifart": "EINTARIF",
+    "zaehlerhersteller": {
+      "boTyp": "GESCHAEFTSPARTNER",
+      "versionStruktur": "1",
+      "name1": "ESY",
+      "gewerbekennzeichnung": false
+    },
+    "fernschaltung": "VORHANDEN",
+    "messwerterfassung": "FERNAUSLESBAR",
+    "zaehlertypspezifikation": "MME_STANDARD",
+    "befestigungsart": "DREIPUNKT",
+    "serialnummer": "1ESY1163240237",
+    "baujahr": "2023",
+    "messlokationsId": "DE00068365232STROM000008000366174",
+    "marktlokationsId": "50930151704",
+    "zaehlwerke": [
+      {
+        "zaehlwerkId": "001",
+        "bezeichnung": "HT",
+        "richtung": "AUSSP",
+        "obisKennzahl": "1-0:1.8.0",
+        "wandlerfaktor": 1,
+        "einheit": "KWH",
+        "schwachlastfaehig": "NICHT_SCHWACHLASTFAEHIG",
+        "verbrauchsart": [
+          "KL"
+        ],
+        "unterbrechbarkeit": "UV",
+        "steuerbefreit": false,
+        "vorkommastelle": 6,
+        "nachkommastelle": 0,
+        "abrechnungsrelevant": true,
+        "zaehlzeiten": {
+          "zaehlzeitDefinition": ""
+        },
+        "wertegranularitaet": "JAEHRLICH",
+        "keinKonfigurationsprodukt": true,
+        "verwendungszwecke": [
+          {
+            "marktrolle": "LF",
+            "zweck": [
+              "NETZNUTZUNGSABRECHNUNG",
+              "MEHRMINDERMENGENABRECHNUNG",
+              "ENDKUNDENABRECHNUNG"
+            ]
+          },
+          {
+            "marktrolle": "NB",
+            "zweck": [
+              "NETZNUTZUNGSABRECHNUNG",
+              "MEHRMINDERMENGENABRECHNUNG"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "boTyp": "ZAEHLER",
+    "versionStruktur": "1",
+    "zaehlernummer": "1ESY1163240248",
+    "sparte": "STROM",
+    "zaehlerauspraegung": "ZWEIRICHTUNGSZAEHLER",
+    "zaehlertyp": "MODERNEMESSEINRICHTUNG",
+    "tarifart": "EINTARIF",
+    "zaehlerhersteller": {
+      "boTyp": "GESCHAEFTSPARTNER",
+      "versionStruktur": "1",
+      "name1": "ESY",
+      "gewerbekennzeichnung": false
+    },
+    "fernschaltung": "VORHANDEN",
+    "messwerterfassung": "FERNAUSLESBAR",
+    "zaehlertypspezifikation": "MME_STANDARD",
+    "befestigungsart": "DREIPUNKT",
+    "serialnummer": "1ESY1163240248",
+    "baujahr": "2023",
+    "messlokationsId": "DE00068365232STROM000008000366174",
+    "marktlokationsId": "50930151704",
+    "zaehlwerke": [
+      {
+        "zaehlwerkId": "001",
+        "bezeichnung": "HT",
+        "richtung": "AUSSP",
+        "obisKennzahl": "1-0:1.8.0",
+        "wandlerfaktor": 1,
+        "einheit": "KWH",
+        "schwachlastfaehig": "NICHT_SCHWACHLASTFAEHIG",
+        "verbrauchsart": [
+          "KL"
+        ],
+        "unterbrechbarkeit": "UV",
+        "steuerbefreit": false,
+        "vorkommastelle": 6,
+        "nachkommastelle": 0,
+        "abrechnungsrelevant": true,
+        "zaehlzeiten": {
+          "zaehlzeitDefinition": ""
+        },
+        "wertegranularitaet": "JAEHRLICH",
+        "keinKonfigurationsprodukt": true,
+        "verwendungszwecke": [
+          {
+            "marktrolle": "LF",
+            "zweck": [
+              "NETZNUTZUNGSABRECHNUNG",
+              "MEHRMINDERMENGENABRECHNUNG",
+              "ENDKUNDENABRECHNUNG"
+            ]
+          },
+          {
+            "marktrolle": "NB",
+            "zweck": [
+              "NETZNUTZUNGSABRECHNUNG",
+              "MEHRMINDERMENGENABRECHNUNG"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

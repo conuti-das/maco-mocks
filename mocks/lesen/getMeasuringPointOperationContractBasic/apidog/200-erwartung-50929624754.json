@@ -1,0 +1,44 @@
+[
+  {
+    "boTyp": "VERTRAG",
+    "versionStruktur": "1",
+    "vertragsart": "MESSSTELLENBETRIEBSVERTRAG",
+    "sparte": "GAS",
+    "vertragskonditionen": {
+      "geplanteTurnusablesung": {
+        "einheit": "ENUM_Zeiteinheit",
+        "dauer": 5,
+        "startdatum": "2023-03-13T17:59:00Z",
+        "enddatum": "2023-03-13T17:59:00Z",
+        "ableseZeitraum": "<string>"
+      },
+      "abrechnungUeberNna": false,
+      "beauftragungMsb": "ENUM_siehe.Liste.Kommentar"
+    },
+    "vertragspartner2": [
+      {
+        "boTyp": "GESCHAEFTSPARTNER",
+        "versionStruktur": "1",
+        "anrede": "Ohne Anrede",
+        "name1": "Maco",
+        "name2": "Hai",
+        "gewerbekennzeichnung": false,
+        "partneradresse": {
+          "postleitzahl": "65199",
+          "ort": "Wiesbaden",
+          "strasse": "Korallenallee.",
+          "hausnummer": "32",
+          "landescode": "DE"
+        },
+        "geschaeftspartnerrolle": [
+          "KUNDE"
+        ]
+      }
+    ],
+    "lokationsId": "DE0073395252733953513649640716001",
+    "lokationsTyp": "MELO",
+    "korrespondenzpartner": {
+      "name1": "Exist"
+    }
+  }
+]

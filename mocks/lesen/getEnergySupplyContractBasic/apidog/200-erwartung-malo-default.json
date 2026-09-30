@@ -1,0 +1,36 @@
+[
+  {
+    "boTyp": "VERTRAG",
+    "versionStruktur": "1",
+    "lokationsId": "#parameter1#",
+    "lokationsTyp": "MALO",
+    "vertragsart": "ENERGIELIEFERVERTRAG",
+    "vertragsbeginn": "2026-05-01T23:00:00Z",
+    "vertragsende": "2029-03-08T23:00:00Z",
+    "korrespondenzpartner": {
+      "name1": "Hess"
+    },
+    "vertragskonditionen": {
+      "kuendigungsfrist": {
+        "zeitraumText": "14Tage"
+      },
+      "vertragslaufzeit": {
+        "startdatum": "1950-05-03T13:19:00Z",
+        "enddatum": "2026-03-08T23:00:00Z"
+      },
+      "kuendigungstermin": "00000000",
+      "abrechnungsintervall": 12
+    },
+    "vertragspartner2": [
+      {
+        "boTyp": "GESCHAEFTSPARTNER",
+        "versionStruktur": "1",
+        "name1": "Hess",
+        "name2": "Tyler",
+        "geschaeftspartnerrolle": [
+          "KUNDE"
+        ]
+      }
+    ]
+  }
+]
