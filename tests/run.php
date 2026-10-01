@@ -284,12 +284,13 @@ test('Validierung meldet kaputte Regeln und Dateien', function () {
     }
 });
 
-test('Übersicht: jede Variante verlinkt, POST mit Senden, nur unerreichbare per Auswahl', function () use ($catalog) {
+test('Übersicht: jede Variante mit Senden, GET auch als Link, nur unerreichbare per Auswahl', function () use ($catalog) {
     $config = require ROOT . '/proxy/config.php';
     $overview = new MacoMocks\Overview($catalog, 'test', $config);
     $html = $overview->html();
     ok(str_contains($html, 'href="/getMarketlocationBasic?parameter1=51000000001"'), 'GET-Variante als Link');
     ok(str_contains($html, 'href="/getMarketlocationBasic?parameter2=ZAEHLER"'), 'Variante über parameter2');
+    ok(str_contains($html, '<button type="button" class="send" data-method="GET" data-url="/getMarketlocationBasic?parameter1=51000000001" data-headers="{}">Senden</button>'), 'GET-Variante mit Senden');
     ok(str_contains($html, 'data-url="/identifyLocation" data-headers="{&quot;content-type&quot;:&quot;application/json&quot;}" data-body="{&quot;marktlokationsId&quot;:&quot;10002137935&quot;}"'), 'POST-Variante mit Body');
     $forced = [];
     $count = 0;

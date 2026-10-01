@@ -10,7 +10,7 @@ curl -X POST https://mocks.macoapp.de/updateProcessData -H 'Content-Type: applic
 curl -X POST https://mocks.macoapp.de/identifyLocation -H 'Treffer-Max-Anzahl: 1' -d '{}' -i        # -> Treffer-* Header
 ```
 
-Übersicht: **https://mocks.macoapp.de/** zeigt alle Methoden mit ihren Varianten. GET-Varianten sind Links, POST-Varianten schickt „Senden“ direkt ab. Als JSON: `/_mocks`.
+Übersicht: **https://mocks.macoapp.de/** zeigt alle Methoden mit ihren Varianten. „Senden“ schickt jede Variante direkt ab und zeigt die Antwort in der Vorschau, GET-Varianten sind zusätzlich Links. Als JSON: `/_mocks`.
 
 ## Aufbau
 

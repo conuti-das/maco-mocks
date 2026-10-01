@@ -85,11 +85,12 @@ final class Overview
                 $rows .= '<tr><td class="v-name">' . $e($v['name']) . ' <span class="src src-' . strtolower($v['source']) . '">' . $e($v['source']) . '</span></td>'
                     . '<td class="v-cond">' . $e($v['condition']) . '</td>'
                     . '<td class="v-status"><span class="st st-' . intdiv($v['status'], 100) . '" title="' . $e($v['file']) . '">' . $e($v['status']) . '</span></td>'
-                    . '<td class="v-call">' . $this->callHtml($v['call']) . $forced . '</td></tr>';
+                    . '<td class="v-call">' . $this->callHtml($v['call']) . $forced . '</td>'
+                    . '<td class="v-send">' . $this->sendButton($v['call']) . '</td></tr>';
             }
             $others = [];
             foreach ($this->otherResponses($ep, $variants) as $o) {
-                $others[] = $this->callHtml($o['call'], $o['file']);
+                $others[] = $this->sendButton($o['call']) . $this->callHtml($o['call'], $o['file']);
             }
 
             $params = array_map(static fn (array $p): string => $p['name'] . ($p['in'] !== 'query' ? " ({$p['in']})" : ''), $ep['parameters'] ?? []);
@@ -111,7 +112,7 @@ final class Overview
             $sections .= '<section class="card ep" id="' . $e($anchor) . '" data-search="' . $e($searchText) . '">'
                 . '<div class="ep-head"><span class="m m-' . $method . '">' . $e($ep['method']) . '</span><h2>' . $title . '</h2><span class="sum">' . $e($ep['summary']) . '</span></div>'
                 . ($meta ? '<p class="meta">' . implode(' · ', $meta) . '</p>' : '')
-                . '<div class="wrap"><table><thead><tr><th>Variante</th><th>Bedingung</th><th>Antwort</th><th>Aufruf</th></tr></thead><tbody>' . $rows . '</tbody></table></div>'
+                . '<div class="wrap"><table><thead><tr><th>Variante</th><th>Bedingung</th><th>Antwort</th><th>Aufruf</th><th><span class="sr">Senden</span></th></tr></thead><tbody>' . $rows . '</tbody></table></div>'
                 . ($others ? '<p class="more">Weitere Antworten: ' . implode(' ', $others) . '</p>' : '')
                 . '<pre class="result" hidden></pre></section>';
         }
@@ -206,7 +207,8 @@ final class Overview
   .meta { margin: 10px 0 0; color: var(--muted); font-size: 14px; overflow-wrap: anywhere; }
   .wrap { margin-top: 18px; overflow-x: auto; }
   table { width: 100%; border-collapse: collapse; table-layout: fixed; font-size: 15px; }
-  th:nth-child(1) { width: 29%; } th:nth-child(2) { width: 25%; } th:nth-child(3) { width: 104px; }
+  th:nth-child(1) { width: 27%; } th:nth-child(2) { width: 23%; } th:nth-child(3) { width: 96px; } th:nth-child(5) { width: 116px; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   th { padding: 10px 12px; border-bottom: 1px solid var(--line); text-align: left; font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
   td { padding: 11px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
   tbody tr:last-child td { border-bottom: 0; }
@@ -216,6 +218,9 @@ final class Overview
   td.v-call { overflow-wrap: anywhere; }
   td.v-call a { font: 500 13.5px var(--mono); text-decoration: none; }
   td.v-call a:hover { text-decoration: underline; }
+  td.v-send { text-align: right; white-space: nowrap; }
+  td.v-send button.send { margin: 0; }
+  tr.active td { background: var(--soft); }
   .src { display: inline-block; margin-left: 6px; padding: 1px 7px; border-radius: 6px; font-size: 10.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; vertical-align: 1px; white-space: nowrap; }
   .src-regel { background: var(--azure); color: #fff; }
   .src-erwartung { background: var(--soft); color: var(--muted); border: 1px solid var(--line); }
@@ -244,7 +249,8 @@ final class Overview
     .ep h2 { font-size: 20px; }
     thead { display: none; } table, tbody, tr, td { display: block; }
     tr { padding: 12px 0; border-bottom: 1px solid var(--line); } tbody tr:last-child { border-bottom: 0; }
-    td { padding: 3px 0; border: 0; } tbody tr:hover td { background: transparent; }
+    td { padding: 3px 0; border: 0; } tbody tr:hover td, tr.active td { background: transparent; }
+    td.v-send { padding-top: 8px; text-align: left; }
   }
 </style>
 </head>
@@ -257,7 +263,7 @@ final class Overview
   <div class="hero-inner">
     <p class="eyebrow">Mock-Server · Schnittstellen lesen und aktualisieren</p>
     <h1>MaKo Backend-Mocks</h1>
-    <p class="lead">Alle Methoden mit ihren Varianten. GET-Varianten öffnen sich als Link, POST-Varianten schickt „Senden“ direkt ab und zeigt die Antwort.</p>
+    <p class="lead">Alle Methoden mit ihren Varianten. „Senden“ schickt jede Variante direkt ab und zeigt die Antwort in der Vorschau, GET-Aufrufe öffnen sich zusätzlich als Link.</p>
     <div class="stats"><span class="stat"><b>{$methods}</b>Methoden</span><span class="stat"><b>{$variantCount}</b>Varianten</span><span class="stat">Stand <b>{$version}</b></span></div>
     <input type="search" id="filter" class="search" placeholder="Methode oder Variante suchen …" autocomplete="off">
   </div>
@@ -282,7 +288,11 @@ final class Overview
   document.addEventListener('click', async (event) => {
     const button = event.target.closest('button.send');
     if (!button) return;
-    const out = button.closest('section').querySelector('.result');
+    const section = button.closest('section');
+    const out = section.querySelector('.result');
+    section.querySelectorAll('tr.active').forEach((row) => row.classList.remove('active'));
+    const row = button.closest('tr');
+    if (row) row.classList.add('active');
     out.hidden = false;
     out.textContent = button.dataset.method + ' ' + button.dataset.url + ' …';
     try {
@@ -500,6 +510,17 @@ HTML;
         return $call;
     }
 
+    /** Knopf „Senden“: schickt den Aufruf per fetch ab, die Antwort erscheint in der Vorschau des Abschnitts. */
+    private function sendButton(array $call): string
+    {
+        $e = static fn (mixed $s): string => htmlspecialchars((string) $s, ENT_QUOTES, 'UTF-8');
+        $headers = $call['headers'] + ($call['body'] !== null ? ['content-type' => 'application/json'] : []);
+        return '<button type="button" class="send" data-method="' . $e($call['method']) . '" data-url="' . $e($call['url']) . '"'
+            . ' data-headers="' . $e(json_encode((object) $headers, self::JSON)) . '"'
+            . ($call['body'] !== null ? ' data-body="' . $e($call['body']) . '"' : '') . '>Senden</button>';
+    }
+
+    /** Aufruf als Text: GET ohne Header als Link, sonst Methode und Pfad mit Body und Headern. */
     private function callHtml(array $call, ?string $label = null): string
     {
         $e = static fn (mixed $s): string => htmlspecialchars((string) $s, ENT_QUOTES, 'UTF-8');
@@ -507,14 +528,10 @@ HTML;
         if ($call['method'] === 'GET' && !$call['headers']) {
             return '<a href="' . $e($call['url']) . '" target="_blank" rel="noopener">' . $e($text) . '</a>';
         }
-        $headers = $call['headers'] + ($call['body'] !== null ? ['content-type' => 'application/json'] : []);
-        $html = '<button type="button" class="send" data-method="' . $e($call['method']) . '" data-url="' . $e($call['url']) . '"'
-            . ' data-headers="' . $e(json_encode((object) $headers, self::JSON)) . '"'
-            . ($call['body'] !== null ? ' data-body="' . $e($call['body']) . '"' : '') . '>Senden</button>';
         if ($label !== null) {
-            return $html . $e($label);
+            return $e($label);
         }
-        $html .= '<code>' . $e($call['method'] . ' ' . $text) . '</code>';
+        $html = '<code>' . $e($call['method'] . ' ' . $text) . '</code>';
         if ($call['body'] !== null) {
             $pretty = json_encode(json_decode($call['body']), self::JSON | JSON_PRETTY_PRINT);
             $html .= ' <details><summary>Body</summary><pre>' . $e($pretty !== false ? $pretty : $call['body']) . '</pre></details>';
