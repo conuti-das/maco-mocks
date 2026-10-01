@@ -1,0 +1,162 @@
+{
+  "stammdaten": {
+    "BILANZIERUNG": [
+      {
+        "bilanzkreis": "Test2312312",
+        "boTyp": "BILANZIERUNG",
+        "jahresverbrauchsprognose": {
+          "einheit": "KWH",
+          "wert": 2000
+        },
+        "lastprofile": [
+          {
+            "bezeichnung": "H00",
+            "einspeisung": false,
+            "herausgeber": "NB",
+            "profilart": "ART_STANDARDLASTPROFIL",
+            "verfahren": "SYNTHETISCH"
+          }
+        ],
+        "versionStruktur": "1"
+      }
+    ],
+    "ENERGIELIEFERVERTRAG": [
+      {
+        "boTyp": "VERTRAG",
+        "enFG": [
+          {
+            "grundlageVerringerungUmlagen": "KEINE_ANGABE"
+          }
+        ],
+        "korrespondenzpartner": {
+          "boTyp": "GESCHAEFTSPARTNER",
+          "gewerbekennzeichnung": false,
+          "name1": "Test2312312",
+          "partneradresse": {
+            "landescode": "DE",
+            "ort": "Dummyort",
+            "postleitzahl": "00000",
+            "strasse": "Dummystrasse"
+          },
+          "versionStruktur": "1"
+        },
+        "sparte": "STROM",
+        "versionStruktur": "1",
+        "vertragsart": "ENERGIELIEFERVERTRAG",
+        "vertragspartner2": [
+          {
+            "anrede": "Dr.",
+            "boTyp": "GESCHAEFTSPARTNER",
+            "geschaeftspartnerrolle": [
+              "KUNDE"
+            ],
+            "gewerbekennzeichnung": false,
+            "name1": "Mustermann",
+            "name2": "Max",
+            "versionStruktur": "1"
+          }
+        ]
+      }
+    ],
+    "MARKTLOKATION": [
+      {
+        "boTyp": "MARKTLOKATION",
+        "energierichtung": "AUSSP",
+        "marktlokationsId": "50074561192",
+        "sparte": "STROM",
+        "versionStruktur": "1"
+      }
+    ],
+    "MESSLOKATION": [
+      {
+        "ablesekartenempfaenger": {
+          "boTyp": "GESCHAEFTSPARTNER",
+          "geschaeftspartnerrolle": [
+            "ABLESEKARTENEMPFAENGER"
+          ],
+          "gewerbekennzeichnung": true,
+          "name1": "Test2312312",
+          "partneradresse": {
+            "landescode": "DE",
+            "ort": "Dummyort",
+            "postleitzahl": "11111",
+            "strasse": "Dummyweg"
+          },
+          "versionStruktur": "1"
+        },
+        "boTyp": "MESSLOKATION",
+        "sparte": "STROM",
+        "versionStruktur": "1"
+      }
+    ],
+    "NETZNUTZUNGSVERTRAG": [
+      {
+        "boTyp": "VERTRAG",
+        "gemeinderabatt": 0,
+        "sparte": "STROM",
+        "versionStruktur": "1",
+        "vertragsart": "NETZNUTZUNGSVERTRAG",
+        "vertragsbeginn": "2024-12-31T23:00:00Z",
+        "vertragskonditionen": {
+          "haushaltskunde": true,
+          "netznutzungsvertrag": "LIEFERANTEN_NB",
+          "netznutzungszahler": "LIEFERANT"
+        }
+      }
+    ]
+  },
+  "transaktionsdaten": {
+    "absender": {
+      "ansprechpartner": {
+        "boTyp": "ANSPRECHPARTNER",
+        "eMailAdresse": "max@mustermann.de",
+        "nachname": "Max Mustermann",
+        "rufnummern": [
+          {
+            "nummerntyp": "RUF_ZENTRALE",
+            "rufnummer": "+12345678902"
+          },
+          {
+            "nummerntyp": "FAX_DURCHWAHL",
+            "rufnummer": "+12345678910"
+          },
+          {
+            "nummerntyp": "RUF_DURCHWAHL",
+            "rufnummer": "+12345678901"
+          },
+          {
+            "nummerntyp": "MOBIL_NUMMER",
+            "rufnummer": "+12345678903"
+          }
+        ],
+        "versionStruktur": "1"
+      },
+      "boTyp": "MARKTTEILNEHMER",
+      "rollencodenummer": "9903790000002",
+      "rollencodetyp": "BDEW",
+      "versionStruktur": "1"
+    },
+    "bilanzkreis": [
+      {
+        "bezeichnung": "Test2312312"
+      }
+    ],
+    "datenaustauschreferenz": "114622",
+    "dokumentennummer": "933588BGM",
+    "empfaenger": {
+      "boTyp": "MARKTTEILNEHMER",
+      "rollencodenummer": "9900321000005",
+      "rollencodetyp": "BDEW",
+      "versionStruktur": "1"
+    },
+    "identifikationslogik": "Z12",
+    "kategorie": "E01",
+    "nachrichtendatum": "2024-04-01T10:57:00Z",
+    "nachrichtenreferenznummer": "S933588",
+    "pruefidentifikator": "55001",
+    "sparte": "STROM",
+    "transaktionsgrund": "E03",
+    "vorgangsnummer": "ABC488710359"
+  },
+  "zusatzdaten": {}
+}

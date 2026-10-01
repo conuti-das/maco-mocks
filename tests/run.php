@@ -93,9 +93,9 @@ $mocks = ROOT . '/mocks';
 // ---------------------------------------------------------------------------
 // Katalog und Routing
 
-test('Katalog: 28 Endpunkte ohne Fehler', function () use ($catalog) {
+test('Katalog: 29 Endpunkte ohne Fehler', function () use ($catalog) {
     eq([], $catalog->errors);
-    eq(28, count($catalog->endpoints));
+    eq(29, count($catalog->endpoints));
 });
 
 test('lesen: Standardantwort, fremde Parameter werden ignoriert', function () use ($server, $mocks) {
@@ -184,6 +184,14 @@ test('aktualisieren: 03002/03003 -> 201 {}, Body ohne transaktionsdaten -> 400',
     }
     eq(400, $server->handle(req('POST', '/updateProcessData', [], [], ['x' => 1]))['status']);
     eq(400, $server->handle(req('POST', '/updateProcessData', [], [], 'kein json'))['status']);
+});
+
+test('erstellen: Anfragebeispiel -> 200 {}, Body ohne transaktionsdaten -> 422', function () use ($server, $mocks) {
+    $r = $server->handle(req('POST', '/createProcessData', [], [], (string) file_get_contents("{$mocks}/erstellen/createProcessData/quelle/anfrage.json")));
+    eq(200, $r['status']);
+    eq("{}\n", $r['body']);
+    eq(422, $server->handle(req('POST', '/createProcessData', [], [], ['stammdaten' => []]))['status']);
+    eq(200, $server->handle(req('POST', '/createProcessData', ['command' => 'ERSTELLEN_PROZESSDATEN'], [], ['transaktionsdaten' => ['x' => 1]]))['status']);
 });
 
 test('identifyLocation: Varianten je Merkmal und Paging über Treffer-Header', function () use ($server) {
@@ -302,7 +310,7 @@ test('Übersicht: jede Variante mit Senden, GET auch als Link, nur unerreichbare
             }
         }
     }
-    eq(124, $count, 'Varianten');
+    eq(126, $count, 'Varianten');
     eq(['lesen/getAllocationAuthorization Standard', 'lesen/getPriceSheetBasic Standard', 'lesen/identifyMarketlocation Standard'], $forced);
 });
 
@@ -374,7 +382,7 @@ test('Update: laden, prüfen, umschalten, unverändert erkennen, aufräumen', fu
     $r = $sync->update('test');
     eq('updated', $r['status'], $r['message']);
     eq($sha1, $sync->current()['sha']);
-    eq(28, count($sync->catalog()->endpoints));
+    eq(29, count($sync->catalog()->endpoints));
     ok(!is_dir("{$data}/releases/{$sha1}/proxy") && is_file("{$data}/releases/{$sha1}/mocks/_global.json"), 'nur mocks/ wird übernommen');
     ok(is_file("{$data}/.htaccess"), 'data/ ist gegen Webzugriff geschützt');
     eq('unchanged', $sync->update('test')['status']);
@@ -459,10 +467,10 @@ test('App: erster Aufruf lädt die Kopie, Status und Übersicht', function () us
     eq('9999999', $r['headers']['X-Mock-Version']);
     $status = body($app->handle(req('GET', '/_status')));
     eq($sha, $status['commit']);
-    eq(28, $status['endpunkte']);
+    eq(29, $status['endpunkte']);
     $html = $app->handle(req('GET', '/'));
     ok(str_contains((string) $html['body'], '/getTrancheBasic'), 'Übersicht listet Endpunkte');
-    eq(28, count(body($app->handle(req('GET', '/_mocks')))['endpunkte']));
+    eq(29, count(body($app->handle(req('GET', '/_mocks')))['endpunkte']));
 });
 
 test('App: Webhook mit Secret, ping, fremder Branch, Push auf main', function () use ($mocks) {

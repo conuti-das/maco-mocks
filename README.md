@@ -1,6 +1,6 @@
 # maco-mocks
 
-Mocks der MaKo-Backend-Schnittstellen **lesen** und **aktualisieren**, dazu ein PHP-Proxy, der sie unter
+Mocks der MaKo-Backend-Schnittstellen **lesen**, **erstellen** und **aktualisieren**, dazu ein PHP-Proxy, der sie unter
 **https://mocks.macoapp.de** ausliefert. Die Antworten stammen aus der API-Spezifikation und liegen hier als einzelne
 JSON-Dateien. Welche Antwort kommt, kann je Parameter, Header oder Body gesteuert werden.
 
@@ -30,6 +30,10 @@ mocks/
     updateProcessData/
       mock.json
       quelle/201.json, 400.json, anfrage-03002.json, anfrage-03003.json
+  erstellen/
+    createProcessData/
+      mock.json
+      quelle/200.json, 422.json, anfrage.json
 proxy/                             PHP-Proxy für mocks.macoapp.de
 tools/                             Import, Prüfung
 tests/                             Tests
@@ -118,6 +122,7 @@ Header `X-Mock-Response: 422` oder Query `?__response=200-leer`, wahlweise mit S
 | 19 Endpunkte | 92 importierte Varianten, siehe Übersicht unter `/` |
 | `POST /identifyLocation` | Paging über `Treffer-Max-Anzahl`/`Treffer-Offset` mit Antwort-Headern `Treffer-*`; MaLo-ID `00000000000` → `[]`; MaLo-ID vorhanden → eine Marktlokation; sonst mehrere |
 | `POST /updateProcessData` | ohne `transaktionsdaten` → 400; 03002 und 03003 → 201 |
+| `POST /createProcessData` | ohne `transaktionsdaten` → 422; sonst 200 |
 | `GET /getMarketlocationBasic` | `parameter1=00000000000` → leere Liste |
 | `GET /getMaloidentMarketlocation` | `parameter1` wird gespiegelt |
 | alle (`_global.json`) | `parameter1=FEHLER400` → 400, `parameter1=FEHLER422` → 422, sofern der Endpunkt die Datei hat |

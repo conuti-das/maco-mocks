@@ -1,7 +1,7 @@
 {
   "select": {
     "tags": ["LESEN | READ"],
-    "operationIdPrefixes": ["LESEN_", "AKTUALISIEREN_"],
+    "operationIdPrefixes": ["LESEN_", "AKTUALISIEREN_", "ERSTELLEN_"],
     "operationIds": [],
     "excludeTagsContaining": ["Obsolet"],
     "excludeOperationIds": [],
@@ -9,6 +9,7 @@
   },
   "groups": [
     { "name": "aktualisieren", "operationIdPrefixes": ["AKTUALISIEREN_"] },
+    { "name": "erstellen", "operationIdPrefixes": ["ERSTELLEN_"] },
     { "name": "lesen", "default": true }
   ]
 }

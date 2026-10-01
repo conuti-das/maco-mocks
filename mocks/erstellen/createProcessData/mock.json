@@ -1,0 +1,37 @@
+{
+  "summary": "Prozessdaten erstellen",
+  "method": "POST",
+  "path": "/createProcessData",
+  "command": "ERSTELLEN_PROZESSDATEN",
+  "rules": [
+    {
+      "name": "Body ohne transaktionsdaten -> 422",
+      "when": {
+        "body.transaktionsdaten": {
+          "exists": false
+        },
+        "body.data.transaktionsdaten": {
+          "exists": false
+        }
+      },
+      "then": "422.json"
+    }
+  ],
+  "parameters": [
+    {
+      "in": "query",
+      "name": "command",
+      "required": true,
+      "description": "Entspricht der operationId dieser Schnittstelle. Diese Operation Id entspricht dem Command im Camunda Konnektor Prozess. Wenn das Backend einen generischen Endpunkt bereitstellt, kann dieses Command g",
+      "type": "string",
+      "example": "ERSTELLEN_PROZESSDATEN"
+    }
+  ],
+  "quelle": {
+    "operationId": "ERSTELLEN_PROZESSDATEN",
+    "stand": "093451c",
+    "ausSchema": [
+      "200.json"
+    ]
+  }
+}
